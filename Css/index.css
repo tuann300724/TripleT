@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f0f, #111827, #0f172a);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* background glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: #00f2ff;
+    filter: blur(200px);
+    top: -200px;
+    left: -200px;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: #7c3aed;
+    filter: blur(200px);
+    bottom: -200px;
+    right: -200px;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* header */
+
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-size: 48px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #aaa;
+    font-size: 18px;
+}
+
+/* about section */
+
+.about {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    color: #ccc;
+    line-height: 1.6;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+/* team */
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 100px;
+    flex-wrap: wrap;
+}
+
+/* glass card */
+
+.member {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    width: 240px;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.member:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 0 30px #00f2ff;
+}
+
+.member img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #00f2ff;
+}
+
+.member h3 {
+    margin-bottom: 6px;
+}
+
+.role {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.leader {
+    transform: scale(1.25);
+    border: 2px solid #00f2ff;
+}
+
+/* skills section */
+
+.skills {
+    margin-top: 140px;
+    text-align: center;
+}
+
+.skills h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.skill-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.skill {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.skill:hover {
+    background: #00f2ff;
+    color: black;
+}
+
+/* contact */
+.contact a {
+    color: #00f2ff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact a:hover {
+    text-shadow: 0 0 10px #00f2ff;
+}
+
+.contact {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 20px;
+}
+
+.contact p {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+/* footer */
+
+footer {
+    margin-top: 120px;
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* HEADER */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    z-index: 1000;
+}
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+/* MENU */
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00f2ff;
+}
+
+.hero {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: url("Images/TTT.jpg") center/cover no-repeat;
+
+    position: relative;
+    margin-top: 70px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hero h1 {
+    position: relative;
+    font-size: 50px;
+    letter-spacing: 3px;
+}
+
+.hero p {
+    position: relative;
+    color: #ccc;
+    margin-top: 10px;
+}
