@@ -7,6 +7,24 @@
 <title>Portfolio Cá Nhân | Toàn Nguyễn</title>
 
 <style>
+    .back-btn{
+position:fixed;
+bottom:30px;
+left:30px;
+padding:12px 20px;
+background:#38bdf8;
+color:black;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:white;
+transform:scale(1.05);
+}
 
 *{
 margin:0;
@@ -205,6 +223,7 @@ opacity:0.7;
 <body>
 
 <!-- NAVBAR -->
+ <button onclick="history.back()" class="back-btn">⬅ Quay lại</button>
 
 <nav>
 <h1>My Portfolio</h1>
