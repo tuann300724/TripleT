@@ -341,3 +341,21 @@ h2 {
         gap: 0;
     }
 }
+   .back-btn{
+position:fixed;
+bottom:30px;
+left:30px;
+padding:12px 20px;
+background:#38bdf8;
+color:black;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:white;
+transform:scale(1.05);
+}
