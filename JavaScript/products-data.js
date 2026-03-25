@@ -102,7 +102,7 @@ window.TRIPLET_PRODUCTS = [
   {
     id: "p-shirt-1",
     name: "Áo thi đấu Dry-fit thoáng khí",
-    price: 350000,
+    price: 350000,  
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
     thumb: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&q=80",
     tag: "Trang phục",

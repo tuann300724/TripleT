@@ -306,10 +306,22 @@
       els.checkout.addEventListener("click", function () {
         const items = getCart();
         if (!items.length) return;
-        const body = encodeURIComponent(buildMailBody(items));
-        const subject = encodeURIComponent("[TripleT] Đặt hàng từ giỏ");
-        window.location.href =
-          "mailto:TripelTteam@gmail.com?subject=" + subject + "&body=" + body;
+        const AUTH_KEY = "triplet_auth_v1";
+        const NEXT_KEY = "triplet_next_after_login";
+        const inPage = /\/Page\//i.test(window.location.pathname || "");
+
+        const loginPath = inPage ? "dang-nhap.html" : "Page/dang-nhap.html";
+        const paymentFile = "thong-tin-thanh-toan.html";
+        const paymentPath = inPage ? paymentFile : "Page/" + paymentFile;
+
+        const isAuthed = localStorage.getItem(AUTH_KEY) === "1";
+        if (!isAuthed) {
+          localStorage.setItem(NEXT_KEY, paymentFile);
+          window.location.href = loginPath;
+          return;
+        }
+
+        window.location.href = paymentPath;
       });
     }
   }
