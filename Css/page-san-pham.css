@@ -1,0 +1,36 @@
+/* Page/san-pham.html — thanh nhảy nhanh theo nhóm hàng */
+
+.shop-subnav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.shop-subnav-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-right: 0.35rem;
+}
+
+.shop-subnav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid rgba(26, 92, 74, 0.15);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.shop-subnav a:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
