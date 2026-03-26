@@ -37,8 +37,8 @@ window.TRIPLET_PRODUCTS = [
     id: "p-racket-2",
     name: "Vợt đầu nặng 4U — tối ưu tấn công smashes",
     price: 2690000,
-    image: "https://images.unsplash.com/photo-1622163642998-1ea39b3ad556?w=600&q=80",
-    thumb: "https://images.unsplash.com/photo-1622163642998-1ea39b3ad556?w=200&q=80",
+    image: "Images/bo-vot.jpg",
+    thumb: "Images/bo-vot.jpg",
     tag: "Vợt",
     category: "vot",
     featured: false,
@@ -55,7 +55,6 @@ window.TRIPLET_PRODUCTS = [
     featured: false,
     alt: "Vợt cầu lông nhẹ",
   },
-  
   {
     id: "p-shuttle-1",
     name: "Hộp 12 quả cầu tốc độ 77 — thi đấu",
