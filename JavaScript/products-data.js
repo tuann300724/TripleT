@@ -56,6 +56,17 @@ window.TRIPLET_PRODUCTS = [
     alt: "Vợt cầu lông nhẹ",
   },
   {
+    id: "p-racket-4",
+    name: "Vợt siêu nặng 6U — chuyên nghiệp & đánh đôi",
+    price: 1890000,
+    image: "Images/vot-cau-long-4.jpg",
+    thumb: "Images/vot-cau-long-4.jpg",
+    tag: "Vợt",
+    category: "vot",
+    featured: false,
+    alt: "Vợt cầu lông nặng",
+  },
+  {
     id: "p-shuttle-1",
     name: "Hộp 12 quả cầu tốc độ 77 — thi đấu",
     price: 185000,
