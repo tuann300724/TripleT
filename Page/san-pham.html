@@ -108,7 +108,95 @@
     <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
 
     <script src="../JavaScript/products-data.js"></script>
-    <script src="../JavaScript/catalog.js" defer></script>
+    <script>
+        (function () {
+            "use strict";
+
+            function escapeHtml(s) {
+                var d = document.createElement("div");
+                d.textContent = s;
+                return d.innerHTML;
+            }
+
+            function formatPrice(n) {
+                return new Intl.NumberFormat("vi-VN").format(n) + "₫";
+            }
+
+            function renderCard(p) {
+                var thumb = p.thumb || p.image;
+                return `
+                    <article class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="../${thumb}">
+                        <div class="product-img">
+                            <img src="../${p.image}" alt="${p.name}" width="600" height="600" loading="lazy">
+                        </div>
+                        <div class="product-body">
+                            <span class="product-tag">${escapeHtml(p.tag)}</span>
+                            <h3>${escapeHtml(p.name)}</h3>
+                            <p class="product-price">${formatPrice(p.price)}</p>
+                            <button type="button" class="btn btn-primary" data-add-cart>Thêm vào giỏ</button>
+                        </div>
+                    </article>`;
+            }
+
+            function init() {
+                var root = document.getElementById("catalog-root");
+                if (!root || !window.TRIPLET_PRODUCTS) return;
+
+                var order = ["vot", "cau", "giay-ao", "tui-phu-kien"];
+                var meta = window.TRIPLET_CATEGORY_META || {
+                    "vot": { title: "Vợt Cầu Lông", blurb: "Sức mạnh và kiểm soát" },
+                    "cau": { title: "Quả Cầu Lông", blurb: "Bền bỉ và ổn định" },
+                    "giay-ao": { title: "Giày & Trang Phục", blurb: "Êm ái và thoáng khí" },
+                    "tui-phu-kien": { title: "Túi & Phụ Kiện", blurb: "Tiện lợi và bảo vệ" }
+                };
+
+                var byCat = {};
+                window.TRIPLET_PRODUCTS.forEach(function (p) {
+                    if (!byCat[p.category]) byCat[p.category] = [];
+                    byCat[p.category].push(p);
+                });
+
+                root.innerHTML = order.map(function (key) {
+                    var items = byCat[key];
+                    if (!items || !items.length) return "";
+
+                    var m = meta[key] || { title: key, blurb: "" };
+
+                    // LẤY ĐÚNG 4 ITEM ĐẦU TIÊN
+                    var displayItems = items.slice(0, 4);
+
+                    return `
+                        <section class="section catalog-section" id="cat-${key}">
+                            <div class="section-head">
+                                <div>
+                                    <h2>${escapeHtml(m.title)}</h2>
+                                    <p>${escapeHtml(m.blurb)}</p>
+                                </div>
+                                <a href="danh-muc-${key}.html" class="link-muted">Xem tất cả →</a>
+                            </div>
+                            <div class="products">
+                                ${displayItems.map(renderCard).join("")}
+                            </div>
+                        </section>`;
+                }).join("");
+            }
+
+            document.addEventListener("DOMContentLoaded", init);
+        })();
+
+        // Thêm logic đóng mở Menu Mobile nhanh
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuBtn = document.getElementById('menu-toggle');
+            const navMain = document.querySelector('.nav-main');
+            if (menuBtn && navMain) {
+                menuBtn.onclick = function () {
+                    navMain.classList.toggle('is-open');
+                    menuBtn.classList.toggle('active');
+                };
+            }
+        });
+    </script>
+
     <script src="../JavaScript/cart.js" defer></script>
 </body>
 
