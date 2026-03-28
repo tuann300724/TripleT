@@ -116,7 +116,7 @@
     document.body.classList.remove("cart-open");
     try {
       if (els.toggle && typeof els.toggle.focus === "function") els.toggle.focus();
-    } catch (_) {}
+    } catch (_) { }
   }
 
   function render() {
@@ -138,7 +138,7 @@
         li.className = "cart-line";
         li.dataset.id = line.id;
         li.innerHTML =
-          '<img class="cart-line-img" src="' +
+          '<img class="cart-line-img" src="../' +
           escapeAttr(line.image) +
           '" alt="' +
           escapeAttr(line.name) +
@@ -332,3 +332,17 @@
     init();
   }
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMain = document.querySelector('.nav-main');
+
+  if (menuToggle && navMain) {
+    menuToggle.addEventListener('click', () => {
+      // Toggle class để mở menu
+      navMain.classList.toggle('is-open');
+      // Toggle class để xoay nút 3 gạch thành dấu X
+      menuToggle.classList.toggle('is-active');
+    });
+  }
+});
