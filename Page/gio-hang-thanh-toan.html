@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Xác nhận sản phẩm trong giỏ hàng TripleT.">
+    <title>Giỏ hàng &amp; thanh toán — TripleT</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="../Css/home.css">
+    <style>
+        .checkout-page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 3rem;
+        }
+
+        .checkout-page h1 {
+            margin: 0 0 0.35rem;
+            font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+            color: var(--green-dark);
+        }
+
+        .checkout-page .lead {
+            margin: 0 0 1.25rem;
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        .checkout-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .checkout-line {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1rem;
+            background: var(--surface, #fff);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .checkout-line-img {
+            width: 88px;
+            height: 88px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .checkout-line-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .checkout-line-name {
+            margin: 0 0 0.35rem;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text, #1a1a1a);
+        }
+
+        .checkout-line-meta {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .checkout-line-sub {
+            margin: 0.4rem 0 0;
+            font-size: 1rem;
+            color: var(--green-dark);
+        }
+
+        .checkout-summary {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(31, 111, 84, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .checkout-summary strong {
+            color: var(--green-dark);
+            font-size: 1.2rem;
+        }
+
+        .checkout-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .checkout-empty {
+            padding: 2rem 1rem;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .checkout-empty a {
+            color: var(--green);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+    </div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chủ</a>
+                <a href="danh-muc.html">Danh mục</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+                <a href="Home.html#lien-he">Liên hệ</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="Home.html" class="btn btn-primary">← Về cửa hàng</a>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-page page-main">
+        <h1>Đơn hàng của bạn</h1>
+        <p class="lead">Danh sách sản phẩm đang lưu trong trình duyệt (giỏ hàng).</p>
+
+        <p class="checkout-empty" id="checkout-empty" hidden>
+            Giỏ hàng đang trống. <a href="Home.html">Quay lại chọn sản phẩm</a>.
+        </p>
+
+        <div class="checkout-items" id="checkout-items" aria-live="polite"></div>
+
+        <div class="checkout-summary">
+            <span>Tạm tính</span>
+            <strong id="checkout-total">0₫</strong>
+        </div>
+
+        <div class="checkout-actions">
+            <a class="btn btn-primary" id="checkout-continue" href="thong-tin-thanh-toan.html" hidden>Tiếp tục</a>
+            <a class="btn btn-ghost" id="checkout-mailto" href="#">Gửi đơn qua email</a>
+            <a href="Home.html" class="link-muted">Tiếp tục mua sắm</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
+            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
+
+    <script src="../JavaScript/checkout-review.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+</body>
+
+</html>
