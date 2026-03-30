@@ -260,7 +260,9 @@
 
             <nav class="nav-main" id="nav-menu">
                 <a href="Home.html">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
                 <a href="san-pham.html">Sản phẩm</a>
+                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
                 <a href="Home.html#lien-he">Liên hệ</a>
             </nav>
 
@@ -292,11 +294,6 @@
         <p class="pay-empty-note" id="pay-empty-note" hidden>
             Giỏ hàng đang trống. Vui lòng <a href="Home.html">chọn sản phẩm</a> trước khi thanh toán.
         </p>
-
-        <div class="pay-success" id="pay-success" role="status">
-            <h2>Đã ghi nhận thông tin</h2>
-            <p id="pay-success-msg">Cảm ơn bạn đã đặt hàng tại TripleT.</p>
-        </div>
 
         <p class="pay-vnpay-err" id="vnpay-error" hidden role="alert"></p>
 
@@ -357,7 +354,90 @@
             <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
         </p>
     </footer>
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function (e) {
+            e.preventDefault();
 
+            // 🧍 Thông tin khách hàng
+            const customer = {
+                name: document.getElementById("pay-name").value,
+                phone: document.getElementById("pay-phone").value,
+                email: document.getElementById("pay-email").value,
+                address: document.getElementById("pay-address").value
+            };
+
+            // 🛒 Lấy giỏ hàng
+            const cart = JSON.parse(localStorage.getItem("triplet_cart_v1")) || [];
+
+            // 💰 Tính tổng tiền
+            const total = cart.reduce((sum, item) => {
+                return sum + item.price * item.qty;
+            }, 0);
+
+            // 📦 Tạo đơn hàng
+            const order = {
+                id: "ORD-" + Date.now(),
+                customer: customer,
+                items: cart,
+                total: total,
+                createdAt: new Date().toLocaleString()
+            };
+
+            // 📚 Lấy danh sách đơn cũ
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            // ➕ Thêm đơn mới
+            orders.push(order);
+
+            // 💾 Lưu localStorage
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            /* =======================
+               🔥 XUẤT FILE EXCEL
+            ======================= */
+
+            // Chuyển orders thành dạng bảng
+            const data = [];
+
+            orders.forEach(order => {
+                order.items.forEach(item => {
+                    data.push({
+                        "Mã đơn": order.id,
+                        "Tên khách": order.customer.name,
+                        "SĐT": order.customer.phone,
+                        "Email": order.customer.email,
+                        "Địa chỉ": order.customer.address,
+                        "Sản phẩm": item.name,
+                        "Số lượng": item.qty,
+                        "Giá": item.price,
+                        "Thành tiền": item.price * item.qty,
+                        "Tổng đơn": order.total,
+                        "Ngày": order.createdAt
+                    });
+                });
+            });
+
+            // Tạo worksheet
+            const ws = XLSX.utils.json_to_sheet(data);
+
+            // Tạo workbook
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "DonHang");
+
+            // Xuất file
+            XLSX.writeFile(wb, "don-hang.xlsx");
+            // 🧹 Xóa giỏ hàng
+      
+            localStorage.clear();
+           
+            // 🎉 Thông báo
+            alert("Đặt hàng thành công!");
+
+            // 👉 chuyển trang
+            window.location.href = "success.html";
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="../JavaScript/vnpay-config.js"></script>
     <script src="../JavaScript/vnpay-gateway.js" defer></script>
     <script src="../JavaScript/payment-info.js" defer></script>

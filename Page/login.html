@@ -1,256 +1,318 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng nhập - TripleT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - TripleT</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../Css/badminton-base.css">
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+    /* BODY */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #0f3d2e, #1f6f54);
+    }
 
-body{
-  height:100vh;
-  background: linear-gradient(135deg,#0f3d2e,#1f6f54);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+    }
 
-/* CARD */
-.container{
-  width:400px;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  padding:35px;
-  border-radius:25px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);
-  animation: fadeIn 0.6s ease;
-  text-align:center;
-}
+    .container {
+      width: 400px;
+      max-width: 90%;
+      /* tránh vỡ mobile */
+      padding: 35px;
+      text-align: center;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.6s ease;
+    }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
-}
+    /* ANIMATION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-/* LOGO */
-.logo{
-  font-size:24px;
-  font-weight:bold;
-  color:#1f6f54;
-  margin-bottom:10px;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-h2{
-  margin-bottom:25px;
-  color:#0f3d2e;
-}
+    /* TEXT */
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1f6f54;
+      margin-bottom: 10px;
+    }
 
-/* INPUT */
-.input-group{
-  margin-bottom:18px;
-  text-align:left;
-}
+    h2 {
+      margin-bottom: 25px;
+      color: #0f3d2e;
+    }
 
-.input-group label{
-  font-size:13px;
-  color:#555;
-}
+    /* INPUT */
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
 
-.input-group input{
-  width:100%;
-  padding:12px 40px 12px 12px;
-  margin-top:5px;
-  border-radius:12px;
-  border:1px solid #ddd;
-  transition:0.3s;
-}
+    .input-group label {
+      font-size: 13px;
+      color: #555;
+    }
 
-.input-group input:focus{
-  border-color:#1f6f54;
-  box-shadow:0 0 8px rgba(31,111,84,0.3);
-}
+    .input-group input {
+      width: 100%;
+      margin-top: 5px;
+      padding: 12px 40px 12px 12px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      transition: 0.3s;
+    }
 
-/* ICON MẮT */
-.password-box{
-  position:relative;
-}
+    .input-group input:focus {
+      border-color: #1f6f54;
+      box-shadow: 0 0 8px rgba(31, 111, 84, 0.3);
+    }
 
-.password-box i{
-  position:absolute;
-  right:12px;
-  top:38px;
-  cursor:pointer;
-  color:#777;
-}
+    /* PASSWORD */
+    .password-box {
+      position: relative;
+    }
 
-/* BUTTON */
-.btn{
-  width:100%;
-  padding:13px;
-  border:none;
-  border-radius:30px;
-  background: linear-gradient(135deg,#1f6f54,#145c44);
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
-}
+    .password-box i {
+      position: absolute;
+      top: 38px;
+      right: 12px;
+      cursor: pointer;
+      color: #777;
+    }
 
-.btn:hover{
-  transform: translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
+    /* BUTTON */
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(135deg, #1f6f54, #145c44);
+      transition: 0.3s;
+    }
 
-/* LINK GẠCH CHÂN */
-.link{
-  position: relative;
-  color:#1f6f54;
-  cursor:pointer;
-  display:inline-block;
-}
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
 
-.link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-3px;
-  width:0%;
-  height:2px;
-  background:#1f6f54;
-  transition:0.3s;
-}
+    /* LINK */
+    .link {
+      position: relative;
+      color: #1f6f54;
+      cursor: pointer;
+    }
 
-.link:hover::after{
-  width:100%;
-}
+    .link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: #1f6f54;
+      transition: 0.3s;
+    }
 
-/* TEXT */
-.extra{
-  margin-top:15px;
-}
+    .link:hover::after {
+      width: 100%;
+    }
 
-.toggle{
-  margin-top:10px;
-}
+    /* EXTRA */
+    .extra,
+    .toggle {
+      margin-top: 15px;
+    }
 
-/* SOCIAL */
-.social{
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* 👉 cách đều */
-}
+    /* SOCIAL */
+    .social {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
 
-.icon{
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #f2f2f2;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-/* ICON BÊN TRONG */
-.icon i{
-  font-size: 18px;
-  color: #333;
-}
+    .icon i {
+      font-size: 18px;
+      color: #333;
+    }
 
-/* HOVER */
-.icon:hover{
-  background: #1f6f54;
-}
+    .icon:hover {
+      background: #1f6f54;
+    }
 
-.icon:hover i{
-  color: white;
-}
-</style>
+    .icon:hover i {
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-
-  <div class="logo">🏸 TripleT</div>
-  <h2 id="title">Đăng nhập</h2>
-
-  <form onsubmit="return false">
-
-    <div class="input-group">
-      <label>Email / Số điện thoại</label>
-      <input type="email" required>
-    </div>
-
-    <div class="input-group password-box">
-      <label>Mật khẩu</label>
-      <input type="password" id="password" required>
-      <i class="fa-solid fa-eye" onclick="togglePassword(this)"></i>
-    </div>
-
-    <div class="input-group password-box" id="confirmBox" style="display:none;">
-      <label>Xác nhận mật khẩu</label>
-      <input type="password" id="confirmPassword">
-      <i class="fa-solid fa-eye" onclick="toggleConfirm(this)"></i>
-    </div>
-
-    <button class="btn" id="btnText">Đăng nhập</button>
-
-  </form>
-
-  <!-- QUÊN MẬT KHẨU -->
-  <div class="extra">
-    <span class="link">Quên mật khẩu?</span>
+  <div class="top-bar">
+    Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
   </div>
 
-  <!-- KHÔNG LỆCH NỮA -->
-  <div class="toggle">
-    <span>Chưa có tài khoản? </span>
-    <span class="link" onclick="toggleForm()" id="toggleText">Đăng ký</span>
-  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="Home.html" class="logo">
+        <span class="logo-mark">🏸</span>
+        <span>TripleT Cầu Lông</span>
+      </a>
 
-  <div class="social">
-  <div class="icon"><i class="fab fa-google"></i></div>
-  <div class="icon"><i class="fab fa-facebook-f"></i></div>
-  <div class="icon"><i class="fab fa-github"></i></div>
-</div>
+      <nav class="nav-main" id="nav-menu">
+        <a href="Home.html">Trang chủ</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="san-pham.html">Sản phẩm</a>
+        <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+        <a href="Home.html#lien-he">Liên hệ</a>
+      </nav>
 
-</div>
+      <div class="header-actions">
+        <!-- <button type="button" class="cart-toggle" id="cart-toggle">
+          <span class="cart-toggle-icon">🛒</span>
+          <span class="cart-badge" id="cart-badge" hidden>0</span>
+        </button> -->
 
-<script>
-let isLogin = true;
+        <a href="login.html" class="btn btn-primary ">Đăng nhập</a>
+        <button type="button" class="menu-toggle" id="menu-toggle">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
 
-function togglePassword(el){
-  const input = document.getElementById("password");
-  input.type = input.type === "password" ? "text" : "password";
-  el.classList.toggle("fa-eye-slash");
-}
+      </div>
+    </div>
+  </header>
+  <!-- MAIN -->
+  <main class="main">
 
-function toggleConfirm(el){
-  const input = document.getElementById("confirmPassword");
-  input.type = input.type === "password" ? "text" : "password";
-  el.classList.toggle("fa-eye-slash");
-}
+    <div class="container">
 
-function toggleForm(){
-  isLogin = !isLogin;
+      <div class="logo">🏸 TripleT</div>
+      <h2 id="title">Đăng nhập</h2>
 
-  document.getElementById("title").innerText = isLogin ? "Đăng nhập" : "Đăng ký";
-  document.getElementById("btnText").innerText = isLogin ? "Đăng nhập" : "Đăng ký";
-  document.getElementById("confirmBox").style.display = isLogin ? "none" : "block";
-  document.getElementById("toggleText").innerText = isLogin ? "Đăng ký" : "Đăng nhập";
-}
-</script>
+      <form onsubmit="return false">
 
+        <div class="input-group">
+          <label>Email / Số điện thoại</label>
+          <input type="email" required>
+        </div>
+
+        <div class="input-group password-box">
+          <label>Mật khẩu</label>
+          <input type="password" id="password" required>
+          <i class="fa-solid fa-eye" onclick="togglePassword(this)"></i>
+        </div>
+
+        <div class="input-group password-box" id="confirmBox" style="display:none;">
+          <label>Xác nhận mật khẩu</label>
+          <input type="password" id="confirmPassword">
+          <i class="fa-solid fa-eye" onclick="toggleConfirm(this)"></i>
+        </div>
+
+        <button class="btn" id="btnText">Đăng nhập</button>
+
+      </form>
+
+      <div class="extra">
+        <span class="link">Quên mật khẩu?</span>
+      </div>
+
+      <div class="toggle">
+        <span>Chưa có tài khoản? </span>
+        <span class="link" onclick="toggleForm()" id="toggleText">Đăng ký</span>
+      </div>
+
+      <div class="social">
+        <div class="icon"><i class="fab fa-google"></i></div>
+        <div class="icon"><i class="fab fa-facebook-f"></i></div>
+        <div class="icon"><i class="fab fa-github"></i></div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER (bạn tự thêm nội dung) -->
+  <footer class="site-footer">
+    <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
+      <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+
+  <script>
+    let isLogin = true;
+
+    function togglePassword(el) {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+      el.classList.toggle("fa-eye-slash");
+    }
+
+    function toggleConfirm(el) {
+      const input = document.getElementById("confirmPassword");
+      input.type = input.type === "password" ? "text" : "password";
+      el.classList.toggle("fa-eye-slash");
+    }
+
+    function toggleForm() {
+      isLogin = !isLogin;
+
+      document.getElementById("title").innerText = isLogin ? "Đăng nhập" : "Đăng ký";
+      document.getElementById("btnText").innerText = isLogin ? "Đăng nhập" : "Đăng ký";
+      document.getElementById("confirmBox").style.display = isLogin ? "none" : "block";
+      document.getElementById("toggleText").innerText = isLogin ? "Đăng ký" : "Đăng nhập";
+    }
+  </script>
+  <script src="../JavaScript/cart.js"></script>
 </body>
+
+
+
 </html>
