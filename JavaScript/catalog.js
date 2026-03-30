@@ -32,7 +32,7 @@
       escapeAttr(thumb) +
       '">' +
       '<div class="product-img">' +
-      '<img src="' +
+      '<img src="../' +
       escapeAttr(p.image) +
       '" alt="' +
       escapeAttr(alt) +

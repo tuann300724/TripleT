@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TripleT — cửa hàng dụng cụ cầu lông: vợt, cầu, giày, túi và phụ kiện chính hãng.">
+    <title>TripleT — Cửa hàng cầu lông</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+</head>
+<style>
+    .thankyou {
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--cream);
+        font-family: var(--font);
+    }
+
+    .thankyou-card {
+        background: var(--white);
+        padding: 50px 40px;
+        border-radius: var(--radius);
+        text-align: center;
+        box-shadow: var(--shadow);
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: var(--green-light);
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    .thankyou-card h1 {
+        color: var(--green-dark);
+        margin-bottom: 15px;
+    }
+
+    .desc {
+        color: var(--muted);
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    /* Nút chính */
+    .btn.primary {
+        background: var(--green);
+        color: var(--white);
+    }
+
+    .btn.primary:hover {
+        background: var(--green-light);
+    }
+
+    /* Nút viền */
+    .btn.outline {
+        border: 2px solid var(--green);
+        color: var(--green);
+        background: transparent;
+    }
+
+    .btn.outline:hover {
+        background: var(--green);
+        color: var(--white);
+    }
+</style>
+
+<body>
+
+    <div class="top-bar">
+        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+    </div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+                <a href="Home.html#lien-he">Liên hệ</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary ">Đăng nhập</a>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="thankyou">
+        <div class="thankyou-card">
+
+            <div class="icon">✔</div>
+
+            <h1>Cảm ơn bạn đã mua hàng!</h1>
+
+            <p class="desc">
+                Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ và giao hàng trong thời gian sớm nhất.
+            </p>
+
+            <div class="actions">
+                <a href="Home.html" class="btn primary">Về trang chủ</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
+            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
+
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+        <div class="cart-drawer-inner">
+            <div class="cart-drawer-head">
+                <h2 id="cart-title">Giỏ hàng</h2>
+                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">×</button>
+            </div>
+            <div class="cart-drawer-body">
+                <p class="cart-empty" id="cart-empty">Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!</p>
+                <ul class="cart-lines" id="cart-lines"></ul>
+            </div>
+            <div class="cart-drawer-foot">
+                <div class="cart-summary-row">
+                    <span>Số lượng</span>
+                    <span id="cart-count-summary">0</span>
+                </div>
+                <div class="cart-summary-row cart-summary-total">
+                    <span>Tạm tính</span>
+                    <strong id="cart-subtotal">0₫</strong>
+                </div>
+                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>Xem đơn &amp;
+                    thanh toán</button>
+                <button type="button" class="cart-clear" id="cart-clear">Xóa toàn bộ giỏ</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/products-data.js"></script>
+    <script src="../JavaScript/catalog.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+
+</body>
+
+</html>

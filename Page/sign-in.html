@@ -1,184 +1,195 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng ký - TripleT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - TripleT</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-body{
-  height:100vh;
-  background: linear-gradient(135deg,#0f3d2e,#1f6f54);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f3d2e, #1f6f54);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.container{
-  width:420px;
-  background:#fff;
-  padding:35px;
-  border-radius:25px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);
-  text-align:center;
-  animation: fadeIn .6s ease;
-}
+    .container {
+      width: 420px;
+      background: #fff;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: fadeIn .6s ease;
+    }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-.logo{
-  font-size:24px;
-  font-weight:bold;
-  color:#1f6f54;
-  margin-bottom:10px;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-h2{
-  margin-bottom:20px;
-  color:#0f3d2e;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1f6f54;
+      margin-bottom: 10px;
+    }
 
-.input-group{
-  margin-bottom:16px;
-  text-align:left;
-}
+    h2 {
+      margin-bottom: 20px;
+      color: #0f3d2e;
+    }
 
-.input-group label{
-  font-size:13px;
-  color:#555;
-}
+    .input-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
 
-.input-group input{
-  width:100%;
-  padding:12px 40px 12px 12px;
-  margin-top:5px;
-  border-radius:12px;
-  border:1px solid #ddd;
-}
+    .input-group label {
+      font-size: 13px;
+      color: #555;
+    }
 
-.input-group input:focus{
-  border-color:#1f6f54;
-  box-shadow:0 0 8px rgba(31,111,84,.3);
-  outline:none;
-}
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      margin-top: 5px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
 
-.password-box{
-  position:relative;
-}
+    .input-group input:focus {
+      border-color: #1f6f54;
+      box-shadow: 0 0 8px rgba(31, 111, 84, .3);
+      outline: none;
+    }
 
-.password-box i{
-  position:absolute;
-  right:12px;
-  top:38px;
-  cursor:pointer;
-  color:#777;
-}
+    .password-box {
+      position: relative;
+    }
 
-.btn{
-  width:100%;
-  padding:13px;
-  border:none;
-  border-radius:30px;
-  background: linear-gradient(135deg,#1f6f54,#145c44);
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:.3s;
-}
+    .password-box i {
+      position: absolute;
+      right: 12px;
+      top: 38px;
+      cursor: pointer;
+      color: #777;
+    }
 
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,.3);
-}
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #1f6f54, #145c44);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
 
-.toggle{
-  margin-top:12px;
-}
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+    }
 
-.link{
-  position:relative;
-  color:#1f6f54;
-  cursor:pointer;
-}
+    .toggle {
+      margin-top: 12px;
+    }
 
-.link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-3px;
-  width:0%;
-  height:2px;
-  background:#1f6f54;
-  transition:.3s;
-}
+    .link {
+      position: relative;
+      color: #1f6f54;
+      cursor: pointer;
+    }
 
-.link:hover::after{
-  width:100%;
-}
-</style>
+    .link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 2px;
+      background: #1f6f54;
+      transition: .3s;
+    }
+
+    .link:hover::after {
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  
 
-<div class="logo">🏸 TripleT</div>
-<h2>Đăng ký</h2>
+  <div class="container">
 
-<form onsubmit="return false">
+    <div class="logo">🏸 TripleT</div>
+    <h2>Đăng ký</h2>
 
-<div class="input-group">
-<label>Họ và tên</label>
-<input type="text" required>
-</div>
+    <form onsubmit="return false">
 
-<div class="input-group">
-<label>Email / Số điện thoại</label>
-<input type="email" required>
-</div>
+      <div class="input-group">
+        <label>Họ và tên</label>
+        <input type="text" required>
+      </div>
 
-<div class="input-group password-box">
-<label>Mật khẩu</label>
-<input type="password" id="password" required>
-<i class="fa-solid fa-eye" onclick="togglePass(this,'password')"></i>
-</div>
+      <div class="input-group">
+        <label>Email / Số điện thoại</label>
+        <input type="email" required>
+      </div>
 
-<div class="input-group password-box">
-<label>Xác nhận mật khẩu</label>
-<input type="password" id="confirm" required>
-<i class="fa-solid fa-eye" onclick="togglePass(this,'confirm')"></i>
-</div>
+      <div class="input-group password-box">
+        <label>Mật khẩu</label>
+        <input type="password" id="password" required>
+        <i class="fa-solid fa-eye" onclick="togglePass(this,'password')"></i>
+      </div>
 
-<button class="btn">Tạo tài khoản</button>
+      <div class="input-group password-box">
+        <label>Xác nhận mật khẩu</label>
+        <input type="password" id="confirm" required>
+        <i class="fa-solid fa-eye" onclick="togglePass(this,'confirm')"></i>
+      </div>
 
-</form>
+      <button class="btn">Tạo tài khoản</button>
 
-<div class="toggle">
-Đã có tài khoản?
-<span class="link" onclick="location.href='login.html'">Đăng nhập</span>
-</div>
+    </form>
 
-</div>
+    <div class="toggle">
+      Đã có tài khoản?
+      <span class="link" onclick="location.href='login.html'">Đăng nhập</span>
+    </div>
 
-<script>
-function togglePass(el,id){
- const input=document.getElementById(id);
- input.type=input.type==="password"?"text":"password";
- el.classList.toggle("fa-eye-slash");
-}
-</script>
+  </div>
+
+  <script>
+    function togglePass(el, id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+      el.classList.toggle("fa-eye-slash");
+    }
+  </script>
 
 </body>
+
 </html>

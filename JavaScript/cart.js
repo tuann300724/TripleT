@@ -116,7 +116,7 @@
     document.body.classList.remove("cart-open");
     try {
       if (els.toggle && typeof els.toggle.focus === "function") els.toggle.focus();
-    } catch (_) {}
+    } catch (_) { }
   }
 
   function render() {
@@ -138,7 +138,7 @@
         li.className = "cart-line";
         li.dataset.id = line.id;
         li.innerHTML =
-          '<img class="cart-line-img" src="' +
+          '<img class="cart-line-img" src="../' +
           escapeAttr(line.image) +
           '" alt="' +
           escapeAttr(line.name) +
@@ -306,22 +306,10 @@
       els.checkout.addEventListener("click", function () {
         const items = getCart();
         if (!items.length) return;
-        const AUTH_KEY = "triplet_auth_v1";
-        const NEXT_KEY = "triplet_next_after_login";
         const inPage = /\/Page\//i.test(window.location.pathname || "");
-
-        const loginPath = inPage ? "dang-nhap.html" : "Page/dang-nhap.html";
-        const paymentFile = "thong-tin-thanh-toan.html";
-        const paymentPath = inPage ? paymentFile : "Page/" + paymentFile;
-
-        const isAuthed = localStorage.getItem(AUTH_KEY) === "1";
-        if (!isAuthed) {
-          localStorage.setItem(NEXT_KEY, paymentFile);
-          window.location.href = loginPath;
-          return;
-        }
-
-        window.location.href = paymentPath;
+        window.location.href = inPage
+          ? "gio-hang-thanh-toan.html"
+          : "Page/gio-hang-thanh-toan.html";
       });
     }
   }
@@ -332,3 +320,17 @@
     init();
   }
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMain = document.querySelector('.nav-main');
+
+  if (menuToggle && navMain) {
+    menuToggle.addEventListener('click', () => {
+      // Toggle class để mở menu
+      navMain.classList.toggle('is-open');
+      // Toggle class để xoay nút 3 gạch thành dấu X
+      menuToggle.classList.toggle('is-active');
+    });
+  }
+});

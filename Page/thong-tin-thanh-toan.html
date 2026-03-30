@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nhập thông tin giao hàng và chọn phương thức thanh toán TripleT.">
+    <title>Thông tin thanh toán — TripleT</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="../Css/home.css">
+    <style>
+        .pay-page {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1.5rem 1.25rem 3rem;
+        }
+
+        .pay-page h1 {
+            margin: 0 0 0.35rem;
+            font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+            color: var(--green-dark);
+        }
+
+        .pay-breadcrumb {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .pay-breadcrumb a {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .pay-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .pay-total-bar {
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1rem;
+            background: rgba(26, 92, 74, 0.08);
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .pay-total-bar strong {
+            color: var(--green-dark);
+            font-size: 1.15rem;
+        }
+
+        .pay-form fieldset {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.1rem 1.15rem;
+            margin: 0 0 1.25rem;
+            background: var(--white);
+        }
+
+        .pay-form legend {
+            padding: 0 0.35rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            font-size: 1rem;
+        }
+
+        .pay-field {
+            margin-bottom: 0.9rem;
+        }
+
+        .pay-field:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .pay-field label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .pay-field input,
+        .pay-field textarea {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            font: inherit;
+            background: var(--cream);
+        }
+
+        .pay-field input:focus,
+        .pay-field textarea:focus {
+            outline: 2px solid rgba(26, 92, 74, 0.35);
+            border-color: var(--green);
+        }
+
+        .pay-field textarea {
+            min-height: 88px;
+            resize: vertical;
+        }
+
+        .pay-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .pay-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .pay-method:hover {
+            border-color: rgba(26, 92, 74, 0.35);
+            background: rgba(26, 92, 74, 0.04);
+        }
+
+        .pay-method:has(input:checked) {
+            border-color: var(--green);
+            background: rgba(26, 92, 74, 0.07);
+        }
+
+        .pay-method input {
+            margin-top: 0.2rem;
+            accent-color: var(--green);
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .pay-method-body {
+            flex: 1;
+        }
+
+        .pay-method-title {
+            font-weight: 700;
+            color: var(--text);
+            margin: 0 0 0.2rem;
+        }
+
+        .pay-method-desc {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .pay-submit {
+            margin-top: 0.5rem;
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(145deg, var(--green), var(--green-light));
+            color: var(--white);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .pay-submit:hover {
+            filter: brightness(1.05);
+        }
+
+        .pay-success {
+            display: none;
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(45, 143, 115, 0.12);
+            border: 1px solid rgba(26, 92, 74, 0.25);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .pay-success.is-visible {
+            display: block;
+        }
+
+        .pay-success h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            color: var(--green-dark);
+        }
+
+        .pay-success p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .pay-empty-note {
+            color: var(--muted);
+            padding: 1rem 0;
+        }
+
+        .pay-empty-note a {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .pay-momo-err {
+            padding: 0.9rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            background: #fde8e8;
+            color: #8b1c1c;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .pay-momo-err[hidden] {
+            display: none !important;
+        }
+
+        .pay-vnpay-err {
+            padding: 0.9rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            background: #fde8e8;
+            color: #8b1c1c;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .pay-vnpay-err[hidden] {
+            display: none !important;
+        }
+
+        /* Thêm style cho icon VNPay nếu cần */
+        .vnpay-logo {
+            height: 20px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+    </div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+                <a href="Home.html#lien-he">Liên hệ</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="gio-hang-thanh-toan.html" class="btn btn-primary">Giỏ hàng</a>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pay-page page-main">
+        <p class="pay-breadcrumb">
+            <a href="gio-hang-thanh-toan.html">Giỏ hàng</a>
+            <span aria-hidden="true"> · </span>
+            Thông tin thanh toán
+        </p>
+
+        <h1>Thông tin giao hàng &amp; thanh toán</h1>
+
+        <div class="pay-total-bar" id="pay-total-bar" hidden>
+            <span>Tạm tính đơn hàng</span>
+            <strong id="pay-order-total">0₫</strong>
+        </div>
+
+        <p class="pay-empty-note" id="pay-empty-note" hidden>
+            Giỏ hàng đang trống. Vui lòng <a href="Home.html">chọn sản phẩm</a> trước khi thanh toán.
+        </p>
+
+        <p class="pay-vnpay-err" id="vnpay-error" hidden role="alert"></p>
+
+        <form class="pay-form" id="payment-form" novalidate>
+            <fieldset>
+                <legend>Thông tin nhận hàng</legend>
+                <div class="pay-field">
+                    <label for="pay-name">Họ và tên</label>
+                    <input type="text" id="pay-name" name="name" required autocomplete="name"
+                        placeholder="Nguyễn Văn A">
+                </div>
+                <div class="pay-field">
+                    <label for="pay-phone">Số điện thoại</label>
+                    <input type="tel" id="pay-phone" name="phone" required autocomplete="tel"
+                        placeholder="0912 345 678">
+                </div>
+                <div class="pay-field">
+                    <label for="pay-email">Email</label>
+                    <input type="email" id="pay-email" name="email" required autocomplete="email"
+                        placeholder="ban@email.com">
+                </div>
+                <div class="pay-field">
+                    <label for="pay-address">Địa chỉ giao hàng</label>
+                    <textarea id="pay-address" name="address" required rows="3"
+                        placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Phương thức thanh toán</legend>
+                <div class="pay-methods">
+                    <label class="pay-method">
+                        <input type="radio" name="payment_method" value="vnpay" checked>
+                        <span class="pay-method-body">
+                            <span class="pay-method-title">VNPay</span>
+                            <span class="pay-method-desc">Thanh toán qua cổng VNPay (Thẻ ATM, Visa/Master, QR-Code). Hệ
+                                thống sẽ tạo liên kết thanh toán an toàn.</span>
+                        </span>
+                    </label>
+                    <label class="pay-method">
+                        <input type="radio" name="payment_method" value="cash">
+                        <span class="pay-method-body">
+                            <span class="pay-method-title">Tiền mặt</span>
+                            <span class="pay-method-desc">Thanh toán khi nhận hàng (COD — trả tiền mặt cho
+                                shipper).</span>
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="pay-submit" id="pay-submit">Hoàn tất đặt hàng</button>
+        </form>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
+            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // 🧍 Thông tin khách hàng
+            const customer = {
+                name: document.getElementById("pay-name").value,
+                phone: document.getElementById("pay-phone").value,
+                email: document.getElementById("pay-email").value,
+                address: document.getElementById("pay-address").value
+            };
+
+            // 🛒 Lấy giỏ hàng
+            const cart = JSON.parse(localStorage.getItem("triplet_cart_v1")) || [];
+
+            // 💰 Tính tổng tiền
+            const total = cart.reduce((sum, item) => {
+                return sum + item.price * item.qty;
+            }, 0);
+
+            // 📦 Tạo đơn hàng
+            const order = {
+                id: "ORD-" + Date.now(),
+                customer: customer,
+                items: cart,
+                total: total,
+                createdAt: new Date().toLocaleString()
+            };
+
+            // 📚 Lấy danh sách đơn cũ
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            // ➕ Thêm đơn mới
+            orders.push(order);
+
+            // 💾 Lưu localStorage
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            /* =======================
+               🔥 XUẤT FILE EXCEL
+            ======================= */
+
+            // Chuyển orders thành dạng bảng
+            const data = [];
+
+            orders.forEach(order => {
+                order.items.forEach(item => {
+                    data.push({
+                        "Mã đơn": order.id,
+                        "Tên khách": order.customer.name,
+                        "SĐT": order.customer.phone,
+                        "Email": order.customer.email,
+                        "Địa chỉ": order.customer.address,
+                        "Sản phẩm": item.name,
+                        "Số lượng": item.qty,
+                        "Giá": item.price,
+                        "Thành tiền": item.price * item.qty,
+                        "Tổng đơn": order.total,
+                        "Ngày": order.createdAt
+                    });
+                });
+            });
+
+            // Tạo worksheet
+            const ws = XLSX.utils.json_to_sheet(data);
+
+            // Tạo workbook
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "DonHang");
+
+            // Xuất file
+            XLSX.writeFile(wb, "don-hang.xlsx");
+            // 🧹 Xóa giỏ hàng
+      
+            localStorage.clear();
+           
+            // 🎉 Thông báo
+            alert("Đặt hàng thành công!");
+
+            // 👉 chuyển trang
+            window.location.href = "success.html";
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="../JavaScript/vnpay-config.js"></script>
+    <script src="../JavaScript/vnpay-gateway.js" defer></script>
+    <script src="../JavaScript/payment-info.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+</body>
+
+</html>
