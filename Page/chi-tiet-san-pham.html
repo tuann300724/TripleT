@@ -48,35 +48,34 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
             margin: 30px 0; box-shadow: var(--shadow);
         }
-   .main-img {
-    height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 24px;
-    overflow: hidden; /* QUAN TRỌNG NHẤT */
+   /* 1. Thẻ bao quanh hình ảnh */
+/* 1. Khung chứa hình ảnh (Cái khuôn bo góc) */
+.main-img {
+    width: 100%; 
+    height: 100%;
+    display: block;
+    position: relative;
     
-    border: 1px solid #e5ece8;
-    background: linear-gradient(145deg, #f8fbf9, #eef3f0);
+    /* 👇 PHẦN QUAN TRỌNG: Tạo bo góc và chặn ảnh tràn ra ngoài */
+    overflow: hidden;       /* Ẩn phần ảnh thừa khi phóng to */
+    border-radius: 15px;    /* Độ bo góc (bạn có thể chỉnh 10px, 15px tùy ý) */
 }
 
-/* 👇 FIX CHÍNH NẰM Ở ĐÂY */
+/* 2. Cấu hình cho hình ảnh bên trong */
 .main-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-
-    display: block; /* tránh lỗi inline ảnh */
-
-    /* ❌ bỏ border-radius ở img */
-    /* KHÔNG cần border-radius ở đây */
-
-    transition: transform 0.4s ease;
+    
+    /* Dùng 'cover' để ảnh lấp đầy khung bo góc cho đẹp chuyên nghiệp */
+    object-fit: cover; 
+    
+    display: block;
+    transition: transform 0.4s ease; /* Hiệu ứng mượt mà */
 }
 
+/* 3. Hiệu ứng khi di chuột vào (Zoom nhẹ) */
 .main-img:hover img {
-    transform: scale(1.08);
+    transform: scale(1.08); /* Phóng to 8% */
 }
 
         /* --- BUYING INFO --- */
