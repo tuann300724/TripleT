@@ -389,3 +389,37 @@ body {
   text-align: center;
   margin-top: 2rem;
 }
+/* Nút trong modal */
+.form-buttons .btn-icon {
+    background: none;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+.form-buttons .btn-icon:hover {
+    background: var(--green);
+    color: var(--white);
+}
+
+.form-buttons .btn-add {
+    background: var(--green);
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.form-buttons .btn-add:hover {
+    background: var(--green-light);
+}
