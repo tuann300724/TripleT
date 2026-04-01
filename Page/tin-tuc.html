@@ -323,6 +323,107 @@
             display: block;
             color: inherit;
         }
+    /* ===== MOBILE OPTIMIZATION (Bổ sung vào cuối thẻ style) ===== */
+@media (max-width: 768px) {
+    /* 1. Container: Giảm padding để tận dụng không gian */
+    .container {
+        padding: 0 15px;
+    }
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+    }
+
+    .nav-main {
+        display: none; /* Ẩn menu chữ, dùng nút hamburger để mở */
+    }
+
+    .logo span:last-child {
+        font-size: 16px; /* Thu nhỏ chữ TripleT cho vừa màn hình */
+    }
+
+    .header-actions {
+        gap: 10px;
+    }
+
+    /* Đảm bảo các card sản phẩm không bị quá to */
+    .t-card img {
+        height: 200px; 
+    }
+    /* 2. Hero Section: Chuyển về 1 cột dọc */
+    .hero-mega {
+        grid-template-columns: 1fr; /* Ép tất cả về 1 cột */
+        gap: 25px;
+    }
+
+    /* 3. Main Feature (Ảnh to): Giảm chiều cao để không chiếm hết màn hình */
+    .main-feature {
+        height: 350px;
+    }
+
+    .main-feature h1 {
+        font-size: 22px !important; /* Chỉnh tiêu đề nhỏ lại cho vừa đt */
+    }
+
+    /* 4. Tin nhanh & Trending: Hiện lại nhưng xếp dọc */
+    .news-flash-col {
+        display: flex; /* Hiện lại trên mobile nếu cần */
+        order: 2; /* Đẩy xuống dưới ảnh chính */
+    }
+
+    .trending-col {
+        order: 3;
+    }
+
+    /* 5. Tournament Grid: Chuyển từ 4 cột thành 1 hoặc 2 cột */
+    .tournament-grid {
+        grid-template-columns: 1fr; /* Ưu tiên 1 cột để ảnh to rõ nét */
+        gap: 20px;
+    }
+
+    /* 6. Media Section: Video highlights */
+    .video-large-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .v-main img {
+        height: 250px !important;
+    }
+
+    /* 7. Footer: Chuyển 5 cột thành các khối dọc */
+    .footer-cols {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .f-col {
+        grid-column: span 1 !important;
+    }
+
+    .f-col li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+
+    /* 8. Header & Nav: Đảm bảo thanh menu không bị vỡ */
+    .header-inner {
+        padding: 10px 0;
+    }
+
+    .nav-main {
+        display: none; /* Thường sẽ dùng menu hamburger trên mobile */
+    }
+
+    /* 9. Top bar: Chỉnh chữ nhỏ lại để không bị xuống dòng xấu */
+    .top-bar {
+        font-size: 11px;
+        padding: 5px;
+        text-align: center;
+    }
+}
     </style>
 </head>
 
