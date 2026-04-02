@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TripleT - Vợt Neon-V1 Pro Chi Tiết</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="../Css/badminton-base.css">
     <style>
         :root {
             --primary-color: #2D8A68;
@@ -23,25 +23,7 @@
         body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
 
-        /* --- HEADER & CART --- */
-        header {
-            background: var(--white); border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; position: sticky; top: 0; z-index: 1000;
-        }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-box { background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        
-        .header-right { display: flex; align-items: center; gap: 25px; }
-        .cart-btn { font-size: 22px; cursor: pointer; position: relative; transition: 0.3s; color: var(--text-main); }
-        .cart-badge {
-            position: absolute; top: -8px; right: -10px; background: #ff4757; color: white;
-            font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0); transition: 0.3s var(--ease);
-        }
-        .cart-badge.show { opacity: 1; transform: scale(1); }
-
+    
         /* --- PRODUCT MAIN --- */
         .product-main {
             background: var(--white); border-radius: 20px; padding: 40px;
@@ -129,22 +111,42 @@
     </style>
 </head>
 <body>
+<div class="top-bar">
+        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+    </div>
 
-    <header>
-        <div class="container header-flex">
-            <a href="#" class="logo">
-                <div class="logo-box">T</div>
-                <div class="logo-text"><h3 style="margin:0">TripleT</h3></div>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
             </a>
-            <div class="header-right">
-                <div class="cart-btn" onclick="location.reload()">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-badge" id="cartBadge">0</span>
-                </div>
-                <button style="padding: 10px 20px; border-radius: 20px; border: none; background: #eee; font-weight: 600; cursor: pointer;">Đăng nhập</button>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html" aria-current="page">Trang chủ</a>
+                      <a href="tin-tuc.html"  >Tin tức</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+                <a href="Home.html#lien-he">Liên hệ</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary ">Đăng nhập</a>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+
             </div>
         </div>
     </header>
+   
 
     <main class="container">
         <section class="product-main">
@@ -232,11 +234,45 @@
         </section>
     </main>
 
-    <div id="toast">
-        <i class="fa-solid fa-circle-check"></i>
-        <span>Đã thêm vào giỏ hàng thành công!</span>
-    </div>
+     <footer class="site-footer">
+        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
+            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
 
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+        <div class="cart-drawer-inner">
+            <div class="cart-drawer-head">
+                <h2 id="cart-title">Giỏ hàng</h2>
+                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">×</button>
+            </div>
+            <div class="cart-drawer-body">
+                <p class="cart-empty" id="cart-empty">Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!</p>
+                <ul class="cart-lines" id="cart-lines"></ul>
+            </div>
+            <div class="cart-drawer-foot">
+                <div class="cart-summary-row">
+                    <span>Số lượng</span>
+                    <span id="cart-count-summary">0</span>
+                </div>
+                <div class="cart-summary-row cart-summary-total">
+                    <span>Tạm tính</span>
+                    <strong id="cart-subtotal">0₫</strong>
+                </div>
+                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>Xem đơn &amp;
+                    thanh toán</button>
+                <button type="button" class="cart-clear" id="cart-clear">Xóa toàn bộ giỏ</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/products-data.js"></script>
+    <script src="../JavaScript/catalog.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
     <script>
         function changeQty(n) {
             let input = document.getElementById('qty');
