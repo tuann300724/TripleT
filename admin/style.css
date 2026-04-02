@@ -423,3 +423,55 @@ body {
 .form-buttons .btn-add:hover {
     background: var(--green-light);
 }
+
+/* Rating stars */
+.rating-stars {
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+/* Promotion badge */
+.promotion-badge {
+    background: linear-gradient(135deg, var(--gold), #ff9800);
+    color: var(--green-dark);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Toast notification */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--green-dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 2rem;
+    font-size: 14px;
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.toast-notification.show {
+    opacity: 1;
+}
+
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-bar select, .filter-bar input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    font-family: var(--font);
+}
