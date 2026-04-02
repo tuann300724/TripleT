@@ -1,171 +1,247 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tất cả sản phẩm cầu lông TripleT: vợt, cầu, giày, túi và phụ kiện.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tất cả sản phẩm cầu lông TripleT: vợt, cầu, giày, túi và phụ kiện."
+    />
     <title>Sản phẩm — TripleT Cầu Lông</title>
-    <link rel="stylesheet" href="../Css/badminton-base.css">
-    <link rel="stylesheet" href="../Css/page-common.css">
-    <link rel="stylesheet" href="../Css/page-san-pham.css">
-</head>
+    <link rel="stylesheet" href="../Css/badminton-base.css" />
+    <link rel="stylesheet" href="../Css/page-common.css" />
+    <link rel="stylesheet" href="../Css/page-san-pham.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="top-bar">
-        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+      Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
     </div>
 
     <header class="site-header">
-        <div class="header-inner">
-            <a href="Home.html" class="logo" aria-label="TripleT Trang chủ">
-                <span class="logo-mark" aria-hidden="true">🏸</span>
-                <span>TripleT Cầu Lông</span>
-            </a>
-            <nav class="nav-main" aria-label="Menu chính">
-                <a href="Home.html">Trang chủ</a>
-             <a href="tin-tuc.html"  >Tin tức</a>
-                <a href="san-pham.html" aria-current="page">Sản phẩm</a>
-                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
-                <a href="Home.html#lien-he">Liên hệ</a>
-            </nav>
-            <div class="header-actions">
-                <button type="button" class="cart-toggle" id="cart-toggle" aria-label="Giỏ hàng" aria-expanded="false"
-                    aria-controls="cart-drawer">
-                    <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
-                    <span class="cart-badge" id="cart-badge" hidden>0</span>
-                </button>
+      <div class="header-inner">
+        <a href="Home.html" class="logo" aria-label="TripleT Trang chủ">
+          <span class="logo-mark" aria-hidden="true">🏸</span>
+          <span>TripleT Cầu Lông</span>
+        </a>
+        <nav class="nav-main" aria-label="Menu chính">
+          <a href="Home.html">Trang chủ</a>
+          <a href="tin-tuc.html">Tin tức</a>
+          <a href="san-pham.html" aria-current="page">Sản phẩm</a>
+          <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+          <a href="Home.html#lien-he">Liên hệ</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            type="button"
+            class="cart-toggle"
+            id="cart-toggle"
+            aria-label="Giỏ hàng"
+            aria-expanded="false"
+            aria-controls="cart-drawer"
+          >
+            <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
+            <span class="cart-badge" id="cart-badge" hidden>0</span>
+          </button>
 
-                <button type="button" class="menu-toggle" id="menu-toggle">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-                <a href="login.html" class="btn btn-primary">Đăng nhập</a>
-            </div>
+          <button type="button" class="menu-toggle" id="menu-toggle">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <a href="login.html" class="btn btn-primary">Đăng nhập</a>
         </div>
+      </div>
     </header>
 
     <nav class="breadcrumb" aria-label="Điều hướng">
-        <a href="Home.html">Trang chủ</a>
-        <span aria-hidden="true">/</span>
-        <span>Sản phẩm</span>
+      <a href="Home.html">Trang chủ</a>
+      <span aria-hidden="true">/</span>
+      <span>Sản phẩm</span>
     </nav>
 
     <main class="page-main" id="catalog-page">
-        <header class="page-hero">
-            <h1>Cửa hàng sản phẩm</h1>
-            <p>Toàn bộ mặt hàng hiện có tại TripleT. Thêm vào giỏ và thanh toán qua email — giao hàng toàn quốc.</p>
-        </header>
+      <header class="page-hero">
+        <h1>Cửa hàng sản phẩm</h1>
+        <p>
+          Toàn bộ mặt hàng hiện có tại TripleT. Thêm vào giỏ và thanh toán qua
+          email — giao hàng toàn quốc.
+        </p>
+      </header>
 
-        <nav class="shop-subnav" aria-label="Chuyển nhanh theo danh mục">
-            <span class="shop-subnav-label">Xem nhanh:</span>
-            <a href="#cat-vot">Vợt</a>
-            <a href="#cat-cau">Cầu lông</a>
-            <a href="#cat-giay-ao">Giày &amp; trang phục</a>
-            <a href="#cat-tui-phu-kien">Túi &amp; phụ kiện</a>
-            <a href="danh-muc.html">Tất cả danh mục</a>
-        </nav>
+      <nav class="shop-subnav" aria-label="Chuyển nhanh theo danh mục">
+        <span class="shop-subnav-label">Xem nhanh:</span>
+        <a href="#cat-vot">Vợt</a>
+        <a href="#cat-cau">Cầu lông</a>
+        <a href="#cat-giay-ao">Giày &amp; trang phục</a>
+        <a href="#cat-tui-phu-kien">Túi &amp; phụ kiện</a>
+        <a href="danh-muc.html">Tất cả danh mục</a>
+      </nav>
 
-        <div id="catalog-root" data-mode="full"></div>
+      <div id="catalog-root" data-mode="full"></div>
     </main>
 
     <footer class="site-footer">
-        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
-            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
+      <p>
+        © 2026 <strong>TripleT Cầu Lông</strong> ·
+        <a
+          href="https://github.com/tuann300724/TripleT"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </p>
     </footer>
 
-    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+    <div
+      class="cart-backdrop"
+      id="cart-backdrop"
+      hidden
+      aria-hidden="true"
+    ></div>
 
-    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
-        <div class="cart-drawer-inner">
-            <div class="cart-drawer-head">
-                <h2 id="cart-title">Giỏ hàng</h2>
-                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">×</button>
-            </div>
-            <div class="cart-drawer-body">
-                <p class="cart-empty" id="cart-empty">Chưa có sản phẩm. Hãy thêm từ danh sách nhé!</p>
-                <ul class="cart-lines" id="cart-lines"></ul>
-            </div>
-            <div class="cart-drawer-foot">
-                <div class="cart-summary-row">
-                    <span>Số lượng</span>
-                    <span id="cart-count-summary">0</span>
-                </div>
-                <div class="cart-summary-row cart-summary-total">
-                    <span>Tạm tính</span>
-                    <strong id="cart-subtotal">0₫</strong>
-                </div>
-                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>Thanh toán qua
-                    email</button>
-                <button type="button" class="cart-clear" id="cart-clear">Xóa toàn bộ giỏ</button>
-            </div>
+    <aside
+      class="cart-drawer"
+      id="cart-drawer"
+      hidden
+      aria-hidden="true"
+      aria-labelledby="cart-title"
+      role="dialog"
+    >
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giỏ hàng</h2>
+          <button
+            type="button"
+            class="cart-close"
+            id="cart-close"
+            aria-label="Đóng giỏ hàng"
+          >
+            ×
+          </button>
         </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            Chưa có sản phẩm. Hãy thêm từ danh sách nhé!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Số lượng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Tạm tính</span>
+            <strong id="cart-subtotal">0₫</strong>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary cart-checkout"
+            id="cart-checkout"
+            disabled
+          >
+            Thanh toán qua email
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            Xóa toàn bộ giỏ
+          </button>
+        </div>
+      </div>
     </aside>
 
-    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+    <div
+      class="cart-toast"
+      id="cart-toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
 
     <script src="../JavaScript/products-data.js"></script>
     <script>
-        (function () {
-            "use strict";
+      (function () {
+        "use strict";
 
-            function escapeHtml(s) {
-                var d = document.createElement("div");
-                d.textContent = s;
-                return d.innerHTML;
-            }
+        function escapeHtml(s) {
+          var d = document.createElement("div");
+          d.textContent = s;
+          return d.innerHTML;
+        }
 
-            function formatPrice(n) {
-                return new Intl.NumberFormat("vi-VN").format(n) + "₫";
-            }
+        function formatPrice(n) {
+          return new Intl.NumberFormat("vi-VN").format(n) + "₫";
+        }
 
-            function renderCard(p) {
-                var thumb = p.thumb || p.image;
-                return `
-                    <article class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="../${thumb}">
-                        <div class="product-img">
-                            <img src="../${p.image}" alt="${p.name}" width="600" height="600" loading="lazy">
-                        </div>
-                        <div class="product-body">
-                            <span class="product-tag">${escapeHtml(p.tag)}</span>
-                            <h3>${escapeHtml(p.name)}</h3>
-                            <p class="product-price">${formatPrice(p.price)}</p>
-                            <button type="button" class="btn btn-primary" data-add-cart>Thêm vào giỏ</button>
-                        </div>
-                    </article>`;
-            }
+        function renderCard(p) {
+          var thumb = p.thumb || p.image;
+          // Tạo đường dẫn chi tiết dựa trên ID sản phẩm
+          var detailUrl = `chi-tiet-san-pham.html?id=${encodeURIComponent(
+            p.id
+          )}`;
 
-            function init() {
-                var root = document.getElementById("catalog-root");
-                if (!root || !window.TRIPLET_PRODUCTS) return;
+          return `
+        <article class="product-card" data-id="${p.id}" data-name="${
+            p.name
+          }" data-price="${p.price}" data-image="../${thumb}">
+            <div class="product-img">
+                <img src="../${p.image}" alt="${
+            p.name
+          }" width="600" height="600" loading="lazy">
+            </div>
+            <div class="product-body">
+                <span class="product-tag">${escapeHtml(p.tag)}</span>
+                <h3>${escapeHtml(p.name)}</h3>
+                <p class="product-price">${formatPrice(p.price)}</p>
+                
+                <div class="product-actions" style="display: flex; gap: 8px; margin-top: 12px;">
+                    <a href="${detailUrl}" style="flex: 1; text-align: center; text-decoration: none; padding: 10px 5px; border: 1.5px solid #2D8A68; color: #2D8A68; border-radius: 8px; font-size: 13px; font-weight: 700; transition: 0.3s;">
+                        Chi tiết
+                    </a>
+                    
+                    <button type="button" class="btn btn-primary" data-add-cart style="flex: 1; padding: 10px 5px; border-radius: 8px; font-size: 13px; font-weight: 700; background: #2D8A68; color: white; border: none; cursor: pointer;">
+                        Thêm giỏ
+                    </button>
+                </div>
+            </div>
+        </article>`;
+        }
 
-                var order = ["vot", "cau", "giay-ao", "tui-phu-kien"];
-                var meta = window.TRIPLET_CATEGORY_META || {
-                    "vot": { title: "Vợt Cầu Lông", blurb: "Sức mạnh và kiểm soát" },
-                    "cau": { title: "Quả Cầu Lông", blurb: "Bền bỉ và ổn định" },
-                    "giay-ao": { title: "Giày & Trang Phục", blurb: "Êm ái và thoáng khí" },
-                    "tui-phu-kien": { title: "Túi & Phụ Kiện", blurb: "Tiện lợi và bảo vệ" }
-                };
+        function init() {
+          var root = document.getElementById("catalog-root");
+          if (!root || !window.TRIPLET_PRODUCTS) return;
 
-                var byCat = {};
-                window.TRIPLET_PRODUCTS.forEach(function (p) {
-                    if (!byCat[p.category]) byCat[p.category] = [];
-                    byCat[p.category].push(p);
-                });
+          var order = ["vot", "cau", "giay-ao", "tui-phu-kien"];
+          var meta = window.TRIPLET_CATEGORY_META || {
+            vot: { title: "Vợt Cầu Lông", blurb: "Sức mạnh và kiểm soát" },
+            cau: { title: "Quả Cầu Lông", blurb: "Bền bỉ và ổn định" },
+            "giay-ao": {
+              title: "Giày & Trang Phục",
+              blurb: "Êm ái và thoáng khí",
+            },
+            "tui-phu-kien": {
+              title: "Túi & Phụ Kiện",
+              blurb: "Tiện lợi và bảo vệ",
+            },
+          };
 
-                root.innerHTML = order.map(function (key) {
-                    var items = byCat[key];
-                    if (!items || !items.length) return "";
+          var byCat = {};
+          window.TRIPLET_PRODUCTS.forEach(function (p) {
+            if (!byCat[p.category]) byCat[p.category] = [];
+            byCat[p.category].push(p);
+          });
 
-                    var m = meta[key] || { title: key, blurb: "" };
+          root.innerHTML = order
+            .map(function (key) {
+              var items = byCat[key];
+              if (!items || !items.length) return "";
 
-                    // LẤY ĐÚNG 4 ITEM ĐẦU TIÊN
-                    var displayItems = items.slice(0, 4);
+              var m = meta[key] || { title: key, blurb: "" };
 
-                    return `
+              // LẤY ĐÚNG 4 ITEM ĐẦU TIÊN
+              var displayItems = items.slice(0, 4);
+
+              return `
                         <section class="section catalog-section" id="cat-${key}">
                             <div class="section-head">
                                 <div>
@@ -178,26 +254,26 @@
                                 ${displayItems.map(renderCard).join("")}
                             </div>
                         </section>`;
-                }).join("");
-            }
+            })
+            .join("");
+        }
 
-            document.addEventListener("DOMContentLoaded", init);
-        })();
+        document.addEventListener("DOMContentLoaded", init);
+      })();
 
-        // Thêm logic đóng mở Menu Mobile nhanh
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuBtn = document.getElementById('menu-toggle');
-            const navMain = document.querySelector('.nav-main');
-            if (menuBtn && navMain) {
-                menuBtn.onclick = function () {
-                    navMain.classList.toggle('is-open');
-                    menuBtn.classList.toggle('active');
-                };
-            }
-        });
+      // Thêm logic đóng mở Menu Mobile nhanh
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menu-toggle");
+        const navMain = document.querySelector(".nav-main");
+        if (menuBtn && navMain) {
+          menuBtn.onclick = function () {
+            navMain.classList.toggle("is-open");
+            menuBtn.classList.toggle("active");
+          };
+        }
+      });
     </script>
 
     <script src="../JavaScript/cart.js" defer></script>
-</body>
-
+  </body>
 </html>
