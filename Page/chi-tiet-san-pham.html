@@ -1,276 +1,686 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TripleT - Vợt Neon-V1 Pro Chi Tiết</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../Css/badminton-base.css" />
     <style>
-        :root {
-            --primary-color: #2D8A68;
-            --primary-hover: #21664d;
-            --text-main: #2d3436;
-            --text-muted: #636e72;
-            --bg-body: #f4f7f6;
-            --white: #ffffff;
-            --border-color: #e0e0e0;
-            --shadow: 0 4px 15px rgba(0,0,0,0.05);
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
-        }
+      :root {
+        --primary-color: #2d8a68;
+        --primary-hover: #21664d;
+        --text-main: #2d3436;
+        --text-muted: #636e72;
+        --bg-body: #f4f7f6;
+        --white: #ffffff;
+        --border-color: #e0e0e0;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        --ease: cubic-bezier(0.23, 1, 0.32, 1);
+      }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
 
-        /* --- HEADER & CART --- */
-        header {
-            background: var(--white); border-bottom: 1px solid var(--border-color);
-            padding: 15px 0; position: sticky; top: 0; z-index: 1000;
-        }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-box { background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        
-        .header-right { display: flex; align-items: center; gap: 25px; }
-        .cart-btn { font-size: 22px; cursor: pointer; position: relative; transition: 0.3s; color: var(--text-main); }
-        .cart-badge {
-            position: absolute; top: -8px; right: -10px; background: #ff4757; color: white;
-            font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transform: scale(0); transition: 0.3s var(--ease);
-        }
-        .cart-badge.show { opacity: 1; transform: scale(1); }
+      /* --- PRODUCT MAIN --- */
+      .product-main {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin: 30px 0;
+        box-shadow: var(--shadow);
+      }
 
-        /* --- PRODUCT MAIN --- */
+      .main-img {
+        width: 100%;
+        height: 450px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        background: #f9f9f9;
+      }
+
+      .main-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Giữ nguyên tỉ lệ ảnh vợt */
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .main-img:hover img {
+        transform: scale(1.1);
+      }
+
+      /* --- BUYING INFO --- */
+      .cat-label {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 12px;
+        text-transform: uppercase;
+        background: rgba(45, 138, 104, 0.1);
+        padding: 5px 12px;
+        border-radius: 5px;
+      }
+      .price-row {
+        margin: 15px 0;
+        display: flex;
+        align-items: baseline;
+        gap: 15px;
+      }
+      .new-price {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--primary-color);
+      }
+      .old-price {
+        font-size: 20px;
+        text-decoration: line-through;
+        color: #b2bec3;
+      }
+
+      .selector-group {
+        margin: 25px 0;
+      }
+      .options {
+        display: flex;
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .opt {
+        border: 2px solid #e0e0e0;
+        padding: 12px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      .opt.selected {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        background: rgba(45, 138, 104, 0.05);
+      }
+
+      .buy-actions {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+      }
+      .qty-box {
+        display: flex;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        overflow: hidden;
+        height: 55px;
+      }
+      .qty-box button {
+        width: 45px;
+        border: none;
+        background: #fafafa;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.2s;
+      }
+      .qty-box button:hover {
+        background: #eee;
+      }
+      .qty-box input {
+        width: 50px;
+        border: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
+        outline: none;
+      }
+
+      .btn-cart {
+        flex: 1;
+        min-width: 180px;
+        padding: 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        border: 2px solid var(--primary-color);
+        background: transparent;
+        color: var(--primary-color);
+        transition: 0.3s;
+      }
+      .btn-cart:hover {
+        background: rgba(45, 138, 104, 0.05);
+      }
+
+      .btn-buy {
+        flex: 1;
+        min-width: 180px;
+        padding: 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        transition: 0.3s;
+        box-shadow: 0 5px 15px rgba(45, 138, 104, 0.2);
+      }
+      .btn-buy:hover {
+        background: var(--primary-hover);
+        transform: translateY(-3px);
+      }
+
+      /* --- TABS SYSTEM --- */
+      .product-tabs {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow);
+        margin-bottom: 50px;
+      }
+      .tab-nav {
+        display: flex;
+        gap: 40px;
+        border-bottom: 2px solid #eee;
+        margin-bottom: 30px;
+        overflow-x: auto;
+      }
+
+      .tab-item {
+        padding: 15px 0;
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--text-muted);
+        position: relative;
+        transition: 0.3s;
+        white-space: nowrap;
+      }
+      .tab-item::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--primary-color);
+        transition: 0.3s var(--ease);
+      }
+      .tab-item.active {
+        color: var(--primary-color);
+      }
+      .tab-item.active::after,
+      .tab-item:hover::after {
+        width: 100%;
+      }
+
+      .tab-pane {
+        display: none;
+        animation: fadeInTab 0.5s var(--ease);
+      }
+      .tab-pane.active {
+        display: block;
+      }
+      @keyframes fadeInTab {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* --- SPECS TABLE --- */
+      .specs-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .specs-table td {
+        padding: 18px 20px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .specs-table td:first-child {
+        width: 40%;
+        font-weight: 600;
+        color: #777;
+      }
+      .specs-table tr:hover td {
+        background: #f0f7f4;
+        color: var(--primary-color);
+      }
+
+      /* --- TECH GRID --- */
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .tech-card {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+      .tech-card:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+      .tech-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(45, 138, 104, 0.1);
+        color: var(--primary-color);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* --- TOAST --- */
+      #toast-msg {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--primary-color);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-weight: 600;
+        transform: translateY(150px);
+        transition: 0.4s var(--ease);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      #toast-msg.show {
+        transform: translateY(0);
+      }
+
+      /* Responsive */
+      @media (max-width: 850px) {
         .product-main {
-            background: var(--white); border-radius: 20px; padding: 40px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
-            margin: 30px 0; box-shadow: var(--shadow);
+          grid-template-columns: 1fr;
+          padding: 20px;
         }
-   /* 1. Thẻ bao quanh hình ảnh */
-/* 1. Khung chứa hình ảnh (Cái khuôn bo góc) */
-.main-img {
-    width: 100%; 
-    height: 100%;
-    display: block;
-    position: relative;
-    
-    /* 👇 PHẦN QUAN TRỌNG: Tạo bo góc và chặn ảnh tràn ra ngoài */
-    overflow: hidden;       /* Ẩn phần ảnh thừa khi phóng to */
-    border-radius: 15px;    /* Độ bo góc (bạn có thể chỉnh 10px, 15px tùy ý) */
-}
-
-/* 2. Cấu hình cho hình ảnh bên trong */
-.main-img img {
-    width: 100%;
-    height: 100%;
-    
-    /* Dùng 'cover' để ảnh lấp đầy khung bo góc cho đẹp chuyên nghiệp */
-    object-fit: cover; 
-    
-    display: block;
-    transition: transform 0.4s ease; /* Hiệu ứng mượt mà */
-}
-
-/* 3. Hiệu ứng khi di chuột vào (Zoom nhẹ) */
-.main-img:hover img {
-    transform: scale(1.08); /* Phóng to 8% */
-}
-
-        /* --- BUYING INFO --- */
-        .cat-label { color: var(--primary-color); font-weight: bold; font-size: 12px; text-transform: uppercase; background: rgba(45, 138, 104, 0.1); padding: 5px 12px; border-radius: 5px; }
-        .price-row { margin: 15px 0; display: flex; align-items: baseline; gap: 15px; }
-        .new-price { font-size: 36px; font-weight: 800; color: var(--primary-color); }
-        .old-price { font-size: 20px; text-decoration: line-through; color: #b2bec3; }
-
-        .selector-group { margin: 25px 0; }
-        .options { display: flex; gap: 12px; margin-top: 10px; }
-        .opt { border: 2px solid #e0e0e0; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .opt.selected { border-color: var(--primary-color); color: var(--primary-color); background: rgba(45, 138, 104, 0.05); }
-
-        .buy-actions { display: flex; gap: 15px; margin-top: 25px; }
-        .qty-box { display: flex; border: 2px solid #e0e0e0; border-radius: 12px; overflow: hidden; }
-        .qty-box button { width: 45px; height: 55px; border: none; background: #fafafa; cursor: pointer; font-size: 18px; }
-        .qty-box input { width: 50px; border: none; text-align: center; font-weight: 700; font-size: 18px; }
-
-        .btn-cart { flex: 1; padding: 18px; border-radius: 12px; font-weight: 700; cursor: pointer; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); transition: 0.3s; }
-        .btn-buy { flex: 1; padding: 18px; border-radius: 12px; font-weight: 700; cursor: pointer; background: var(--primary-color); color: white; border: none; transition: 0.3s; box-shadow: 0 5px 15px rgba(45, 138, 104, 0.2); }
-        .btn-buy:hover { background: var(--primary-hover); transform: translateY(-3px); }
-
-        /* --- TABS SYSTEM --- */
-        .product-tabs { background: var(--white); border-radius: 20px; padding: 40px; box-shadow: var(--shadow); margin-bottom: 50px; }
-        .tab-nav { display: flex; gap: 40px; border-bottom: 2px solid #eee; margin-bottom: 30px; }
-        
-        .tab-item { padding: 15px 0; cursor: pointer; font-weight: 700; color: var(--text-muted); position: relative; transition: 0.3s; }
-        .tab-item::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 3px; background: var(--primary-color); transition: 0.3s var(--ease); }
-        .tab-item.active { color: var(--primary-color); }
-        .tab-item.active::after, .tab-item:hover::after { width: 100%; }
-
-        .tab-pane { display: none; animation: fadeInTab 0.5s var(--ease); }
-        .tab-pane.active { display: block; }
-        @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- SPECS TABLE --- */
-        .specs-table { width: 100%; border-collapse: collapse; }
-        .specs-table td { padding: 18px 20px; border-bottom: 1px solid #f1f1f1; }
-        .specs-table td:first-child { width: 40%; font-weight: 600; color: #777; }
-        .specs-table tr:hover td { background: #f0f7f4; color: var(--primary-color); }
-
-        /* --- TECH GRID --- */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .tech-card { display: flex; gap: 15px; padding: 20px; border: 1px solid #eee; border-radius: 15px; transition: 0.3s; }
-        .tech-card:hover { border-color: var(--primary-color); transform: translateY(-5px); box-shadow: var(--shadow); }
-        .tech-icon { width: 45px; height: 45px; background: rgba(45, 138, 104, 0.1); color: var(--primary-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-        /* --- TOAST --- */
-        #toast { position: fixed; bottom: 30px; right: 30px; background: var(--primary-color); color: white; padding: 15px 30px; border-radius: 12px; font-weight: 600; transform: translateY(150px); transition: 0.4s var(--ease); z-index: 10000; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        #toast.show { transform: translateY(0); }
+        .main-img {
+          height: 350px;
+        }
+        .tab-nav {
+          gap: 20px;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="top-bar">
+      Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+    </div>
 
-    <header>
-        <div class="container header-flex">
-            <a href="#" class="logo">
-                <div class="logo-box">T</div>
-                <div class="logo-text"><h3 style="margin:0">TripleT</h3></div>
-            </a>
-            <div class="header-right">
-                <div class="cart-btn" onclick="location.reload()">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-badge" id="cartBadge">0</span>
-                </div>
-                <button style="padding: 10px 20px; border-radius: 20px; border: none; background: #eee; font-weight: 600; cursor: pointer;">Đăng nhập</button>
-            </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="Home.html" class="logo">
+          <span class="logo-mark">🏸</span>
+          <span>TripleT Cầu Lông</span>
+        </a>
+
+        <nav class="nav-main" id="nav-menu">
+          <a href="Home.html" aria-current="page">Trang chủ</a>
+          <a href="tin-tuc.html">Tin tức</a>
+          <a href="san-pham.html">Sản phẩm</a>
+          <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+          <a href="Home.html#lien-he">Liên hệ</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="cart-toggle" id="cart-toggle">
+            <span class="cart-toggle-icon">🛒</span>
+            <span class="cart-badge" id="cart-badge" hidden>0</span>
+          </button>
+
+          <a href="login.html" class="btn btn-primary">Đăng nhập</a>
+          <button type="button" class="menu-toggle" id="menu-toggle">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
         </div>
+      </div>
     </header>
 
     <main class="container">
-        <section class="product-main">
-            <div class="main-img">
-                <img src="../Images/vot-cau-long-1.png" id="main-view">
+      <section class="product-main">
+        <div class="main-img">
+          <img src="" id="product-img" alt="" />
+        </div>
+
+        <div class="product-info">
+          <span class="cat-label" id="product-tag"></span>
+          <h2 id="product-name" style="font-size: 32px; margin: 10px 0"></h2>
+
+          <div class="price-row">
+            <span class="new-price" id="product-price"></span>
+            <span class="old-price" id="product-old-price"></span>
+          </div>
+
+          <p
+            id="product-desc"
+            style="color: var(--text-muted); margin-bottom: 20px"
+          ></p>
+
+          <div class="buy-actions">
+            <div class="qty-box">
+              <button onclick="changeQty(-1)">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <input type="number" value="1" id="qty" readonly />
+              <button onclick="changeQty(1)">
+                <i class="fa-solid fa-plus"></i>
+              </button>
             </div>
+            <button class="btn-cart" onclick="handleAddToCart()">
+              Thêm vào giỏ
+            </button>
+          
+          </div>
+        </div>
+      </section>
 
-            <div class="product-info">
-                <span class="cat-label">Thiên công mạnh mẽ</span>
-                <h2 style="font-size: 32px; margin: 10px 0;">Vợt TripleT Neon-V1 4U Carbon Pro</h2>
-                
-                <div class="price-row">
-                    <span class="new-price">2.690.000đ</span>
-                    <span class="old-price">3.100.000đ</span>
+      <section class="product-tabs">
+        <div class="tab-nav">
+          <div
+            class="tab-item active"
+            onclick="switchTab(this, 'specs-content')"
+          >
+            Thông số kỹ thuật
+          </div>
+          <div class="tab-item" onclick="switchTab(this, 'tech-content')">
+            Công nghệ tích hợp
+          </div>
+          <div class="tab-item" onclick="switchTab(this, 'review-content')">
+            Đánh giá (0)
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div id="specs-content" class="tab-pane active">
+            <table class="specs-table">
+              <tr>
+                <td>Thương hiệu</td>
+                <td >TripleT Pro (Công nghệ Đức)</td>
+              </tr>
+              <tr>
+                <td>Mã sản phẩm</td>
+                <td>TT-NEON-V1-2026</td>
+              </tr>
+              <tr>
+                <td>Trọng lượng / Cán</td>
+                <td>4U (82-84g) / G5</td>
+              </tr>
+              <tr>
+                <td>Độ cứng thân</td>
+                <td>Cứng trung bình (Medium Stiff)</td>
+              </tr>
+              <tr>
+                <td>Điểm cân bằng</td>
+                <td>295 ± 3mm (Nặng đầu)</td>
+              </tr>
+              <tr>
+                <td>Sức căng tối đa</td>
+                <td>30 Lbs (13.6kg)</td>
+              </tr>
+              <tr>
+                <td>Vật liệu</td>
+                <td>Nano Fortify TR + Modulus Graphite</td>
+              </tr>
+              <tr>
+                <td>Nơi sản xuất</td>
+                <td>Taiwan</td>
+              </tr>
+            </table>
+          </div>
+
+          <div id="tech-content" class="tab-pane">
+            <div class="tech-grid">
+              <div class="tech-card">
+                <div class="tech-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div>
+                  <strong>AERO-DIAMOND</strong>
+                  <p style="font-size: 14px; color: var(--text-muted)">
+                    Kết cấu khung kim cương giúp giảm sức cản không khí, tăng
+                    tốc độ vung vợt lên 15%.
+                  </p>
                 </div>
-
-                <p style="color: var(--text-muted); margin-bottom: 20px;">
-                    Vợt được thiết kế từ chất liệu Nano Carbon cao cấp, mang lại độ cứng trung bình giúp ổn định mặt vợt khi Smash. Đầu nặng 295mm tối ưu lực đập uy lực.
-                </p>
-
-                <div class="selector-group">
-                    <label style="font-weight:700">Phiên bản:</label>
-                    <div class="options">
-                        <div class="opt selected" onclick="selectVariant(this)">4U - G5</div>
-                        <div class="opt" onclick="selectVariant(this)">3U - G5</div>
-                    </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon">
+                  <i class="fa-solid fa-microchip"></i>
                 </div>
-
-                <div class="buy-actions">
-                    <div class="qty-box">
-                        <button onclick="changeQty(-1)"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" value="1" id="qty" readonly>
-                        <button onclick="changeQty(1)"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <button class="btn-cart" onclick="addToCart()">Thêm vào giỏ</button>
-                    <button class="btn-buy">Mua ngay</button>
+                <div>
+                  <strong>NANO FORTIFY TR+</strong>
+                  <p style="font-size: 14px; color: var(--text-muted)">
+                    Sợi carbon nano siêu bền giúp khung vợt chịu lực căng cao và
+                    đàn hồi cực nhanh sau mỗi cú đánh.
+                  </p>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="product-tabs">
-            <div class="tab-nav">
-                <div class="tab-item active" onclick="switchTab(this, 'specs-content')">Thông số kỹ thuật chi tiết</div>
-                <div class="tab-item" onclick="switchTab(this, 'tech-content')">Công nghệ tích hợp</div>
-                <div class="tab-item" onclick="switchTab(this, 'review-content')">Đánh giá</div>
-            </div>
-
-            <div class="tab-content">
-                <div id="specs-content" class="tab-pane active">
-                    <table class="specs-table">
-                        <tr><td>Thương hiệu</td><td>TripleT Pro (Công nghệ Đức)</td></tr>
-                        <tr><td>Mã sản phẩm</td><td>TT-NEON-V1-2026</td></tr>
-                        <tr><td>Trọng lượng / Chu vi cán</td><td>4U (82-84g) / G5</td></tr>
-                        <tr><td>Độ cứng thân</td><td>Cứng trung bình (Medium Stiff)</td></tr>
-                        <tr><td>Điểm cân bằng</td><td>295 ± 3mm (Nặng đầu)</td></tr>
-                        <tr><td>Sức căng khuyến nghị</td><td>24 - 30 Lbs (Tối đa 13.6kg)</td></tr>
-                        <tr><td>Vật liệu khung</td><td>Nano Fortify TR + Modulus Graphite</td></tr>
-                        <tr><td>Nơi sản xuất</td><td>Made in Taiwan</td></tr>
-                    </table>
-                </div>
-
-                <div id="tech-content" class="tab-pane">
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <div class="tech-icon"><i class="fa-solid fa-bolt"></i></div>
-                            <div>
-                                <strong>AERO-DIAMOND</strong>
-                                <p style="font-size: 14px; color: var(--text-muted);">Giảm sức cản không khí, tăng tốc độ vung vợt và tính linh hoạt.</p>
-                            </div>
-                        </div>
-                        <div class="tech-card">
-                            <div class="tech-icon"><i class="fa-solid fa-microchip"></i></div>
-                            <div>
-                                <strong>NANO FORTIFY TR+</strong>
-                                <p style="font-size: 14px; color: var(--text-muted);">Sử dụng carbon nano giúp khung vợt chịu lực tốt và đàn hồi nhanh.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="review-content" class="tab-pane">
-                    <p style="text-align: center; color: var(--text-muted); padding: 20px;">Sản phẩm chưa có đánh giá công khai.</p>
-                </div>
-            </div>
-        </section>
+          <div id="review-content" class="tab-pane">
+            <p
+              style="
+                text-align: center;
+                color: var(--text-muted);
+                padding: 40px;
+              "
+            >
+              Sản phẩm mới chưa có đánh giá nào từ khách hàng.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <div id="toast">
-        <i class="fa-solid fa-circle-check"></i>
-        <span>Đã thêm vào giỏ hàng thành công!</span>
-    </div>
+    <footer class="site-footer">
+      <p>
+        © 2026 <strong>TripleT Cầu Lông</strong> ·
+        <a
+          href="https://github.com/tuann300724/TripleT"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </p>
+    </footer>
 
+    <div
+      class="cart-backdrop"
+      id="cart-backdrop"
+      hidden
+      aria-hidden="true"
+    ></div>
+
+    <aside
+      class="cart-drawer"
+      id="cart-drawer"
+      hidden
+      aria-hidden="true"
+      aria-labelledby="cart-title"
+      role="dialog"
+    >
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giỏ hàng</h2>
+          <button
+            type="button"
+            class="cart-close"
+            id="cart-close"
+            aria-label="Đóng giỏ hàng"
+          >
+            ×
+          </button>
+        </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Số lượng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Tạm tính</span>
+            <strong id="cart-subtotal">0₫</strong>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary cart-checkout"
+            id="cart-checkout"
+            disabled
+          >
+            Xem đơn &amp; thanh toán
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            Xóa toàn bộ giỏ
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div
+      class="cart-toast"
+      id="cart-toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
     <script>
-        function changeQty(n) {
-            let input = document.getElementById('qty');
-            let val = parseInt(input.value) + n;
-            if (val >= 1 && val <= 10) input.value = val;
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Lấy ID từ URL (ví dụ: ?id=v01)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+
+        // 2. Kiểm tra nếu có dữ liệu sản phẩm (Yêu cầu phải có file products-data.js)
+        if (!productId || !window.TRIPLET_PRODUCTS) {
+          alert("Không tìm thấy thông tin sản phẩm!");
+          return;
         }
 
-        function selectVariant(el) {
-            document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
-            el.classList.add('selected');
+        // 3. Tìm sản phẩm trong danh sách
+        const product = window.TRIPLET_PRODUCTS.find((p) => p.id === productId);
+
+        if (product) {
+          // 4. Cập nhật tiêu đề trang
+          document.title = "TripleT - " + product.name;
+
+          // 5. Đổ dữ liệu vào các thẻ HTML
+          document.getElementById("product-name").innerText = product.name;
+          document.getElementById("product-img").src = "../" + product.image;
+          document.getElementById("product-img").alt = product.name;
+          document.getElementById("product-tag").innerText =
+            product.tag || "Sản phẩm mới";
+
+          // Định dạng giá tiền
+          const priceVnd =
+            new Intl.NumberFormat("vi-VN").format(product.price) + "₫";
+          document.getElementById("product-price").innerText = priceVnd;
+
+          // Tính giá cũ (ví dụ tự tăng 15% để làm giá ảo nếu không có trong data)
+          const oldPrice = product.oldPrice || product.price * 1.15;
+          document.getElementById("product-old-price").innerText =
+            new Intl.NumberFormat("vi-VN").format(oldPrice) + "₫";
+
+          // Mô tả (nếu có trong data)
+          if (product.desc) {
+            document.getElementById("product-desc").innerText = product.desc;
+          }
+
+          // Cập nhật bảng thông số (Nếu dữ liệu có phần specs)
+          if (product.specs) {
+            const specsTable = document.querySelector(".specs-table");
+            // Bạn có thể viết code để loop qua object specs và tạo dòng <tr>
+          }
+        } else {
+          document.querySelector("main").innerHTML =
+            "<h2 style='text-align:center; padding:100px;'>Sản phẩm không tồn tại!</h2>";
         }
-
-        function addToCart() {
-            // Cập nhật giỏ hàng
-            const badge = document.getElementById('cartBadge');
-            let current = parseInt(badge.textContent);
-            badge.textContent = current + parseInt(document.getElementById('qty').value);
-            badge.classList.add('show');
-
-            // Hiển thị thông báo
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        function switchTab(el, id) {
-            // Xử lý nút bấm
-            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-
-            // Xử lý nội dung
-            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
+      });
     </script>
-</body>
+    <script>
+      // Thay đổi số lượng
+      function changeQty(n) {
+        let input = document.getElementById("qty");
+        let val = parseInt(input.value) + n;
+        if (val >= 1 && val <= 10) input.value = val;
+      }
+
+      // Chọn phiên bản
+      function selectVariant(el) {
+        document
+          .querySelectorAll(".opt")
+          .forEach((o) => o.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+
+      // Chuyển Tab
+      function switchTab(el, id) {
+        document
+          .querySelectorAll(".tab-item")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+
+        document
+          .querySelectorAll(".tab-pane")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+      }
+
+      // Xử lý thêm vào giỏ (Demo hiệu ứng)
+      function handleAddToCart() {
+        const badge = document.getElementById("main-cart-badge");
+        const qty = parseInt(document.getElementById("qty").value);
+
+        // Hiệu ứng số trên badge
+        let current = parseInt(badge.textContent);
+        badge.textContent = current + qty;
+        badge.style.display = "block";
+
+        // Hiển thị Toast
+        const toast = document.getElementById("toast-msg");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+    </script>
+    <script src="../JavaScript/products-data.js"></script>
+    <script src="../JavaScript/cart.js" defer></script>
+  </body>
 </html>

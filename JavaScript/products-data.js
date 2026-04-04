@@ -32,6 +32,8 @@ window.TRIPLET_PRODUCTS = [
     category: "vot",
     featured: true,
     alt: "Vợt cầu lông carbon",
+    brand: "toàn si tình"
+
   },
   {
     id: "p-racket-2",

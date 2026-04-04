@@ -11,6 +11,512 @@
   --shadow: 0 12px 40px rgba(12, 45, 38, 0.12);
   --radius: 14px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--cream);
+  color: var(--text);
+}
+
+/* LOGIN */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  padding: 1rem;
+}
+
+.login-card {
+  background: var(--white);
+  max-width: 420px;
+  width: 100%;
+  border-radius: var(--radius);
+  padding: 2rem 1.8rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.login-logo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.login-logo span {
+  background: var(--green);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 40px;
+  font-size: 1rem;
+}
+
+.login-card h2 {
+  margin: 1rem 0 0.5rem;
+}
+
+.input-group {
+  margin: 1.2rem 0;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 92, 74, 0.2);
+}
+
+.btn-login {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: 0.2s;
+}
+
+.btn-login:hover {
+  background: var(--green-light);
+}
+
+.error-msg {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin-top: 0.8rem;
+}
+
+/* ADMIN LAYOUT */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 280px;
+  background: var(--green-dark);
+  color: var(--cream);
+  transition: transform 0.3s ease;
+
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-header i {
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.sidebar-menu li {
+  padding: 0.7rem 1.5rem;
+  margin: 0.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+  color: rgba(247, 244, 238, 0.8);
+}
+
+.sidebar-menu li i {
+  width: 24px;
+  font-size: 1.2rem;
+}
+
+.sidebar-menu li.active {
+  background: rgba(45, 143, 115, 0.2);
+  border-right: 4px solid var(--gold);
+  color: var(--white);
+}
+
+.sidebar-menu li:hover:not(.active) {
+  background: rgba(45, 143, 115, 0.2);
+}
+
+.logout-side {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.logout-side li {
+  cursor: pointer;
+  color: var(--gold-soft);
+}
+
+/* MAIN */
+.main-content {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  transition: margin-left 0.3s;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: var(--white);
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--green);
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gold-soft);
+}
+
+.stat-card i {
+  font-size: 2rem;
+  color: var(--green);
+}
+
+.stat-card h3 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0 0;
+  color: var(--green-dark);
+}
+
+.stat-card p {
+  color: var(--muted);
+}
+
+/* tables */
+.data-table {
+  width: 100%;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  border-collapse: collapse;
+  box-shadow: var(--shadow);
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.data-table th {
+  background: var(--cream);
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 0 4px;
+  color: var(--muted);
+}
+
+.btn-edit {
+  color: var(--green);
+}
+
+.btn-delete {
+  color: #b91c1c;
+}
+
+.btn-add {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-add:hover {
+  background: var(--green-light);
+}
+
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--white);
+  width: 90%;
+  max-width: 550px;
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  font-family: var(--font);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0 !important;
+  }
+  .menu-icon {
+    display: block;
+  }
+}
+
+/* Fix sidebar cuộn theo trang - thêm vào cuối style.css */
+.sidebar {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  align-self: flex-start !important;
+}
+/* ===== FIX SIDEBAR CUỘN THEO TRANG ===== */
+.admin-wrapper {
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+.sidebar {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  align-self: flex-start !important;
+}
+
+.main-content {
+  flex: 1 !important;
+  margin-left: 0 !important;
+}
+
+.admin-wrapper {
+  align-items: flex-start !important;
+}
+.badge-status {
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.bg-success {
+  background: var(--gold-soft);
+  color: var(--green-dark);
+}
+
+.bg-warning {
+  background: var(--gold);
+  color: var(--green-dark);
+}
+
+.footer-mobile {
+  text-align: center;
+  margin-top: 2rem;
+}
+/* Nút trong modal */
+.form-buttons .btn-icon {
+    background: none;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+.form-buttons .btn-icon:hover {
+    background: var(--green);
+    color: var(--white);
+}
+
+.form-buttons .btn-add {
+    background: var(--green);
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.form-buttons .btn-add:hover {
+    background: var(--green-light);
+}
+
+/* Rating stars */
+.rating-stars {
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+/* Promotion badge */
+.promotion-badge {
+    background: linear-gradient(135deg, var(--gold), #ff9800);
+    color: var(--green-dark);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Toast notification */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--green-dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 2rem;
+    font-size: 14px;
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.toast-notification.show {
+    opacity: 1;
+}
+
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-bar select, .filter-bar input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    font-family: var(--font);
+}
+:root {
+  --green-dark: #0c2d26;
+  --green: #1a5c4a;
+  --green-light: #2d8f73;
+  --gold: #e8b923;
+  --gold-soft: #f5e6b8;
+  --cream: #f7f4ee;
+  --text: #1a1f1e;
+  --muted: #5c6563;
+  --white: #fff;
+  --shadow: 0 12px 40px rgba(12, 45, 38, 0.12);
+  --radius: 14px;
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
   --bg-body: var(--cream);
   --bg-card: var(--white);
   --border-light: var(--gold-soft);
@@ -536,4 +1042,424 @@ body {
 
 .form-buttons .btn-add:hover {
   background: var(--green-light);
+}
+/* ====== NÂNG CAO ====== */
+/* Notification */
+.notification-dropdown {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: var(--gold);
+}
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    min-width: 18px;
+}
+.notification-panel {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    width: 300px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    z-index: 200;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.notification-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-light);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+.notification-header span {
+    color: var(--green);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-light);
+    transition: 0.2s;
+}
+.notification-item.unread {
+    background: rgba(232, 185, 35, 0.1);
+}
+.notification-item:hover {
+    background: var(--gold-soft);
+}
+/* Icon buttons */
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--gold);
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.icon-btn:hover {
+    background: var(--gold-soft);
+}
+/* Admin dropdown */
+.admin-info {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.admin-dropdown {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    min-width: 150px;
+    display: none;
+    z-index: 200;
+}
+.admin-info:hover .admin-dropdown {
+    display: block;
+}
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.dropdown-item:hover {
+    background: var(--gold-soft);
+}
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, var(--border-light) 25%, var(--bg-card) 50%, var(--border-light) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+/* Drag-drop dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+.dashboard-widget {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    cursor: grab;
+    transition: 0.2s;
+}
+.dashboard-widget:active {
+    cursor: grabbing;
+}
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+/* ====== FIX SIDEBAR SCROLL & ANIMATIONS ====== */
+/* Đảm bảo sidebar có thể cuộn */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-menu {
+  flex: 1;
+  overflow-y: visible;
+}
+
+.logout-side {
+  position: relative;
+  bottom: auto;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Animation cho toàn bộ web */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.4s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.4s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--bg-card) 0%, var(--gold-soft) 50%, var(--bg-card) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hiệu ứng hover cho các thành phần */
+.stat-card,
+.data-table tr,
+.btn-add,
+.btn-login,
+.sidebar-menu li,
+.notification-item,
+.dropdown-item,
+.dashboard-widget {
+  transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Hiệu ứng cho modal */
+.modal-content {
+  animation: scaleIn 0.25s ease-out;
+}
+
+/* Hiệu ứng cho toast */
+.toast-notification {
+  animation: fadeInRight 0.3s ease-out;
+}
+
+.toast-notification.show {
+  animation: fadeInRight 0.3s ease-out forwards;
+}
+
+/* Hiệu ứng cho bảng khi load */
+.data-table tbody tr {
+  animation: fadeInLeft 0.3s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.data-table tbody tr:nth-child(1) { animation-delay: 0.02s; }
+.data-table tbody tr:nth-child(2) { animation-delay: 0.04s; }
+.data-table tbody tr:nth-child(3) { animation-delay: 0.06s; }
+.data-table tbody tr:nth-child(4) { animation-delay: 0.08s; }
+.data-table tbody tr:nth-child(5) { animation-delay: 0.10s; }
+.data-table tbody tr:nth-child(6) { animation-delay: 0.12s; }
+.data-table tbody tr:nth-child(7) { animation-delay: 0.14s; }
+.data-table tbody tr:nth-child(8) { animation-delay: 0.16s; }
+.data-table tbody tr:nth-child(9) { animation-delay: 0.18s; }
+.data-table tbody tr:nth-child(10) { animation-delay: 0.20s; }
+
+/* Hiệu ứng cho stat card */
+.stats-grid .stat-card {
+  animation: fadeInUp 0.4s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.stats-grid .stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stats-grid .stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stats-grid .stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stats-grid .stat-card:nth-child(4) { animation-delay: 0.20s; }
+.stats-grid .stat-card:nth-child(5) { animation-delay: 0.25s; }
+.stats-grid .stat-card:nth-child(6) { animation-delay: 0.30s; }
+.stats-grid .stat-card:nth-child(7) { animation-delay: 0.35s; }
+
+/* Hiệu ứng cho sidebar menu khi hover */
+.sidebar-menu li {
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-menu li:hover {
+  transform: translateX(6px);
+}
+
+/* Hiệu ứng cho nút */
+.btn-add, .btn-login, .btn-icon {
+  transition: all 0.2s ease;
+}
+
+.btn-add:active, .btn-login:active {
+  transform: scale(0.97);
+}
+
+/* Hiệu ứng cho modal overlay */
+.modal {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fix scrollbar cho sidebar - đẹp hơn */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-soft);
+}
+/* ===== FIX SIDEBAR CUỘN THEO TRANG - THÊM MỚI ===== */
+.admin-wrapper {
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+.sidebar {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  align-self: flex-start !important;
+  background: var(--sidebar-bg, var(--green-dark)) !important;
+}
+
+.main-content {
+  flex: 1 !important;
+  margin-left: 0 !important;
+  width: calc(100% - 280px) !important;
+}
+
+/* Đảm bảo responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* ===== ANIMATION CHO SIDEBAR KHI CLICK ===== */
+.sidebar-menu li {
+  transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-menu li:active {
+  transform: scale(0.96);
+  background: rgba(45, 143, 115, 0.4);
+}
+
+/* Hiệu ứng ripple */
+.sidebar-menu li .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(232, 185, 35, 0.5);
+  transform: scale(0);
+  animation: ripple 0.5s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Hiệu ứng khi active */
+.sidebar-menu li.active {
+  animation: activePulse 0.3s ease-out;
+}
+
+@keyframes activePulse {
+  0% {
+    border-right-width: 2px;
+    background: rgba(45, 143, 115, 0.1);
+  }
+  50% {
+    border-right-width: 6px;
+    background: rgba(45, 143, 115, 0.3);
+  }
+  100% {
+    border-right-width: 4px;
+    background: rgba(45, 143, 115, 0.2);
+  }
 }

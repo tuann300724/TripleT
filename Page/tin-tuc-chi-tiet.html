@@ -234,6 +234,116 @@
                 gap: 10px;
             }
         }
+        /* --- HIỆU ỨNG DI CHUỘT (HOVER EFFECTS) --- */
+
+/* 1. Hiệu ứng cho hình ảnh trong bài viết */
+.main-text img {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    cursor: zoom-in;
+}
+
+.main-text img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 2. Hiệu ứng cho các thẻ tin liên quan (Sidebar) */
+.related-card {
+    transition: all 0.3s ease !important; /* Ghi đè transition cũ */
+    position: relative;
+    overflow: hidden;
+}
+
+.related-card:hover {
+    background: #fff;
+    border-color: var(--gold) !important;
+    transform: translateX(10px) translateY(-2px);
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.related-card img {
+    transition: transform 0.4s ease;
+}
+
+.related-card:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* 3. Hiệu ứng cho thẻ sản phẩm (Shop Card) */
+.shop-card {
+    transition: all 0.4s ease;
+}
+
+.shop-card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(26, 67, 50, 0.1);
+}
+
+.shop-card img {
+    transition: transform 0.5s ease;
+}
+
+.shop-card:hover img {
+    transform: scale(1.05);
+}
+
+/* 4. Hiệu ứng cho các nút bấm (Buttons) */
+.btn-shop, .btn-primary, button {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shop:hover, .btn-primary:hover {
+    filter: brightness(1.1);
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-shop:active {
+    transform: scale(0.95);
+}
+
+/* 5. Hiệu ứng cho ô nhập Email (Newsletter) */
+input[type="text"] {
+    transition: all 0.3s ease;
+    border: 2px solid transparent !important;
+}
+
+input[type="text"]:focus {
+    border-color: var(--gold) !important;
+    background: white !important;
+    transform: scale(1.02);
+}
+
+/* 6. Hiệu ứng cho Menu Navigation */
+.nav-main a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-main a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-main a:hover::after {
+    width: 100%;
+}
+.bwf-item:hover {
+    background-color: #f0f7f4;
+    padding-left: 10px;
+    border-radius: 8px;
+    cursor: default;
+    transition: all 0.3s ease;
+}
     </style>
 </head>
 
@@ -382,7 +492,7 @@
 
                 <div class="shop-card">
                     <h3 style="border:none; padding:0; font-size:16px;">Sản phẩm liên quan</h3>
-                    <img src="Images/vot-cau-long-1.png" alt="Vợt Cầu Lông">
+                    <img src="../Images/vot-cau-long-1.png" alt="Vợt Cầu Lông">
                     <div style="padding: 10px 0;">
                         <span style="font-size:10px; color:var(--gold); font-weight:800">CÔNG NGHỆ CAO</span>
                         <h5 style="margin: 5px 0 10px; font-size:15px; color:var(--primary-green)">Vợt Cầu Lông TripleT
@@ -395,7 +505,7 @@
                 </div>
 
                 <div class="shop-card">
-                    <img src="Images/giay-cau-long.jpg" alt="Giày cầu lông">
+                    <img src="../Images/giay-cau-long.jpg" alt="Giày cầu lông">
                     <div style="padding: 10px 0;">
                         <h5 style="margin: 5px 0 10px; font-size:15px; color:var(--primary-green)">Giày Cầu Lông Siêu
                             Nhẹ T-Flight</h5>

@@ -1,113 +1,249 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Giày và trang phục cầu lông tại TripleT.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Giày và trang phục cầu lông tại TripleT."
+    />
     <title>Giày &amp; trang phục — TripleT</title>
-    <link rel="stylesheet" href="../Css/badminton-base.css">
-    <link rel="stylesheet" href="../Css/page-common.css">
-</head>
+    <link rel="stylesheet" href="../Css/badminton-base.css" />
+    <link rel="stylesheet" href="../Css/page-common.css" />
+  </head>
+<style>.search-container {
+    max-width: 800px;
+    margin: 1.5rem auto 2.5rem auto; /* Căn giữa và tạo khoảng cách với phần sản phẩm */
+    padding: 0 1rem;
+}
 
-<body>
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #004d40; /* Màu xanh lá đậm của TripleT */
+    border-radius: 50px; /* Bo tròn cực đại tạo vẻ hiện đại */
+    padding: 5px 5px 5px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
 
+.search-wrapper:focus-within {
+    box-shadow: 0 4px 20px rgba(0, 77, 64, 0.2);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #888;
+}
+
+#search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    background: transparent;
+}
+
+#search-btn {
+    background-color: #004d40; /* Màu xanh lá đậm */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+#search-btn:hover {
+    background-color: #00332c; /* Đậm hơn một chút khi hover */
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 480px) {
+    .search-wrapper {
+        padding: 5px 5px 5px 15px;
+    }
+    #search-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+</style>
+  <body>
     <div class="top-bar">
-        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+      Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
     </div>
 
     <header class="site-header">
-        <div class="header-inner">
-            <a href="Home.html" class="logo" aria-label="TripleT Trang chủ">
-                <span class="logo-mark" aria-hidden="true">🏸</span>
-                <span>TripleT Cầu Lông</span>
-            </a>
-            <nav class="nav-main" aria-label="Menu chính">
-                <a href="Home.html">Trang chủ</a>
-                <a href="danh-muc.html" aria-current="page">Danh mục</a>
-                <a href="san-pham.html">Sản phẩm</a>
-                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
-                <a href="Home.html#lien-he">Liên hệ</a>
-            </nav>
-            <div class="header-actions">
-                <button type="button" class="cart-toggle" id="cart-toggle" aria-label="Giỏ hàng" aria-expanded="false"
-                    aria-controls="cart-drawer">
-                    <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
-                    <span class="cart-badge" id="cart-badge" hidden>0</span>
-                </button>
+      <div class="header-inner">
+        <a href="Home.html" class="logo" aria-label="TripleT Trang chủ">
+          <span class="logo-mark" aria-hidden="true">🏸</span>
+          <span>TripleT Cầu Lông</span>
+        </a>
+        <nav class="nav-main" aria-label="Menu chính">
+          <a href="Home.html">Trang chủ</a>
+          <a href="tin-tuc.html">Tin Tức</a>
+          <a href="san-pham.html" aria-current="page">Sản phẩm</a>
+          <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+          <a href="Home.html#lien-he">Liên hệ</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            type="button"
+            class="cart-toggle"
+            id="cart-toggle"
+            aria-label="Giỏ hàng"
+            aria-expanded="false"
+            aria-controls="cart-drawer"
+          >
+            <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
+            <span class="cart-badge" id="cart-badge" hidden>0</span>
+          </button>
 
-                <button type="button" class="menu-toggle" id="menu-toggle">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-                <a href="login.html" class="btn btn-primary">Đăng nhập</a>
-            </div>
+          <button type="button" class="menu-toggle" id="menu-toggle">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <a href="login.html" class="btn btn-primary">Đăng nhập</a>
         </div>
+      </div>
     </header>
 
     <nav class="breadcrumb" aria-label="Điều hướng">
-        <a href="Home.html">Trang chủ</a>
-        <span aria-hidden="true">/</span>
-        <a href="danh-muc.html">Danh mục</a>
-        <span aria-hidden="true">/</span>
-        <span>Giày &amp; trang phục</span>
+      <a href="Home.html">Trang chủ</a>
+      <span aria-hidden="true">/</span>
+      <a href="san-pham.html">Danh mục</a>
+      <span aria-hidden="true">/</span>
+      <span>Giày &amp; trang phục</span>
     </nav>
 
     <main class="page-main">
-        <header class="page-hero">
-            <h1>Giày &amp; trang phục</h1>
-            <p>Giày indoor ôm chân, đế chống trượt; áo quần co giãn, thấm mồ hôi cho buổi đánh dài.</p>
-        </header>
-        <div class="cat-page-intro">
-            <p><a href="san-pham.html#cat-giay-ao" class="link-muted">Trang sản phẩm đầy đủ</a> ·
-                <a href="danh-muc.html" class="link-muted">Danh mục</a>
-            </p>
+      <header class="page-hero">
+        <h1>Giày &amp; trang phục</h1>
+        <p>
+          Giày indoor ôm chân, đế chống trượt; áo quần co giãn, thấm mồ hôi cho
+          buổi đánh dài.
+        </p>
+      </header>
+      <div class="cat-page-intro">
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Tìm tên Giày & trang phục (ví dụ: indoor, Lining...)"
+              aria-label="Tìm kiếmGiày & trang phục"
+            />
+            <button type="button" id="search-btn">Tìm kiếm</button>
+          </div>
         </div>
-        <section class="section" style="padding-top: 1rem;">
-            <div id="catalog-root" data-category="giay-ao"></div>
-        </section>
+      </div>
+      <section class="section" style="padding-top: 1rem">
+        <div id="catalog-root" data-category="giay-ao"></div>
+      </section>
     </main>
 
     <footer class="site-footer">
-        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
-            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
+      <p>
+        © 2026 <strong>TripleT Cầu Lông</strong> ·
+        <a
+          href="https://github.com/tuann300724/TripleT"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </p>
     </footer>
 
-    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+    <div
+      class="cart-backdrop"
+      id="cart-backdrop"
+      hidden
+      aria-hidden="true"
+    ></div>
 
-    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
-        <div class="cart-drawer-inner">
-            <div class="cart-drawer-head">
-                <h2 id="cart-title">Giỏ hàng</h2>
-                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">×</button>
-            </div>
-            <div class="cart-drawer-body">
-                <p class="cart-empty" id="cart-empty">Chưa có sản phẩm. Hãy thêm từ danh sách nhé!</p>
-                <ul class="cart-lines" id="cart-lines"></ul>
-            </div>
-            <div class="cart-drawer-foot">
-                <div class="cart-summary-row">
-                    <span>Số lượng</span>
-                    <span id="cart-count-summary">0</span>
-                </div>
-                <div class="cart-summary-row cart-summary-total">
-                    <span>Tạm tính</span>
-                    <strong id="cart-subtotal">0₫</strong>
-                </div>
-                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>Thanh toán qua
-                    email</button>
-                <button type="button" class="cart-clear" id="cart-clear">Xóa toàn bộ giỏ</button>
-            </div>
+    <aside
+      class="cart-drawer"
+      id="cart-drawer"
+      hidden
+      aria-hidden="true"
+      aria-labelledby="cart-title"
+      role="dialog"
+    >
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giỏ hàng</h2>
+          <button
+            type="button"
+            class="cart-close"
+            id="cart-close"
+            aria-label="Đóng giỏ hàng"
+          >
+            ×
+          </button>
         </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            Chưa có sản phẩm. Hãy thêm từ danh sách nhé!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Số lượng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Tạm tính</span>
+            <strong id="cart-subtotal">0₫</strong>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary cart-checkout"
+            id="cart-checkout"
+            disabled
+          >
+            Thanh toán qua email
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            Xóa toàn bộ giỏ
+          </button>
+        </div>
+      </div>
     </aside>
 
-    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+    <div
+      class="cart-toast"
+      id="cart-toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
 
     <script src="../JavaScript/products-data.js"></script>
     <script src="../JavaScript/catalog.js" defer></script>
     <script src="../JavaScript/cart.js" defer></script>
-</body>
+<script>document.getElementById('search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card'); // Giả sử class card là .product-card
 
+    productCards.forEach(card => {
+        const productName = card.querySelector('h3').innerText.toLowerCase();
+        if (productName.includes(searchTerm)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>  
+
+</body>
 </html>

@@ -1,5 +1,7 @@
 /* TripleT — nền dùng chung mọi trang: biến, reset, header, section, sản phẩm, footer, giỏ hàng */
 
+
+
 :root {
   --green-dark: #0c2d26;
   --green: #1a5c4a;
@@ -651,71 +653,88 @@ a {
 body.cart-open {
   overflow: hidden;
 }
+
 /* 1. Ẩn nút menu trên Desktop */
 .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
 }
 
 .hamburger-bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--green-dark);
-    border-radius: 4px;
-    transition: all 0.3s ease;
+  width: 100%;
+  height: 3px;
+  background-color: var(--green-dark);
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 /* 2. Responsive cho Mobile */
 @media (max-width: 910px) {
-    .menu-toggle {
-        display: flex; /* Hiện nút 3 gạch */
-    }
-    /* Biến nav thành menu sổ xuống (hoặc tràn màn hình) */
-    .nav-main {
-        position: fixed;
-        top: 70px; /* Nằm ngay dưới header */
-        left: 0;
-        right: 0;
-        background: var(--white);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 2px solid var(--gold);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        
-        /* Hiệu ứng ẩn/hiện */
-        transform: translateY(-150%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 999;
-    }
 
-    /* Khi Menu được mở */
-    .nav-main.is-open {
-        transform: translateY(0);
-    }
+  .header-actions .btn-primary {
 
-    .nav-main a {
-        font-size: 1.2rem;
-        width: 100%;
-        text-align: center;
-    }
+    padding: 6px 12px;
+    text-align: center;
+    font-size: 12px;
 
-    /* Hiệu ứng nút 3 gạch biến thành dấu X khi mở */
-    .menu-toggle.is-active .hamburger-bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    .menu-toggle.is-active .hamburger-bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.is-active .hamburger-bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
+    min-width: auto;
+  }
+
+
+  .menu-toggle {
+    display: flex;
+    /* Hiện nút 3 gạch */
+  }
+
+  /* Biến nav thành menu sổ xuống (hoặc tràn màn hình) */
+  .nav-main {
+    position: fixed;
+    top: 70px;
+    /* Nằm ngay dưới header */
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+    /* Hiệu ứng ẩn/hiện */
+    transform: translateY(-150%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+  }
+
+  /* Khi Menu được mở */
+  .nav-main.is-open {
+    transform: translateY(0);
+  }
+
+  .nav-main a {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Hiệu ứng nút 3 gạch biến thành dấu X khi mở */
+  .menu-toggle.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 }

@@ -197,13 +197,6 @@ async function renderDashboard(container) {
     // ... code fill dữ liệu
     initDraggableDashboard();
 }
-// ------------------- KHO DỮ LIỆU LOCALSTORAGE & SEED -------------------
-let currentUser = null;
-let currentSection = 'dashboard';
-let currentEditId = null;
-let currentEntityType = null;
-let revenueChart = null;
-let pendingConfirmCallback = null;
 // Dark mode toggle
 function initDarkMode() {
     const savedTheme = localStorage.getItem('theme');
@@ -235,6 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeBtn = document.getElementById('darkModeToggle');
     if (darkModeBtn) darkModeBtn.addEventListener('click', toggleDarkMode);
 });
+// ------------------- KHO DỮ LIỆU LOCALSTORAGE & SEED -------------------
+let currentUser = null;
+let currentSection = 'dashboard';
+let currentEditId = null;
+let currentEntityType = null;
+let revenueChart = null;
+let pendingConfirmCallback = null;
 
 // Khởi tạo dữ liệu mẫu với tên cụ thể
 function initData() {
@@ -1451,3 +1451,112 @@ document.getElementById('mobileMenuToggle').addEventListener('click',()=>{
 window.addEventListener('click',(e)=>{
     if(e.target.classList.contains('modal')) closeModal();
 });
+// Gắn sự kiện cho các nút mới
+document.getElementById('backupBtn')?.addEventListener('click', backupData);
+document.getElementById('restoreBtn')?.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => restoreData(e.target.files[0]);
+    input.click();
+});
+// Thêm import Excel cho từng bảng (ví dụ thêm nút Import vào filter-bar)
+function addImportButton(entity) {
+    const btn = document.createElement('button');
+    btn.className = 'btn-add';
+    btn.style.background = '#e8b923';
+    btn.innerHTML = '<i class="fas fa-file-excel"></i> Import Excel';
+    btn.onclick = () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.xlsx, .xls, .csv';
+        input.onchange = (e) => importExcel(e.target.files[0], entity);
+        input.click();
+    };
+    document.querySelector('.filter-bar')?.appendChild(btn);
+}
+// Gọi addImportButton('products') trong renderProductTable, v.v.
+
+// Real-time simulation: mỗi 30s thêm thông báo ngẫu nhiên
+setInterval(() => {
+    const msgs = ['Có đơn hàng mới!', 'Sản phẩm hot đang được săn đón', 'Hôm nay có mã giảm giá mới'];
+    addNotification(msgs[Math.floor(Math.random() * msgs.length)]);
+}, 30000);
+// ====== THÊM ANIMATION CHO NỘI DUNG ĐỘNG ======
+// Hàm thêm animation cho các phần tử mới được render
+function addAnimationsToContent() {
+  // Thêm animation cho stat cards
+  document.querySelectorAll('.stats-grid .stat-card').forEach((card, index) => {
+    if (!card.classList.contains('animated')) {
+      card.classList.add('animate-fadeInUp', 'animated');
+    }
+  });
+  
+  // Thêm animation cho bảng
+  document.querySelectorAll('.data-table tbody tr').forEach((row, index) => {
+    if (!row.classList.contains('animated')) {
+      row.classList.add('animate-fadeInLeft', 'animated');
+      row.style.animationDelay = `${index * 0.03}s`;
+    }
+  });
+  
+  // Thêm animation cho các widget
+  document.querySelectorAll('.dashboard-widget').forEach((widget, index) => {
+    if (!widget.classList.contains('animated')) {
+      widget.classList.add('animate-scaleIn', 'animated');
+      widget.style.animationDelay = `${index * 0.1}s`;
+    }
+  });
+}
+
+// Lắng nghe sự thay đổi nội dung dynamicContent
+const observer = new MutationObserver(() => {
+  addAnimationsToContent();
+});
+
+// Theo dõi container dynamicContent
+const dynamicContent = document.getElementById('dynamicContent');
+if (dynamicContent) {
+  observer.observe(dynamicContent, { childList: true, subtree: true });
+}
+
+// Thêm animation cho sidebar menu items
+document.querySelectorAll('.sidebar-menu li').forEach((item, index) => {
+  item.style.animation = `fadeInLeft 0.3s ease-out ${index * 0.03}s forwards`;
+  item.style.opacity = '0';
+});
+
+// Thêm animation cho topbar
+const topbar = document.querySelector('.topbar');
+if (topbar) {
+  topbar.style.animation = 'fadeInDown 0.4s ease-out forwards';
+}
+
+// Định nghĩa thêm keyframe fadeInDown nếu chưa có
+if (!document.querySelector('#dynamicStyle')) {
+  const style = document.createElement('style');
+  style.id = 'dynamicStyle';
+  style.textContent = `
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animated {
+      animation-fill-mode: backwards;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Gọi hàm addAnimationsToContent sau mỗi lần render section
+const originalRenderSection = renderSection;
+window.renderSection = async function(section) {
+  await originalRenderSection(section);
+  setTimeout(addAnimationsToContent, 50);
+};

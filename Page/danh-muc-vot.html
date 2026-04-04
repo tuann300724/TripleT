@@ -9,7 +9,69 @@
     <link rel="stylesheet" href="../Css/badminton-base.css">
     <link rel="stylesheet" href="../Css/page-common.css">
 </head>
+<style>.search-container {
+    max-width: 800px;
+    margin: 1.5rem auto 2.5rem auto; /* Căn giữa và tạo khoảng cách với phần sản phẩm */
+    padding: 0 1rem;
+}
 
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #004d40; /* Màu xanh lá đậm của TripleT */
+    border-radius: 50px; /* Bo tròn cực đại tạo vẻ hiện đại */
+    padding: 5px 5px 5px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+    box-shadow: 0 4px 20px rgba(0, 77, 64, 0.2);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #888;
+}
+
+#search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    background: transparent;
+}
+
+#search-btn {
+    background-color: #004d40; /* Màu xanh lá đậm */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+#search-btn:hover {
+    background-color: #00332c; /* Đậm hơn một chút khi hover */
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 480px) {
+    .search-wrapper {
+        padding: 5px 5px 5px 15px;
+    }
+    #search-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+</style>
 <body>
 
     <div class="top-bar">
@@ -24,8 +86,8 @@
             </a>
             <nav class="nav-main" aria-label="Menu chính">
                 <a href="Home.html">Trang chủ</a>
-                <a href="danh-muc.html" aria-current="page">Danh mục</a>
-                <a href="san-pham.html">Sản phẩm</a>
+                <a href="tin-tuc.html" >Tin Tức</a>
+                <a href="san-pham.html"aria-current="page">Sản phẩm</a>
                 <a href="Home.html#khuyen-mai">Khuyến mãi</a>
                 <a href="Home.html#lien-he">Liên hệ</a>
             </nav>
@@ -35,16 +97,12 @@
                     <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
                     <span class="cart-badge" id="cart-badge" hidden>0</span>
                 </button>
-<<<<<<< HEAD
-                <a href="../Home.html#lien-he" class="btn btn-ghost header-hotline">Hotline</a>
-=======
 
                 <button type="button" class="menu-toggle" id="menu-toggle">
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                 </button>
->>>>>>> a21f8c95e9ce82d9705e8ee1910a39d24ec47756
                 <a href="login.html" class="btn btn-primary">Đăng nhập</a>
             </div>
         </div>
@@ -64,11 +122,17 @@
             <p>Chọn vợt theo lối chơi: cân bằng dễ làm quen, đầu nặng hỗ trợ smash, khung 6U siêu nhẹ cho đánh đôi và
                 người mới.</p>
         </header>
+
+
+
         <div class="cat-page-intro">
-            <p>Xem thêm <a href="san-pham.html#cat-vot" class="link-muted">vị trí này trên trang tất cả sản phẩm</a>
-                hoặc
-                <a href="danh-muc.html" class="link-muted">quay lại danh mục</a>.
-            </p>
+            <div class="search-container">
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Tìm tên vợt (ví dụ: Yonex Astrox, Lining...)" aria-label="Tìm kiếm vợt">
+        <button type="button" id="search-btn">Tìm kiếm</button>
+    </div>
+</div>
         </div>
         <section class="section" style="padding-top: 1rem;">
             <div id="catalog-root" data-category="vot"></div>
@@ -114,6 +178,23 @@
     <script src="../JavaScript/products-data.js"></script>
     <script src="../JavaScript/catalog.js" defer></script>
     <script src="../JavaScript/cart.js" defer></script>
+
+<script>document.getElementById('search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card'); // Giả sử class card là .product-card
+
+    productCards.forEach(card => {
+        const productName = card.querySelector('h3').innerText.toLowerCase();
+        if (productName.includes(searchTerm)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
 </body>
+
+
 
 </html>
