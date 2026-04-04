@@ -11,6 +11,38 @@
   --shadow: 0 12px 40px rgba(12, 45, 38, 0.12);
   --radius: 14px;
   --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --bg-body: var(--cream);
+  --bg-card: var(--white);
+  --border-light: var(--gold-soft);
+  --sidebar-bg: var(--green-dark);
+  --sidebar-text: rgba(247, 244, 238, 0.9);
+  --table-header-bg: var(--cream);
+  --input-border: #ddd;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --toast-bg: var(--green-dark);
+  --toast-text: white;
+}
+
+body.dark-mode {
+  --green-dark: #0a2b24;
+  --green: #1e7a5f;
+  --green-light: #3aa684;
+  --gold: #e8b923;
+  --gold-soft: #4a3e1a;
+  --cream: #1e1e2a;
+  --text: #e4e4e7;
+  --muted: #a1a1aa;
+  --white: #2a2a35;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --bg-body: #12121a;
+  --bg-card: #1e1e2a;
+  --border-light: #3a3a4a;
+  --sidebar-bg: #0c0c14;
+  --sidebar-text: #d4d4d8;
+  --table-header-bg: #252535;
+  --input-border: #3a3a4a;
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+  --toast-bg: #1e7a5f;
 }
 
 * {
@@ -21,8 +53,9 @@
 
 body {
   font-family: var(--font);
-  background: var(--cream);
+  background: var(--bg-body);
   color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 /* LOGIN */
@@ -36,7 +69,7 @@ body {
 }
 
 .login-card {
-  background: var(--white);
+  background: var(--bg-card);
   max-width: 420px;
   width: 100%;
   border-radius: var(--radius);
@@ -79,10 +112,12 @@ body {
 .input-group input {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 2rem;
   font-size: 1rem;
   transition: 0.2s;
+  background: var(--bg-card);
+  color: var(--text);
 }
 
 .input-group input:focus {
@@ -93,7 +128,7 @@ body {
 
 .btn-login {
   background: var(--green);
-  color: var(--white);
+  color: white;
   border: none;
   width: 100%;
   padding: 0.9rem;
@@ -124,9 +159,9 @@ body {
 /* SIDEBAR */
 .sidebar {
   width: 280px;
-  background: var(--green-dark);
-  color: var(--cream);
-  transition: transform 0.3s ease;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  transition: transform 0.3s ease, background 0.2s;
   position: fixed;
   height: 100vh;
   overflow-y: auto;
@@ -162,7 +197,7 @@ body {
   cursor: pointer;
   transition: 0.2s;
   font-weight: 500;
-  color: rgba(247, 244, 238, 0.8);
+  color: var(--sidebar-text);
 }
 
 .sidebar-menu li i {
@@ -173,7 +208,7 @@ body {
 .sidebar-menu li.active {
   background: rgba(45, 143, 115, 0.2);
   border-right: 4px solid var(--gold);
-  color: var(--white);
+  color: white;
 }
 
 .sidebar-menu li:hover:not(.active) {
@@ -206,10 +241,37 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  background: var(--white);
+  background: var(--bg-card);
   padding: 0.8rem 1.5rem;
   border-radius: 2rem;
   box-shadow: var(--shadow);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--gold);
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--gold-soft);
+  color: var(--green-dark);
 }
 
 .menu-icon {
@@ -234,11 +296,11 @@ body {
 }
 
 .stat-card {
-  background: var(--white);
+  background: var(--bg-card);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  border: 1px solid var(--gold-soft);
+  border: 1px solid var(--border-light);
 }
 
 .stat-card i {
@@ -249,7 +311,7 @@ body {
 .stat-card h3 {
   font-size: 1.8rem;
   margin: 0.5rem 0 0;
-  color: var(--green-dark);
+  color: var(--text);
 }
 
 .stat-card p {
@@ -259,7 +321,7 @@ body {
 /* tables */
 .data-table {
   width: 100%;
-  background: var(--white);
+  background: var(--bg-card);
   border-radius: var(--radius);
   overflow-x: auto;
   border-collapse: collapse;
@@ -270,13 +332,13 @@ body {
 .data-table td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid var(--gold-soft);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .data-table th {
-  background: var(--cream);
+  background: var(--table-header-bg);
   font-weight: 600;
-  color: var(--green-dark);
+  color: var(--text);
 }
 
 .btn-icon {
@@ -298,7 +360,7 @@ body {
 
 .btn-add {
   background: var(--green);
-  color: var(--white);
+  color: white;
   border: none;
   padding: 0.5rem 1.2rem;
   border-radius: 2rem;
@@ -320,19 +382,20 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-overlay);
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
 .modal-content {
-  background: var(--white);
+  background: var(--bg-card);
   width: 90%;
   max-width: 550px;
   border-radius: var(--radius);
   padding: 1.8rem;
   box-shadow: var(--shadow);
+  color: var(--text);
 }
 
 .modal-content input,
@@ -341,9 +404,11 @@ body {
   width: 100%;
   padding: 0.7rem;
   margin: 0.5rem 0 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
   border-radius: 2rem;
   font-family: var(--font);
+  background: var(--bg-card);
+  color: var(--text);
 }
 
 .form-buttons {
@@ -385,41 +450,90 @@ body {
   color: var(--green-dark);
 }
 
-.footer-mobile {
-  text-align: center;
-  margin-top: 2rem;
+/* Toast notification */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--toast-bg);
+  color: var(--toast-text);
+  padding: 12px 24px;
+  border-radius: 2rem;
+  font-size: 14px;
+  z-index: 1100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
-/* Nút trong modal */
+
+.toast-notification.show {
+  opacity: 1;
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-bar select, .filter-bar input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 2rem;
+  font-family: var(--font);
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+/* Rating stars */
+.rating-stars {
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+/* Promotion badge */
+.promotion-badge {
+  background: linear-gradient(135deg, var(--gold), #ff9800);
+  color: var(--green-dark);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
 .form-buttons .btn-icon {
-    background: none;
-    border: 1px solid var(--green);
-    color: var(--green);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s;
+  background: none;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
 }
 
 .form-buttons .btn-icon:hover {
-    background: var(--green);
-    color: var(--white);
+  background: var(--green);
+  color: white;
 }
 
 .form-buttons .btn-add {
-    background: var(--green);
-    color: var(--white);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    cursor: pointer;
+  background: var(--green);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
 }
 
 .form-buttons .btn-add:hover {
-    background: var(--green-light);
+  background: var(--green-light);
 }

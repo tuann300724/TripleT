@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-<link>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>TripleT Admin · Quản trị cửa hàng cầu lông</title>
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="style.css">
-   <style src="style.css"> </style>
+    
 </head>
 <body>
 
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<!-- ADMIN DASHBOARD (ẨN ban đầu) -->
+<!-- ADMIN DASHBOARD -->
 <div id="adminApp" style="display: none;">
     <div class="admin-wrapper">
         <div class="sidebar" id="sidebar">
@@ -41,23 +41,67 @@
                 <i class="fas fa-badminton"></i> TripleT Admin
             </div>
             <ul class="sidebar-menu">
-                <li data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-                <li data-section="categories"><i class="fas fa-tags"></i> Loại sản phẩm</li>
-                <li data-section="products"><i class="fas fa-racket"></i> Sản phẩm</li>
-                <li data-section="news"><i class="fas fa-newspaper"></i> Tin tức</li>
-                <li data-section="users"><i class="fas fa-users"></i> Người dùng</li>
-                <li data-section="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</li>
-                <li data-section="revenue"><i class="fas fa-chart-line"></i> Doanh thu</li>
+                <li data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> 
+                    <span>Dashboard</span>
+                </li>
+                <li data-section="categories">
+                    <i class="fas fa-tags"></i> 
+                    <span>Loại sản phẩm</span>
+                </li>
+                <li data-section="products">
+                    <i class="fas fa-table-tennis-paddle-ball"></i> 
+                    <span>Sản phẩm</span>
+                </li>
+                <li data-section="users">
+                    <i class="fas fa-users"></i> 
+                    <span>Người dùng</span>
+                </li>
+                <li data-section="orders">
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span>Đơn hàng</span>
+                </li>
+                <li data-section="revenue">
+                    <i class="fas fa-chart-line"></i> 
+                    <span>Doanh thu</span>
+                </li>
+                <li data-section="promotions">
+                    <i class="fas fa-gift"></i> 
+                    <span>Khuyến mãi</span>
+                </li>
+                <li data-section="reviews">
+                    <i class="fas fa-star"></i> 
+                    <span>Đánh giá</span>
+                </li>
+                <li data-section="suppliers">
+                    <i class="fas fa-truck"></i> 
+                    <span>Nhà cung cấp</span>
+                </li>
+                <li data-section="imports">
+                    <i class="fas fa-dolly"></i> 
+                    <span>Nhập hàng</span>
+                </li>
             </ul>
-            <div class="logout-side" style="padding: 1rem 1.5rem;">
-                <li style="list-style: none; padding:0;" id="logoutAdminBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
+            <div class="logout-side">
+                <li id="logoutAdminBtn">
+                    <i class="fas fa-sign-out-alt"></i> 
+                    <span>Đăng xuất</span>
+                </li>
             </div>
         </div>
         <div class="main-content">
             <div class="topbar">
                 <i class="fas fa-bars menu-icon" id="mobileMenuToggle"></i>
                 <h2 class="page-title" id="mainTitle">Dashboard</h2>
-                <div><i class="fas fa-user-circle"></i> Admin</div>
+                <div class="topbar-actions">
+                    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Chuyển đổi chế độ sáng/tối">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="admin-info">
+                        <i class="fas fa-user-circle"></i> 
+                        <span>Admin</span>
+                    </div>
+                </div>
             </div>
             <div id="dynamicContent">Loading...</div>
         </div>
@@ -71,20 +115,37 @@
         <form id="modalForm">
             <div id="modalFields"></div>
             <div class="form-buttons">
-                <button type="button" class="btn-icon" id="modalCloseBtn">Hủy</button>
-                <button type="submit" class="btn-add" style="margin:0;">Lưu</button>
+                <button type="button" class="btn-icon" id="modalCloseBtn">
+                    <i class="fas fa-times"></i> Hủy
+                </button>
+                <button type="submit" class="btn-add">
+                    <i class="fas fa-save"></i> Lưu
+                </button>
             </div>
         </form>
     </div>
 </div>
-<div class="form-buttons">
-    <button type="button" class="btn-icon" id="modalCloseBtn">
-        <i class="fas fa-times"></i> Hủy
-    </button>
-    <button type="submit" class="btn-add" style="margin:0;">
-        <i class="fas fa-save"></i> Lưu
-    </button>
+
+<!-- Modal xác nhận -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+        <h3 id="confirmTitle">
+            <i class="fas fa-question-circle"></i> Xác nhận
+        </h3>
+        <p id="confirmMessage">Bạn có chắc chắn muốn thực hiện hành động này?</p>
+        <div class="form-buttons" style="margin-top: 1.5rem;">
+            <button type="button" class="btn-icon" id="confirmNoBtn">
+                <i class="fas fa-times"></i> Hủy
+            </button>
+            <button type="button" class="btn-add" id="confirmYesBtn">
+                <i class="fas fa-check"></i> Xác nhận
+            </button>
+        </div>
+    </div>
 </div>
+
+<!-- Modal thông báo -->
+<div id="toastNotification" class="toast-notification"></div>
 
 <script src="script.js"></script>
 </body>
