@@ -340,6 +340,7 @@
       }
 
       // Xử lý Validation khi Submit
+      // Xử lý Validation và Chuyển hướng khi Submit
       document
         .getElementById("authForm")
         .addEventListener("submit", function (e) {
@@ -349,7 +350,7 @@
           const pass = document.getElementById("password").value;
           const confirmPass = document.getElementById("confirmPassword").value;
 
-          // Regex kiểm tra Email hoặc SĐT Việt Nam (10 số)
+          // 1. Kiểm tra định dạng Email hoặc SĐT
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           const phoneRegex = /^(0[3|5|7|8|9])([0-9]{8})$/;
 
@@ -360,12 +361,24 @@
             return;
           }
 
+          // 2. Nếu là Đăng ký, kiểm tra khớp mật khẩu
           if (!isLogin && pass !== confirmPass) {
             alert("Mật khẩu xác nhận không khớp!");
             return;
           }
 
-          alert(isLogin ? "Đăng nhập thành công!" : "Đăng ký thành công!");
+          // 3. Xử lý logic khi Đăng nhập/Đăng ký thành công
+          if (isLogin) {
+            alert(
+              "Đăng nhập thành công! Đang chuyển hướng đến trang quản trị...",
+            );
+            // Chuyển hướng vào thư mục admin/index.html
+            // Lưu ý: Đường dẫn này giả định file login.html đang nằm cùng cấp với thư mục admin
+            window.location.href = "../admin/index.html";
+          } else {
+            alert("Đăng ký thành công! Hãy đăng nhập lại.");
+            toggleForm(); // Chuyển về form đăng nhập
+          }
         });
     </script>
   </body>
