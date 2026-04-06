@@ -346,7 +346,7 @@
         .addEventListener("submit", function (e) {
           e.preventDefault();
 
-          const username = document.getElementById("username").value;
+          const username = document.getElementById("username").value.trim();
           const pass = document.getElementById("password").value;
           const confirmPass = document.getElementById("confirmPassword").value;
 
@@ -361,22 +361,43 @@
             return;
           }
 
-          // 2. Nếu là Đăng ký, kiểm tra khớp mật khẩu
-          if (!isLogin && pass !== confirmPass) {
-            alert("Mật khẩu xác nhận không khớp!");
-            return;
-          }
+          // 2. Lấy danh sách tài khoản từ localStorage (nếu chưa có thì tạo mảng rỗng)
+          let users = JSON.parse(localStorage.getItem("tripleT_users")) || [];
 
-          // 3. Xử lý logic khi Đăng nhập/Đăng ký thành công
           if (isLogin) {
-            alert(
-              "Đăng nhập thành công! Đang chuyển hướng đến trang quản trị...",
+            // --- LOGIC ĐĂNG NHẬP ---
+            // Tìm xem tài khoản và mật khẩu có khớp trong danh sách đã lưu không
+            const userExists = users.find(
+              (u) => u.username === username && u.password === pass,
             );
-            // Chuyển hướng vào thư mục admin/index.html
-            // Lưu ý: Đường dẫn này giả định file login.html đang nằm cùng cấp với thư mục admin
-            window.location.href = "../admin/index.html";
+
+            if (userExists) {
+              alert("Đăng nhập thành công! Đang chuyển hướng...");
+              window.location.href = "../admin/index.html";
+            } else {
+              alert(
+                "Tài khoản hoặc mật khẩu không chính xác. Vui lòng đăng ký trước!",
+              );
+            }
           } else {
-            alert("Đăng ký thành công! Hãy đăng nhập lại.");
+            // --- LOGIC ĐĂNG KÝ ---
+            if (pass !== confirmPass) {
+              alert("Mật khẩu xác nhận không khớp!");
+              return;
+            }
+
+            // Kiểm tra xem tài khoản này đã tồn tại chưa
+            const isDuplicate = users.some((u) => u.username === username);
+            if (isDuplicate) {
+              alert("Tài khoản này đã được đăng ký trước đó!");
+              return;
+            }
+
+            // Lưu tài khoản mới vào mảng
+            users.push({ username: username, password: pass });
+            localStorage.setItem("tripleT_users", JSON.stringify(users));
+
+            alert("Đăng ký thành công! Bây giờ bạn có thể đăng nhập.");
             toggleForm(); // Chuyển về form đăng nhập
           }
         });
