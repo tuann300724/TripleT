@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TÃ i Khoáº£n ThÃ nh ViÃªn - TripleT Cáº§u LÃ´ng</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .account-container {
+            max-width: 1120px;
+            margin: 40px auto;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .account-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .sidebar {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            height: fit-content;
+        }
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        .vip-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .tier-normal { background: #6c757d; }
+        .tier-silver { background: #c0c0c0; color: #333; }
+        .tier-gold { background: #ffd700; color: #333; }
+        .tier-diamond { background: #b9f2ff; color: #007bff; }
+        
+        .main-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .point-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--green);
+            margin-bottom: 30px;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-table th, .order-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        .order-table th {
+            background: #f1f1f1;
+            font-weight: 600;
+        }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #e3fcf7;
+            color: #1a5c4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">Miá»…n phÃ­ váº­n chuyá»ƒn Ä‘Æ¡n tá»« 500.000â‚« Â· TÆ° váº¥n chá»n vá»£t miá»…n phÃ­</div>
+
+        <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">ðŸ¸</span>
+                <span>TripleT Cáº§u LÃ´ng</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chá»§</a>
+                <a href="tin-tuc.html">Tin tá»©c</a>
+                <a href="san-pham.html">Sáº£n pháº©m</a>
+                <a href="giao-luu.html">Giao lÆ°u</a>
+                <a href="dat-san.html">Äáº·t sÃ¢n</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">ðŸ›’</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary" id="login-btn">ÄÄƒng nháº­p</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <span id="user-name-text"></span>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="account-container" id="account-root" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="avatar-placeholder" id="avatar-letter">U</div>
+            <h2 id="display-name" style="margin: 0; color: var(--green-dark);"></h2>
+            <div id="vip-tier" class="vip-badge tier-normal">ThÃ nh ViÃªn</div>
+            <p style="color: var(--muted); font-size: 14px; margin-top: 15px;"><i class="fa-solid fa-envelope"></i> <span id="display-email"></span></p>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <h2 style="color: var(--green-dark); margin-top: 0;">Tá»•ng Quan TÃ i Khoáº£n</h2>
+            
+            <div class="point-box">
+                <h3 style="margin-top: 0; color: #1a1f1e;">T-Points Cá»§a Báº¡n</h3>
+                <div style="font-size: 36px; font-weight: bold; color: var(--gold); display: flex; align-items: center; gap: 10px;">
+                    <span id="t-points">0</span> <i class="fa-solid fa-coins" style="font-size: 24px;"></i>
+                </div>
+                <p style="margin: 0; color: var(--muted); font-size: 14px;">1 T-Point tÆ°Æ¡ng Ä‘Æ°Æ¡ng 10,000â‚« thanh toÃ¡n. Äáº¡t 500 T-Points Ä‘á»ƒ lÃªn háº¡ng VIP Báº¡c.</p>
+            </div>
+
+            <h3 style="color: var(--green-dark); border-bottom: 2px solid #eee; padding-bottom: 10px;">Lá»‹ch Sá»­ ÄÆ¡n HÃ ng</h3>
+            
+            <div style="overflow-x: auto;">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>MÃ£ Ä‘Æ¡n</th>
+                            <th>NgÃ y Ä‘áº·t</th>
+                            <th>Sáº£n pháº©m</th>
+                            <th>Tá»•ng tiá»n</th>
+                            <th>Tráº¡ng thÃ¡i</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list">
+                        <!-- Render JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Â© 2026 <strong>TripleT Cáº§u LÃ´ng</strong></p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const user = JSON.parse(localStorage.getItem('tripleT_currentUser'));
+            if (!user) {
+                alert("Vui lÃ²ng Ä‘Äƒng nháº­p Ä‘á»ƒ xem thÃ´ng tin tÃ i khoáº£n!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Hiá»ƒn thá»‹ UI
+            document.getElementById('account-root').style.display = 'grid';
+            document.getElementById('user-name').style.display = 'inline-block';
+            document.getElementById('user-name').innerText = user.name;
+            document.getElementById('logout-btn').style.display = 'inline-block';
+            
+            document.getElementById('avatar-letter').innerText = user.name.charAt(0).toUpperCase();
+            document.getElementById('display-name').innerText = user.name;
+            document.getElementById('display-email').innerText = user.id || "ChÆ°a cáº­p nháº­t"; // DÃ¹ng id lÃ m email táº¡m
+
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('tripleT_currentUser');
+                window.location.href = "Home.html";
+            });
+
+            // Láº¥y danh sÃ¡ch Ä‘Æ¡n hÃ ng
+            const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+            const myOrders = allOrders.filter(o => o.iduser === user.id);
+
+            // TÃ­nh T-points
+            let totalSpent = 0;
+            myOrders.forEach(o => totalSpent += o.total);
+            const tPoints = Math.floor(totalSpent / 10000);
+            document.getElementById("t-points").innerText = new Intl.NumberFormat("vi-VN").format(tPoints);
+
+            // Xáº¿p háº¡ng VIP
+            const vipEl = document.getElementById("vip-tier");
+            if (tPoints >= 5000) {
+                vipEl.className = "vip-badge tier-diamond";
+                vipEl.innerText = "VIP Kim CÆ°Æ¡ng";
+            } else if (tPoints >= 2000) {
+                vipEl.className = "vip-badge tier-gold";
+                vipEl.innerText = "VIP VÃ ng";
+            } else if (tPoints >= 500) {
+                vipEl.className = "vip-badge tier-silver";
+                vipEl.innerText = "VIP Báº¡c";
+            } else {
+                vipEl.className = "vip-badge tier-normal";
+                vipEl.innerText = "ThÃ nh ViÃªn";
+            }
+
+            // Hiá»ƒn thá»‹ Ä‘Æ¡n hÃ ng
+            const ordersList = document.getElementById("orders-list");
+            if (myOrders.length === 0) {
+                ordersList.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #999;">Báº¡n chÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o</td></tr>`;
+                return;
+            }
+
+            // Sáº¯p xáº¿p Ä‘Æ¡n má»›i nháº¥t lÃªn Ä‘áº§u
+            myOrders.sort((a,b) => b.id.localeCompare(a.id));
+
+            let html = "";
+            myOrders.forEach(o => {
+                const itemNames = o.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+                html += `
+                    <tr>
+                        <td><strong>${o.id}</strong></td>
+                        <td>${o.createdAt.split(' ')[1] || o.createdAt}</td>
+                        <td style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${itemNames}">
+                            ${itemNames}
+                        </td>
+                        <td style="color: var(--green); font-weight: bold;">
+                            ${new Intl.NumberFormat("vi-VN").format(o.total)}â‚«
+                        </td>
+                        <td><span class="status-badge">HoÃ n thÃ nh</span></td>
+                    </tr>
+                `;
+            });
+            ordersList.innerHTML = html;
+        });
+    </script>
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giá» hÃ ng</h2>
+          <button type="button" class="cart-close" id="cart-close" aria-label="ÄÃ³ng giá» hÃ ng">
+            Ã—
+          </button>
+        </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            ChÆ°a cÃ³ sáº£n pháº©m. HÃ£y thÃªm tá»« danh sÃ¡ch nhÃ©!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Sá»‘ lÆ°á»£ng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Táº¡m tÃ­nh</span>
+            <strong id="cart-subtotal">0â‚«</strong>
+          </div>
+          <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+            Xem Ä‘Æ¡n &amp; thanh toÃ¡n
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            XÃ³a toÃ n bá»™ giá»
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/session.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/wishlist.js" defer></script>
+</body>
+</html>
+
+

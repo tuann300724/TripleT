@@ -8,11 +8,14 @@
     <title>Giỏ hàng &amp; thanh toán — TripleT</title>
     <link rel="stylesheet" href="../Css/badminton-base.css">
     <link rel="stylesheet" href="../Css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .checkout-page {
             max-width: 720px;
             margin: 0 auto;
             padding: 1.5rem 1.25rem 3rem;
+            min-height: 100vh;
+
         }
 
         .checkout-page h1 {
@@ -126,15 +129,28 @@
             </a>
 
             <nav class="nav-main" id="nav-menu">
-                <a href="Home.html">Trang chủ</a>
-                 <a href="tin-tuc.html"  >Tin tức</a>
+                <a href="Home.html" aria-current="page">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
                 <a href="san-pham.html">Sản phẩm</a>
                 <a href="Home.html#khuyen-mai">Khuyến mãi</a>
                 <a href="Home.html#lien-he">Liên hệ</a>
             </nav>
 
             <div class="header-actions">
-                <a href="Home.html" class="btn btn-primary">← Về cửa hàng</a>
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <a href="chi-tiet-don-hang.html" id="user-name-text"></a>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
                 <button type="button" class="menu-toggle" id="menu-toggle">
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
@@ -161,6 +177,8 @@
 
         <div class="checkout-actions">
             <a class="btn btn-primary" id="checkout-continue" href="thong-tin-thanh-toan.html" hidden>Tiếp tục</a>
+            <a class="btn btn-ghost" id="checkout-login-btn" href="login.html" style="display:none;margin-left:0;">Đăng
+                nhập</a>
             <a href="Home.html" class="link-muted">Tiếp tục mua sắm</a>
         </div>
     </main>
@@ -170,9 +188,59 @@
             <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
         </p>
     </footer>
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
 
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+        <div class="cart-drawer-inner">
+            <div class="cart-drawer-head">
+                <h2 id="cart-title">Giỏ hàng</h2>
+                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">
+                    ×
+                </button>
+            </div>
+            <div class="cart-drawer-body">
+                <p class="cart-empty" id="cart-empty">
+                    Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!
+                </p>
+                <ul class="cart-lines" id="cart-lines"></ul>
+            </div>
+            <div class="cart-drawer-foot">
+                <div class="cart-summary-row">
+                    <span>Số lượng</span>
+                    <span id="cart-count-summary">0</span>
+                </div>
+                <div class="cart-summary-row cart-summary-total">
+                    <span>Tạm tính</span>
+                    <strong id="cart-subtotal">0₫</strong>
+                </div>
+                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+                    Xem đơn &amp; thanh toán
+                </button>
+                <button type="button" class="cart-clear" id="cart-clear">
+                    Xóa toàn bộ giỏ
+                </button>
+            </div>
+        </div>
+    </aside>
     <script src="../JavaScript/checkout-review.js" defer></script>
+    <script>
+        // Hiện nút Đăng nhập kế bên nếu chưa đăng nhập
+        document.addEventListener('DOMContentLoaded', function () {
+            var loginBtn = document.getElementById('checkout-login-btn');
+            var continueBtn = document.getElementById('checkout-continue');
+            var currentUser = localStorage.getItem('tripleT_currentUser');
+            if (!currentUser) {
+                if (loginBtn) loginBtn.style.display = '';
+                if (continueBtn) continueBtn.style.display = 'none';
+            } else {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (continueBtn) continueBtn.style.display = '';
+            }
+        });
+    </script>
     <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/session.js"></script>
+
 </body>
 
 </html>

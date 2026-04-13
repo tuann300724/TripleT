@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cá»©u ÄÆ¡n HÃ ng - TripleT Cáº§u LÃ´ng</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .track-container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 0 1.25rem;
+            text-align: center;
+        }
+        .track-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .track-input-group {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .track-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .result-box {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            display: none;
+        }
+        .status-timeline {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 2px dashed #2D8A68;
+        }
+        .status-step {
+            position: relative;
+            padding-bottom: 20px;
+            padding-left: 20px;
+        }
+        .status-step::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #2D8A68;
+            border-radius: 50%;
+        }
+        .status-step.pending::before { background: #ddd; }
+        .status-step.active::before { box-shadow: 0 0 0 4px rgba(45, 138, 104, 0.2); }
+    </style>
+</head>
+<body>
+    <div class="top-bar">Miá»…n phÃ­ váº­n chuyá»ƒn Ä‘Æ¡n tá»« 500.000â‚« Â· TÆ° váº¥n chá»n vá»£t miá»…n phÃ­</div>
+
+        <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">ðŸ¸</span>
+                <span>TripleT Cáº§u LÃ´ng</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chá»§</a>
+                <a href="tin-tuc.html">Tin tá»©c</a>
+                <a href="san-pham.html">Sáº£n pháº©m</a>
+                <a href="giao-luu.html">Giao lÆ°u</a>
+                <a href="dat-san.html">Äáº·t sÃ¢n</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">ðŸ›’</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary" id="login-btn">ÄÄƒng nháº­p</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <span id="user-name-text"></span>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="track-container">
+        <h1 style="color: var(--green-dark);">Kiá»ƒm Tra ÄÆ¡n HÃ ng</h1>
+        <p style="color: var(--muted);">Nháº­p mÃ£ Ä‘Æ¡n hÃ ng cá»§a báº¡n Ä‘á»ƒ biáº¿t tÃ¬nh tráº¡ng xá»­ lÃ½ vÃ  váº­n chuyá»ƒn.</p>
+        
+        <div class="track-card">
+            <div class="track-input-group">
+                <input type="text" id="order-id-input" placeholder="VÃ­ dá»¥: ORD-1712726..." autocomplete="off">
+                <button class="btn btn-primary" onclick="trackOrder()">TÃ¬m kiáº¿m</button>
+            </div>
+
+            <div id="track-result" class="result-box">
+                <h3 id="res-id" style="margin: 0; color: var(--green-dark);">ÄÆ¡n hÃ ng #...</h3>
+                <p id="res-date" style="font-size: 13px; color: #999; margin-bottom: 20px;">NgÃ y Ä‘áº·t: ...</p>
+                
+                <div class="status-timeline">
+                    <div class="status-step active">
+                        <strong>ÄÃ£ Ä‘áº·t Ä‘Æ¡n</strong>
+                        <p style="font-size: 13px; color: #666; margin: 3px 0;">Há»‡ thá»‘ng Ä‘Ã£ nháº­n thÃ´ng tin Ä‘Æ¡n hÃ ng cá»§a báº¡n.</p>
+                    </div>
+                    <div class="status-step active">
+                        <strong>ÄÃ£ xÃ¡c nháº­n</strong>
+                        <p style="font-size: 13px; color: #666; margin: 3px 0;">TripleT Ä‘ang chuáº©n bá»‹ hÃ ng cho báº¡n.</p>
+                    </div>
+                    <div class="status-step pending">
+                        <strong>Äang giao hÃ ng</strong>
+                        <p style="font-size: 13px; color: #666; margin: 3px 0;">Shipper Ä‘ang váº­n chuyá»ƒn gÃ³i hÃ ng.</p>
+                    </div>
+                    <div class="status-step pending">
+                        <strong>Giao thÃ nh cÃ´ng</strong>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 14px;"><strong>Tá»•ng thanh toÃ¡n:</strong> <span id="res-total" style="color: #e3000f; font-weight: bold;">0â‚«</span></p>
+                    <p style="margin: 5px 0 0; font-size: 14px;"><strong>Äá»‹a chá»‰:</strong> <span id="res-addr">...</span></p>
+                </div>
+            </div>
+
+            <div id="track-error" style="display: none; color: #e3000f; margin-top: 20px; font-weight: bold;">
+                KhÃ´ng tÃ¬m tháº¥y mÃ£ Ä‘Æ¡n hÃ ng nÃ y. Vui lÃ²ng kiá»ƒm tra láº¡i!
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Â© 2026 <strong>TripleT Cáº§u LÃ´ng</strong></p>
+    </footer>
+
+    <script>
+        function trackOrder() {
+            const id = document.getElementById('order-id-input').value.trim();
+            const resultBox = document.getElementById('track-result');
+            const errorBox = document.getElementById('track-error');
+            
+            if (!id) return;
+
+            const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            const order = allOrders.find(o => o.id === id);
+
+            if (order) {
+                errorBox.style.display = 'none';
+                resultBox.style.display = 'block';
+                document.getElementById('res-id').innerText = 'ÄÆ¡n hÃ ng #' + order.id;
+                document.getElementById('res-date').innerText = 'NgÃ y Ä‘áº·t: ' + (order.createdAt.split(' ')[1] || order.createdAt);
+                document.getElementById('res-total').innerText = new Intl.NumberFormat('vi-VN').format(order.total) + 'â‚«';
+                document.getElementById('res-addr').innerText = order.customer.address;
+            } else {
+                resultBox.style.display = 'none';
+                errorBox.style.display = 'block';
+            }
+        }
+
+        // Tá»± Ä‘á»™ng tÃ¬m náº¿u cÃ³ query param ?id=
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) {
+                document.getElementById('order-id-input').value = id;
+                trackOrder();
+            }
+        });
+    </script>
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giá» hÃ ng</h2>
+          <button type="button" class="cart-close" id="cart-close" aria-label="ÄÃ³ng giá» hÃ ng">
+            Ã—
+          </button>
+        </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            ChÆ°a cÃ³ sáº£n pháº©m. HÃ£y thÃªm tá»« danh sÃ¡ch nhÃ©!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Sá»‘ lÆ°á»£ng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Táº¡m tÃ­nh</span>
+            <strong id="cart-subtotal">0â‚«</strong>
+          </div>
+          <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+            Xem Ä‘Æ¡n &amp; thanh toÃ¡n
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            XÃ³a toÃ n bá»™ giá»
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/session.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/wishlist.js" defer></script>
+</body>
+</html>
+
+

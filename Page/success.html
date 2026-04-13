@@ -7,89 +7,10 @@
     <meta name="description" content="TripleT — cửa hàng dụng cụ cầu lông: vợt, cầu, giày, túi và phụ kiện chính hãng.">
     <title>TripleT — Cửa hàng cầu lông</title>
     <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="../Css/success.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<style>
-    .thankyou {
-        min-height: 80vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: var(--cream);
-        font-family: var(--font);
-    }
 
-    .thankyou-card {
-        background: var(--white);
-        padding: 50px 40px;
-        border-radius: var(--radius);
-        text-align: center;
-        box-shadow: var(--shadow);
-        max-width: 500px;
-        width: 100%;
-    }
-
-    .icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 20px;
-        border-radius: 50%;
-        background: var(--green-light);
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 36px;
-        font-weight: bold;
-    }
-
-    .thankyou-card h1 {
-        color: var(--green-dark);
-        margin-bottom: 15px;
-    }
-
-    .desc {
-        color: var(--muted);
-        font-size: 15px;
-        margin-bottom: 30px;
-    }
-
-    .actions {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-    }
-
-    .btn {
-        padding: 12px 22px;
-        border-radius: 30px;
-        font-size: 14px;
-        text-decoration: none;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-
-    /* Nút chính */
-    .btn.primary {
-        background: var(--green);
-        color: var(--white);
-    }
-
-    .btn.primary:hover {
-        background: var(--green-light);
-    }
-
-    /* Nút viền */
-    .btn.outline {
-        border: 2px solid var(--green);
-        color: var(--green);
-        background: transparent;
-    }
-
-    .btn.outline:hover {
-        background: var(--green);
-        color: var(--white);
-    }
-</style>
 
 <body>
 
@@ -105,7 +26,7 @@
             </a>
 
             <nav class="nav-main" id="nav-menu">
-                <a href="Home.html">Trang chủ</a>
+                <a href="Home.html" aria-current="page">Trang chủ</a>
                 <a href="tin-tuc.html">Tin tức</a>
                 <a href="san-pham.html">Sản phẩm</a>
                 <a href="Home.html#khuyen-mai">Khuyến mãi</a>
@@ -118,32 +39,32 @@
                     <span class="cart-badge" id="cart-badge" hidden>0</span>
                 </button>
 
-                <a href="login.html" class="btn btn-primary ">Đăng nhập</a>
+                <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <a href="chi-tiet-don-hang.html" id="user-name-text"></a>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
                 <button type="button" class="menu-toggle" id="menu-toggle">
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                 </button>
-
             </div>
         </div>
     </header>
 
     <main class="thankyou">
         <div class="thankyou-card">
-
             <div class="icon">✔</div>
-
             <h1>Cảm ơn bạn đã mua hàng!</h1>
-
-            <p class="desc">
-                Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ và giao hàng trong thời gian sớm nhất.
-            </p>
-
+            <div id="order-list"></div>
             <div class="actions">
-                <a href="Home.html" class="btn primary">Về trang chủ</a>
+                <a href="Home.html" class="btn primary" id="back-home">Về trang chủ</a>
             </div>
-
         </div>
     </main>
 
@@ -186,7 +107,54 @@
     <script src="../JavaScript/products-data.js"></script>
     <script src="../JavaScript/catalog.js" defer></script>
     <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/session.js" defer></script>
 
+    <script>
+        // Hiển thị danh sách đơn hàng đã thanh toán thành công
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderList = document.getElementById('order-list');
+            let orders = [];
+            try {
+                orders = JSON.parse(localStorage.getItem('orders')) || [];
+            } catch { }
+            if (!Array.isArray(orders) || orders.length === 0) {
+                orderList.innerHTML = '<p class="desc">Không tìm thấy đơn hàng nào vừa thanh toán.</p>';
+                return;
+            }
+            // Chỉ hiển thị đơn hàng mới nhất
+            const order = orders[orders.length - 1];
+            orderList.innerHTML = `
+            <div class="order-success" style="text-align:left; margin-bottom:30px;">
+                <div><strong>Mã đơn:</strong> ${order.id || ''}</div>
+                <div><strong>Ngày đặt:</strong> ${order.createdAt || ''}</div>
+                <div><strong>Khách hàng:</strong> ${order.customer?.name || ''} (${order.customer?.phone || ''})</div>
+                <div><strong>Địa chỉ:</strong> ${order.customer.address || ''}</div>
+                <div><strong>Email:</strong> ${order.customer?.email || ''}</div>
+                <div><strong>Sản phẩm:</strong></div>
+                <ul style="margin-left:0;padding-left:0;list-style:none;">
+                    ${(order.items || []).map(item => `
+                        <li style="display:flex;align-items:center;margin-bottom:8px;justify-content:space-between;gap:10px;">
+                            <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+                                <img src="../${item.image || ''}" alt="${item.name || ''}" style="width:38px;height:38px;object-fit:cover;border-radius:8px;border:1px solid #eee;flex-shrink:0;">
+                                <span style="display:block;max-width:170px;white-space:normal;word-break:break-word;font-size:15px;">${item.name}</span>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;min-width:90px;justify-content:flex-end;">
+                                <span style="font-weight:600; color:#2d8a68;">${(item.price * item.qty).toLocaleString('vi-VN')}₫</span>
+                                <span style="background:#f1f1f1;padding:2px 10px;border-radius:12px;font-size:13px;min-width:32px;text-align:center;">x${item.qty}</span>
+                            </div>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div><strong>Tổng cộng:</strong> <span style="color:#2d8a68; font-weight:700;">${(order.items || []).reduce((s, x) => s + x.price * x.qty, 0).toLocaleString('vi-VN')}₫</span></div>
+            </div>
+            `;
+        });
+        // Khi ấn về trang chủ thì xóa orders khỏi localStorage
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('back-home');
+        });
+    </script>
+    <script src="../JavaScript/session.js" defer></script>
 </body>
 
 </html>

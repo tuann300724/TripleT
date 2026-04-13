@@ -1,220 +1,288 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TripleT — cửa hàng dụng cụ cầu lông: vợt, cầu, giày, túi và phụ kiện chính hãng.">
-    <title>TripleT — Cửa hàng cầu lông</title>
-    <link rel="stylesheet" href="../Css/badminton-base.css">
-    <link rel="stylesheet" href="../Css/home.css">
+  <meta charset="UTF-8" />
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-dyZtM8Qb1Q+1p5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q5Q==" crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TripleT — cửa hàng dụng cụ cầu lông: vợt, cầu, giày, túi và phụ kiện chính hãng." />
+  <title>TripleT — Cửa hàng cầu lông</title>
+  <link rel="stylesheet" href="../Css/badminton-base.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="../Css/home.css" />
 </head>
 
 <body>
+  <div class="top-bar">
+    Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+  </div>
 
-    <div class="top-bar">
-        Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="Home.html" class="logo">
+        <span class="logo-mark">🏸</span>
+        <span>TripleT Cầu Lông</span>
+      </a>
+
+      <nav class="nav-main" id="nav-menu">
+        <a href="Home.html" aria-current="page">Trang chủ</a>
+        <a href="tin-tuc.html">Tin tức</a>
+        <a href="san-pham.html">Sản phẩm</a>
+        <a href="Home.html#khuyen-mai">Khuyến mãi</a>
+        <a href="Home.html#lien-he">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="cart-toggle" id="cart-toggle">
+          <span class="cart-toggle-icon">🛒</span>
+          <span class="cart-badge" id="cart-badge" hidden>0</span>
+        </button>
+
+        <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+        <span id="user-name" class="btn btn-primary"
+          style="display:none;cursor:pointer;position:relative;user-select:none;">
+          <a href="chi-tiet-don-hang.html" id="user-name-text"></a>
+          <span id="logout-icon"
+            style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </span>
+        </span>
+        <button type="button" class="menu-toggle" id="menu-toggle">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="Home.html" class="logo">
-                <span class="logo-mark">🏸</span>
-                <span>TripleT Cầu Lông</span>
-            </a>
-
-            <nav class="nav-main" id="nav-menu">
-                <a href="Home.html" aria-current="page">Trang chủ</a>
-                      <a href="tin-tuc.html"  >Tin tức</a>
-                <a href="san-pham.html">Sản phẩm</a>
-                <a href="Home.html#khuyen-mai">Khuyến mãi</a>
-                <a href="Home.html#lien-he">Liên hệ</a>
-            </nav>
-
-            <div class="header-actions">
-                <button type="button" class="cart-toggle" id="cart-toggle">
-                    <span class="cart-toggle-icon">🛒</span>
-                    <span class="cart-badge" id="cart-badge" hidden>0</span>
-                </button>
-
-                <a href="login.html" class="btn btn-primary ">Đăng nhập</a>
-                <button type="button" class="menu-toggle" id="menu-toggle">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
-
-            </div>
-        </div>
-    </header>
-
-    <main id="trang-chu">
-        <section class="hero">
-            <div>
-                <span class="hero-badge">Chính hãng · Bảo hành có trách nhiệm</span>
-                <h1>Chơi cầu lông đúng đồ — tăng sức mạnh cú đập</h1>
-                <p class="hero-lead">
-                    Vợt, cầu, giày và phụ kiện được tuyển chọn cho mọi trình độ: tập luyện, thi đấu phong trào hay giải
-                    chuyên nghiệp.
-                </p>
-                <div class="hero-cta">
-                    <a href="san-pham.html" class="btn btn-primary">Xem sản phẩm</a>
-                   
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <strong>500+</strong>
-                        <span>Mẫu vợt &amp; phụ kiện</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>4.9★</strong>
-                        <span>Đánh giá từ khách hàng</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>24h</strong>
-                        <span>Giao nhanh nội thành</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <img src="../Images/bo-vot.jpg" alt="Người chơi cầu lông trên sân trong nhà" width="800" height="600"
-                    loading="eager">
-                <div class="hero-card">
-                    <div>
-                        <p>Bộ vợt + cầu tập</p>
-                        <small>Từ 890.000₫ — phù hợp người mới</small>
-                    </div>
-                    <a href="san-pham.html" class="btn btn-primary btn-sm">Chi tiết</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="danh-muc" aria-labelledby="dm-heading">
-            <div class="section-head">
-                <div>
-                    <h2 id="dm-heading">Danh mục nổi bật</h2>
-                    <p>Chọn nhanh theo loại hàng bạn cần</p>
-                </div>
-            </div>
-            <div class="categories">
-                <a href="danh-muc-vot.html" class="cat-card">
-                    <div class="cat-icon" aria-hidden="true">🏸</div>
-                    <h3>Vợt cầu lông</h3>
-                    <p>Cân bằng, đầu nặng, siêu nhẹ</p>
-                </a>
-                <a href="danh-muc-cau.html" class="cat-card">
-                    <div class="cat-icon" aria-hidden="true">🪶</div>
-                    <h3>Cầu lông</h3>
-                    <p>Lông vịt, nhựa tập, giải đấu</p>
-                </a>
-                <a href="danh-muc-giay-ao.html" class="cat-card">
-                    <div class="cat-icon" aria-hidden="true">👟</div>
-                    <h3>Giày &amp; áo</h3>
-                    <p>Ôm chân, thấm mồ hôi</p>
-                </a>
-                <a href="danh-muc-tui-phu-kien.html" class="cat-card">
-                    <div class="cat-icon" aria-hidden="true">🎒</div>
-                    <h3>Túi &amp; phụ kiện</h3>
-                    <p>Cước, quấn cán, băng gối</p>
-                </a>
-            </div>
-        </section>
-
-        <section class="section" id="san-pham" aria-labelledby="sp-heading">
-            <div class="section-head">
-                <div>
-                    <h2 id="sp-heading">Sản phẩm bán chạy</h2>
-                    <p>Giá tham khảo — liên hệ để có giá tốt nhất ·
-                        <a href="Page/san-pham.html" class="link-muted">Xem tất cả</a>
-                    </p>
-                </div>
-            </div>
-            <div id="catalog-root" data-mode="featured"></div>
-        </section>
-
-        <section class="promo" id="khuyen-mai" aria-labelledby="km-heading">
-            <div class="promo-inner">
-                <div>
-                    <h2 id="km-heading">Tuần lễ cầu lông — giảm tới 15%</h2>
-                    <p>
-                        Áp dụng cho vợt và combo vợt + cầu. Nhập mã
-                        <span class="promo-code">TRIPLET15</span>
-                        khi đặt hàng qua hotline hoặc form liên hệ.
-                    </p>
-                    <a href="#lien-he" class="btn btn-primary">Nhận tư vấn</a>
-                </div>
-                <div class="promo-deco" aria-hidden="true">🏸</div>
-            </div>
-        </section>
-
-        <section class="section contact-section" id="lien-he" aria-labelledby="lh-heading">
-            <div class="section-head">
-                <div>
-                    <h2 id="lh-heading">Liên hệ &amp; đặt hàng</h2>
-                    <p>Chúng tôi hỗ trợ chọn độ cứng shaft, tension và cân vợt</p>
-                </div>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-block">
-                    <h3>Thông tin</h3>
-                    <p>Email:
-                        <a href="mailto:TripelTteam@gmail.com">TripelTteam@gmail.com</a>
-                    </p>
-                    <p>GitHub:
-                        <a href="https://github.com/tuann300724/TripleT" target="_blank"
-                            rel="noopener noreferrer">Triple T</a>
-                    </p>
-                    <p>Địa chỉ: Việt Nam</p>
-                </div>
-                <div class="contact-block">
-                    <h3>Mua hàng</h3>
-                    <p>Gọi hotline hoặc nhắn email kèm mã sản phẩm — giao hàng toàn quốc.</p>
-                    <p><a href="mailto:TripelTteam@gmail.com?subject=Đặt%20hàng%20TripleT">Đặt hàng qua email</a></p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>© 2026 <strong>TripleT Cầu Lông</strong> ·
-            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <main id="trang-chu">
+    <section class="hero">
+      <div>
+        <span class="hero-badge">Chính hãng · Bảo hành có trách nhiệm</span>
+        <h1>Chơi cầu lông đúng đồ — tăng sức mạnh cú đập</h1>
+        <p class="hero-lead">
+          Vợt, cầu, giày và phụ kiện được tuyển chọn cho mọi trình độ: tập
+          luyện, thi đấu phong trào hay giải chuyên nghiệp.
         </p>
-    </footer>
-
-    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
-
-    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
-        <div class="cart-drawer-inner">
-            <div class="cart-drawer-head">
-                <h2 id="cart-title">Giỏ hàng</h2>
-                <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">×</button>
-            </div>
-            <div class="cart-drawer-body">
-                <p class="cart-empty" id="cart-empty">Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!</p>
-                <ul class="cart-lines" id="cart-lines"></ul>
-            </div>
-            <div class="cart-drawer-foot">
-                <div class="cart-summary-row">
-                    <span>Số lượng</span>
-                    <span id="cart-count-summary">0</span>
-                </div>
-                <div class="cart-summary-row cart-summary-total">
-                    <span>Tạm tính</span>
-                    <strong id="cart-subtotal">0₫</strong>
-                </div>
-                <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>Xem đơn &amp;
-                    thanh toán</button>
-                <button type="button" class="cart-clear" id="cart-clear">Xóa toàn bộ giỏ</button>
-            </div>
+        <div class="hero-cta">
+          <a href="san-pham.html" class="btn btn-primary">Xem sản phẩm</a>
         </div>
-    </aside>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>500+</strong>
+            <span>Mẫu vợt &amp; phụ kiện</span>
+          </div>
+          <div class="hero-stat">
+            <strong>4.9★</strong>
+            <span>Đánh giá từ khách hàng</span>
+          </div>
+          <div class="hero-stat">
+            <strong>24h</strong>
+            <span>Giao nhanh nội thành</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="../Images/bo-vot.jpg" alt="Người chơi cầu lông trên sân trong nhà" width="800" height="600"
+          loading="eager" />
+        <div class="hero-card">
+          <div>
+            <p>Bộ vợt + cầu tập</p>
+            <small>Từ 890.000₫ — phù hợp người mới</small>
+          </div>
+          <a href="san-pham.html" class="btn btn-primary btn-sm">Chi tiết</a>
+        </div>
+      </div>
+    </section>
 
-    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+    <section class="section" id="danh-muc" aria-labelledby="dm-heading">
+      <div class="section-head">
+        <div>
+          <h2 id="dm-heading">Danh mục nổi bật</h2>
+          <p>Chọn nhanh theo loại hàng bạn cần</p>
+        </div>
+      </div>
+      <div class="categories">
+        <a href="danh-muc-vot.html" class="cat-card">
+          <div class="cat-icon" aria-hidden="true">🏸</div>
+          <h3>Vợt cầu lông</h3>
+          <p>Cân bằng, đầu nặng, siêu nhẹ</p>
+        </a>
+        <a href="danh-muc-cau.html" class="cat-card">
+          <div class="cat-icon" aria-hidden="true">🪶</div>
+          <h3>Cầu lông</h3>
+          <p>Lông vịt, nhựa tập, giải đấu</p>
+        </a>
+        <a href="danh-muc-giay-ao.html" class="cat-card">
+          <div class="cat-icon" aria-hidden="true">👟</div>
+          <h3>Giày &amp; áo</h3>
+          <p>Ôm chân, thấm mồ hôi</p>
+        </a>
+        <a href="danh-muc-tui-phu-kien.html" class="cat-card">
+          <div class="cat-icon" aria-hidden="true">🎒</div>
+          <h3>Túi &amp; phụ kiện</h3>
+          <p>Cước, quấn cán, băng gối</p>
+        </a>
+      </div>
+    </section>
 
-    <script src="../JavaScript/products-data.js"></script>
-    <script src="../JavaScript/catalog.js" defer></script>
-    <script src="../JavaScript/cart.js" defer></script>
+    <section class="section" id="san-pham" aria-labelledby="sp-heading">
+      <div class="section-head">
+        <div>
+          <h2 id="sp-heading">Sản phẩm bán chạy</h2>
+          <p>
+            Giá tham khảo — liên hệ để có giá tốt nhất ·
+            <a href="san-pham.html" class="link-muted">Xem tất cả</a>
+          </p>
+        </div>
+      </div>
+      <div id="catalog-root" data-mode="featured"></div>
+    </section>
 
+    <section class="promo" id="khuyen-mai" aria-labelledby="km-heading">
+      <div class="promo-inner">
+        <div>
+          <h2 id="km-heading" style="color: #ff3b30;"><i class="fa-solid fa-bolt"></i> FLASH SALE GIỜ VÀNG</h2>
+          <p>
+            Nhận mã giảm giá ngẫu nhiên lên tới 20% khi chốt đơn. Kết thúc sau:
+          </p>
+          <div style="display: flex; gap: 10px; margin: 15px 0;">
+              <div style="background: #1a1f1e; color: #fff; padding: 10px 15px; border-radius: 8px; font-weight: bold; font-size: 20px;" id="fs-hours">02</div>
+              <div style="font-size: 24px; font-weight: bold; color: #1a1f1e;">:</div>
+              <div style="background: #1a1f1e; color: #fff; padding: 10px 15px; border-radius: 8px; font-weight: bold; font-size: 20px;" id="fs-mins">59</div>
+              <div style="font-size: 24px; font-weight: bold; color: #1a1f1e;">:</div>
+              <div style="background: #e3000f; color: #fff; padding: 10px 15px; border-radius: 8px; font-weight: bold; font-size: 20px;" id="fs-secs">45</div>
+          </div>
+          <p>Mã giảm giá của bạn: <span class="promo-code" id="random-coupon" style="background: #ffb800; padding: 5px 10px; color: #000; letter-spacing: 2px;"></span></p>
+          <button class="btn btn-primary" onclick="generateCoupon()">Lấy Mã Khác</button>
+        </div>
+        <div class="promo-deco" aria-hidden="true">⏳</div>
+      </div>
+    </section>
+
+    <script>
+      function startFlashSale() {
+          let time = 2 * 3600 + 45 * 60 + 12; // 2 giờ 45 phút 12 giây
+          setInterval(() => {
+              if (time <= 0) return;
+              time--;
+              const h = Math.floor(time / 3600).toString().padStart(2, '0');
+              const m = Math.floor((time % 3600) / 60).toString().padStart(2, '0');
+              const s = (time % 60).toString().padStart(2, '0');
+              document.getElementById('fs-hours').innerText = h;
+              document.getElementById('fs-mins').innerText = m;
+              document.getElementById('fs-secs').innerText = s;
+          }, 1000);
+      }
+      
+      function generateCoupon() {
+          const prefixes = ['SALE', 'VIP', 'HOT', 'TCL'];
+          const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+          const discount = [10, 15, 20][Math.floor(Math.random() * 3)];
+          const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+          let str = '';
+          for (let i = 0; i < 4; i++) str += chars.charAt(Math.floor(Math.random() * chars.length));
+          const code = prefix + discount + '-' + str;
+          document.getElementById('random-coupon').innerText = code;
+          
+          // Lưu vào localStorage để giỏ hàng có thể lấy validate
+          let validCoupons = JSON.parse(localStorage.getItem('triplet_valid_coupons')) || {};
+          validCoupons[code] = discount / 100;
+          localStorage.setItem('triplet_valid_coupons', JSON.stringify(validCoupons));
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+          startFlashSale();
+          generateCoupon();
+      });
+    </script>
+
+    <section class="section contact-section" id="lien-he" aria-labelledby="lh-heading">
+      <div class="section-head">
+        <div>
+          <h2 id="lh-heading">Liên hệ &amp; đặt hàng</h2>
+          <p>Chúng tôi hỗ trợ chọn độ cứng shaft, tension và cân vợt</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-block">
+          <h3>Thông tin</h3>
+          <p>
+            Email:
+            <a href="mailto:TripelTteam@gmail.com">TripelTteam@gmail.com</a>
+          </p>
+          <p>
+            GitHub:
+            <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">Triple T</a>
+          </p>
+          <p>Địa chỉ: Việt Nam</p>
+        </div>
+        <div class="contact-block">
+          <h3>Mua hàng</h3>
+          <p>
+            Gọi hotline hoặc nhắn email kèm mã sản phẩm — giao hàng toàn quốc.
+          </p>
+          <p>
+            <a href="mailto:TripelTteam@gmail.com?subject=Đặt%20hàng%20TripleT">Đặt hàng qua email</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      © 2026 <strong>TripleT Cầu Lông</strong> ·
+      <a href="https://github.com/tuann300724/TripleT" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+  </footer>
+
+  <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+    <div class="cart-drawer-inner">
+      <div class="cart-drawer-head">
+        <h2 id="cart-title">Giỏ hàng</h2>
+        <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">
+          ×
+        </button>
+      </div>
+      <div class="cart-drawer-body">
+        <p class="cart-empty" id="cart-empty">
+          Chưa có sản phẩm. Hãy thêm từ danh sách bên dưới nhé!
+        </p>
+        <ul class="cart-lines" id="cart-lines"></ul>
+      </div>
+      <div class="cart-drawer-foot">
+        <div class="cart-summary-row">
+          <span>Số lượng</span>
+          <span id="cart-count-summary">0</span>
+        </div>
+        <div class="cart-summary-row cart-summary-total">
+          <span>Tạm tính</span>
+          <strong id="cart-subtotal">0₫</strong>
+        </div>
+        <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+          Xem đơn &amp; thanh toán
+        </button>
+        <button type="button" class="cart-clear" id="cart-clear">
+          Xóa toàn bộ giỏ
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+  <script src="../JavaScript/session.js"></script>
+  <script src="../JavaScript/products-data.js"></script>
+  <script src="../JavaScript/catalog.js" defer></script>
+  <script src="../JavaScript/cart.js" defer></script>
+  <script src="../JavaScript/wishlist.js" defer></script>
 </body>
 
 </html>

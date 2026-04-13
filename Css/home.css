@@ -255,3 +255,153 @@
 .contact-block a:hover {
   color: var(--green);
 }
+
+/* ===== THÊM HIỆU ỨNG NHẸ & TINH TẾ ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .hero-visual img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hero-visual:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Category Cards */
+    .cat-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cat-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(12, 45, 38, 0.15);
+    }
+
+    /* Product cards (từ catalog.js) */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(12, 45, 38, 0.18);
+    }
+
+    /* Promo section */
+    .promo-inner {
+      transition: all 0.5s ease;
+    }
+    .promo:hover .promo-inner {
+      transform: scale(1.02);
+    }
+
+    /* Button hover nâng cao */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 40%;
+      height: 400%;
+      background: rgba(255,255,255,0.3);
+      transform: rotate(30deg);
+      transition: all 0.6s;
+      opacity: 0;
+    }
+    .btn-primary:hover::after {
+      opacity: 1;
+      left: 120%;
+    }
+
+      /* ===== THÊM HIỆU ỨNG NHẸ & TINH TẾ ===== */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-on-scroll {
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Hero */
+      .hero-visual img {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hero-visual:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Category Cards */
+      .cat-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .cat-card:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(12, 45, 38, 0.15);
+      }
+
+      /* Product cards (từ catalog.js) */
+      .product-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(12, 45, 38, 0.18);
+      }
+
+      /* Promo section */
+      .promo-inner {
+        transition: all 0.5s ease;
+      }
+      .promo:hover .promo-inner {
+        transform: scale(1.02);
+      }
+
+      /* Button hover nâng cao */
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 40%;
+        height: 400%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(30deg);
+        transition: all 0.6s;
+        opacity: 0;
+      }
+      .btn-primary:hover::after {
+        opacity: 1;
+        left: 120%;
+      }

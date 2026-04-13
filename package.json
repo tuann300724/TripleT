@@ -1,7 +1,0 @@
-{
-  "name": "triplet-badminton",
-  "private": true,
-  "scripts": {
-    "vnpay-proxy": "node server/vnpay-proxy.mjs"
-  }
-}

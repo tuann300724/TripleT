@@ -281,6 +281,9 @@ a {
   text-align: center;
   padding: 1.5rem 1rem;
   font-size: 0.9rem;
+  bottom: 0;
+
+  width: 100%;
 }
 
 .site-footer a {
@@ -677,7 +680,7 @@ body.cart-open {
 }
 
 /* 2. Responsive cho Mobile */
-@media (max-width: 910px) {
+@media (max-width: 935px) {
 
   .header-actions .btn-primary {
 

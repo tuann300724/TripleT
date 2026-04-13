@@ -30,6 +30,7 @@
     }
   }
 
+  
   function saveCart(items) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }

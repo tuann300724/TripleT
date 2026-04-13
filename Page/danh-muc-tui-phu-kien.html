@@ -10,6 +10,7 @@
     <title>Túi &amp; phụ kiện — TripleT</title>
     <link rel="stylesheet" href="../Css/badminton-base.css" />
     <link rel="stylesheet" href="../Css/page-common.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 <style>.search-container {
     max-width: 800px;
@@ -104,13 +105,19 @@
             <span class="cart-toggle-icon" aria-hidden="true">🛒</span>
             <span class="cart-badge" id="cart-badge" hidden>0</span>
           </button>
-
+ <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+          <span id="user-name" class="btn btn-primary" style="display:none;cursor:pointer;position:relative;user-select:none;">
+            <span id="user-name-text"></span>
+            <span id="logout-icon" style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+             <i class="fa-solid fa-right-from-bracket"></i>
+            </span>
+          </span>
           <button type="button" class="menu-toggle" id="menu-toggle">
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
           </button>
-          <a href="login.html" class="btn btn-primary">Đăng nhập</a>
+         
         </div>
       </div>
     </header>
@@ -230,6 +237,8 @@
     <script src="../JavaScript/products-data.js"></script>
     <script src="../JavaScript/catalog.js" defer></script>
     <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/session.js" defer></script>
+    <script src="../JavaScript/wishlist.js" defer></script>
 <script>document.getElementById('search-input').addEventListener('input', function(e) {
     const searchTerm = e.target.value.toLowerCase();
     const productCards = document.querySelectorAll('.product-card'); // Giả sử class card là .product-card

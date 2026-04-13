@@ -1,0 +1,81 @@
+
+    .thankyou {
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--cream);
+        font-family: var(--font);
+    }
+
+    .thankyou-card {
+        background: var(--white);
+        padding: 50px 40px;
+        border-radius: var(--radius);
+        text-align: center;
+        box-shadow: var(--shadow);
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: var(--green-light);
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    .thankyou-card h1 {
+        color: var(--green-dark);
+        margin-bottom: 15px;
+    }
+
+    .desc {
+        color: var(--muted);
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    /* Nút chính */
+    .btn.primary {
+        background: var(--green);
+        color: var(--white);
+    }
+
+    .btn.primary:hover {
+        background: var(--green-light);
+    }
+
+    /* Nút viền */
+    .btn.outline {
+        border: 2px solid var(--green);
+        color: var(--green);
+        background: transparent;
+    }
+
+    .btn.outline:hover {
+        background: var(--green);
+        color: var(--white);
+    }

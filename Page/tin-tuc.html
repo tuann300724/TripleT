@@ -1,404 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TripleT Badminton Mega Portal - Cổng Thông Tin Cầu Lông Số 1</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Font đã được thiết lập mặc định trong css -->
     <link rel="stylesheet" href="../Css/badminton-base.css" />
-    <style>
-      :root {
-        --primary-green: #1a4332;
-        --accent-green: #2d6a4f;
-        --bg-creamy: #f8f6f0;
-        --white: #ffffff;
-        --text-main: #1e2d24;
-        --text-muted: #5c6760;
-        --gold: #d4af37;
-        --border-color: #e2e0d8;
-      }
-
-      /* RESET */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Inter", sans-serif;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background-color: var(--bg-creamy);
-        color: var(--text-main);
-        line-height: 1.5;
-      }
-
-      /* CONTAINER */
-      .container {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      img {
-        max-width: 100%;
-        border-radius: 15px;
-        transition: 0.4s;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-        transition: 0.3s;
-      }
-
-      a:hover {
-        color: var(--accent-green);
-      }
-
-      /* ===== ANIMATION ===== */
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* NAV HOVER XỊN */
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: 20px;
-      }
-
-      nav ul li a {
-        font-weight: 600;
-        font-size: 14px;
-        position: relative;
-      }
-
-      nav ul li a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -5px;
-        width: 0%;
-        height: 2px;
-        background: var(--accent-green);
-        transition: 0.3s;
-      }
-
-      nav ul li a:hover::after {
-        width: 100%;
-      }
-
-      /* BUTTON */
-      .btn-login {
-        border: none;
-        padding: 10px 18px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: 0.3s;
-      }
-
-      .btn-login:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      /* HERO */
-      .hero-mega {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        gap: 20px;
-        padding: 30px 0;
-      }
-
-      /* FLASH */
-      .news-flash-col {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .flash-item {
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 10px;
-        transition: 0.3s;
-      }
-
-      .flash-item:hover {
-        transform: translateX(5px);
-      }
-
-      .flash-item span {
-        font-size: 11px;
-        font-weight: 800;
-        color: var(--accent-green);
-      }
-
-      /* MAIN FEATURE */
-      .main-feature {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        height: 550px;
-        animation: fadeUp 1s ease;
-      }
-
-      .main-feature img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .main-feature:hover img {
-        transform: scale(1.05);
-      }
-
-      .feature-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 30px;
-        color: white;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-        transition: 0.4s;
-      }
-
-      /* TRENDING */
-      .trending-col {
-        background: var(--white);
-        border-radius: 20px;
-        padding: 20px;
-        border: 1px solid var(--border-color);
-      }
-
-      .trending-col h3 {
-        font-size: 16px;
-        margin-bottom: 15px;
-        border-left: 4px solid var(--gold);
-        padding-left: 10px;
-      }
-
-      .trend-item {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-        transition: 0.3s;
-        padding: 5px;
-        border-radius: 10px;
-      }
-
-      .trend-item:hover {
-        background: #f5f5f5;
-        transform: translateX(5px);
-      }
-
-      .trend-item img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-      }
-
-      /* SECTION */
-      .section-title {
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-
-      .section-title h2 {
-        font-size: 24px;
-        color: var(--primary-green);
-      }
-
-      .line {
-        width: 100%;
-        height: 2px;
-        background: var(--border-color);
-      }
-
-      /* CARDS */
-      .tournament-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        margin-bottom: 50px;
-      }
-
-      .t-card {
-        background: white;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-      }
-
-      .t-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-      }
-
-      .t-img {
-        height: 160px;
-        width: 100%;
-        object-fit: cover;
-      }
-
-      .t-info {
-        padding: 15px;
-      }
-
-      /* MEDIA */
-      .media-section {
-        background: var(--primary-green);
-        padding: 60px 0;
-        color: white;
-        border-radius: 40px;
-        margin: 40px 0;
-      }
-
-      .video-large-grid {
-        display: grid;
-        grid-template-columns: 2fr 1.2fr;
-        gap: 30px;
-      }
-
-      .v-small-item {
-        display: flex;
-        gap: 15px;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 10px;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .v-small-item:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.02);
-      }
-
-      /* FOOTER */
-      footer {
-        background: #112b20;
-        color: #a1b0a8;
-        padding: 60px 0 20px;
-      }
-
-      .footer-cols {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 30px;
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 1024px) {
-        .hero-mega,
-        .tournament-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .news-flash-col {
-          display: none;
-        }
-      }
-
-      .main-feature {
-        display: block;
-        color: inherit;
-      }
-
-      @media (max-width: 768px) {
-        /* 1. Container: Giảm padding để tận dụng không gian */
-        .container {
-          padding: 0 15px;
-        }
-       
-       
-
-        .logo span:last-child {
-          font-size: 16px; /* Thu nhỏ chữ TripleT cho vừa màn hình */
-        }
-
-       
-
-        /* Đảm bảo các card sản phẩm không bị quá to */
-        .t-card img {
-          height: 200px;
-        }
-        /* 2. Hero Section: Chuyển về 1 cột dọc */
-        .hero-mega {
-          grid-template-columns: 1fr; /* Ép tất cả về 1 cột */
-          gap: 25px;
-        }
-
-        .main-feature {
-          height: 350px;
-        }
-
-        .main-feature h1 {
-          font-size: 22px !important; /* Chỉnh tiêu đề nhỏ lại cho vừa đt */
-        }
-
-        .news-flash-col {
-          display: flex; /* Hiện lại trên mobile nếu cần */
-          order: 2; /* Đẩy xuống dưới ảnh chính */
-        }
-
-        .trending-col {
-          order: 3;
-        }
-
-        .tournament-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .video-large-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .v-main img {
-          height: 250px !important;
-        }
-
-        .footer-cols {
-          grid-template-columns: 1fr;
-          text-align: center;
-          gap: 40px;
-        }
-
-        .f-col {
-          grid-column: span 1 !important;
-        }
-
-        .f-col li {
-          list-style: none;
-          margin-bottom: 10px;
-        }
-        .top-bar {
-          font-size: 11px;
-          padding: 5px;
-          text-align: center;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="../Css/trang-tin-tuc.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 
   <body>
@@ -417,8 +26,8 @@
           <a href="Home.html">Trang chủ</a>
           <a href="tin-tuc.html" aria-current="page">Tin tức</a>
           <a href="san-pham.html">Sản phẩm</a>
-          <a href="Home.html#khuyen-mai">Khuyến mãi</a>
-          <a href="Home.html#lien-he">Liên hệ</a>
+          <a href="giao-luu.html">Giao lưu</a>
+          <a href="dat-san.html">Đặt sân</a>
         </nav>
 
         <div class="header-actions">
@@ -426,8 +35,13 @@
             <span class="cart-toggle-icon">🛒</span>
             <span class="cart-badge" id="cart-badge" hidden>0</span>
           </button>
-
-          <a href="login.html" class="btn btn-primary">Đăng nhập</a>
+ <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+          <span id="user-name" class="btn btn-primary" style="display:none;cursor:pointer;position:relative;user-select:none;">
+            <span id="user-name-text"></span>
+            <span id="logout-icon" style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+             <i class="fa-solid fa-right-from-bracket"></i>
+            </span>
+          </span>
           <button type="button" class="menu-toggle" id="menu-toggle">
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
@@ -485,7 +99,7 @@
         <div class="trending-col">
           <h3>🔥 Đọc nhiều nhất</h3>
           <div class="trend-item">
-            <img src="Images/giay-cau-long.jpg" alt="Giày cầu lông" />
+            <img src="../Images/giay-cau-long.jpg" alt="Giày cầu lông" />
             <h5>Top 5 đôi giày cầu lông "quốc dân" giá rẻ năm 2026</h5>
           </div>
           <div class="trend-item">
@@ -640,48 +254,61 @@
       </div>
 
       <div class="tournament-grid">
-        <div class="t-card" style="background: none; border: none">
-          <img src="Images/vot-cau-long-6.jpg" style="border-radius: 20px" />
-          <h4 style="margin-top: 15px">
-            Review Yonex Astrox 88D Pro Gen 3: Có thực sự đột phá?
-          </h4>
-          <p style="font-size: 13px; color: #666">
-            Đánh giá cảm nhận thực tế sau 1 tháng sử dụng chuyên sâu...
-          </p>
-        </div>
-        <div class="t-card" style="background: none; border: none">
+        <!-- Card 1 -->
+        <a href="#" class="t-card">
+          <img
+            src="../Images/vot-cau-long-6.jpg"
+            class="t-img"
+            alt="Yonex Astrox 88D Pro Gen 3"
+          />
+          <div class="t-info">
+            <h4>Review Yonex Astrox 88D Pro Gen 3: Có thực sự đột phá?</h4>
+            <p>Đánh giá cảm nhận thực tế sau 1 tháng sử dụng chuyên sâu...</p>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="#" class="t-card">
           <img
             src="https://images.unsplash.com/photo-1552667466-07770ae110d0?w=400"
-            style="border-radius: 20px"
+            class="t-img"
+            alt="Dinh dưỡng cầu lông"
           />
-          <h4 style="margin-top: 15px">
-            Dinh dưỡng phục hồi cơ bắp cho người chơi cầu lông chuyên sâu
-          </h4>
-          <p style="font-size: 13px; color: #666">
-            Bí quyết để không bị chuột rút và duy trì thể lực 3 set...
-          </p>
-        </div>
-        <div class="t-card" style="background: none; border: none">
-          <img src="Images/vot-cau-long-5.jpg" style="border-radius: 20px" />
-          <h4 style="margin-top: 15px">
-            Thị trường vợt cũ: Làm sao để không mua nhầm hàng giả (Fake)?
-          </h4>
-          <p style="font-size: 13px; color: #666">
-            Check code, nhận biết nước sơn và các dấu hiệu nhận dạng...
-          </p>
-        </div>
-        <div class="t-card" style="background: none; border: none">
+          <div class="t-info">
+            <h4>
+              Dinh dưỡng phục hồi cơ bắp cho người chơi cầu lông chuyên sâu
+            </h4>
+            <p>Bí quyết để không bị chuột rút và duy trì thể lực 3 set...</p>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="#" class="t-card">
           <img
-            src="https://images.unsplash.com/photo-1521537634581-0dced2fee2ef?w=400"
-            style="border-radius: 20px"
+            src="../Images/vot-cau-long-1.png"
+            class="t-img"
+            alt="Thị trường vợt cũ"
           />
-          <h4 style="margin-top: 15px">
-            Lining Axforce 100 chính thức có mặt tại hệ thống TripleT
-          </h4>
-          <p style="font-size: 13px; color: #666">
-            Ưu đãi giảm giá 15% cho 50 khách hàng đầu tiên đăng ký...
-          </p>
-        </div>
+          <div class="t-info">
+            <h4>
+              Thị trường vợt cũ: Làm sao để không mua nhầm hàng giả (Fake)?
+            </h4>
+            <p>Check code, nhận biết nước sơn và các dấu hiệu nhận dạng...</p>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="#" class="t-card">
+          <img
+            src="../Images/vot-cau-long-4.jpg"
+            class="t-img"
+            alt="Lining Axforce 100"
+          />
+          <div class="t-info">
+            <h4>Lining Axforce 100 chính thức có mặt tại hệ thống TripleT</h4>
+            <p>Ưu đãi giảm giá 15% cho 50 khách hàng đầu tiên đăng ký...</p>
+          </div>
+        </a>
       </div>
     </main>
 
@@ -833,5 +460,6 @@
       hidden
     ></div>
     <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/session.js" defer></script>
   </body>
 </html>

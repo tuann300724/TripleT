@@ -1,128 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
     <title>TripleT Admin · Quản trị cửa hàng cầu lông</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<!-- LOGIN SECTION -->
-<div id="loginView" class="login-container">
-    <div class="login-card animate-fadeInUp">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- LOGIN SECTION -->
+    <div id="loginView" class="login-container">
+      <div class="login-card animate-fadeInUp">
         <div class="login-logo">🏸 TripleT <span>ADMIN</span></div>
         <h2>Đăng nhập hệ thống</h2>
-        <p style="color:#475569;">Quản trị cửa hàng cầu lông</p>
+        <p style="color: #475569">Quản trị cửa hàng cầu lông</p>
         <div class="input-group">
-            <label>Tài khoản</label>
-            <input type="text" id="adminUser" placeholder="admin" value="admin">
+          <label>Tài khoản</label>
+          <input type="text" id="adminUser" placeholder="admin" value="admin" />
         </div>
         <div class="input-group">
-            <label>Mật khẩu</label>
-            <input type="password" id="adminPass" placeholder="••••••" value="admin123">
+          <label>Mật khẩu</label>
+          <input
+            type="password"
+            id="adminPass"
+            placeholder="••••••"
+            value="admin123"
+          />
         </div>
-        <button class="btn-login" id="doLoginBtn">Đăng nhập <i class="fas fa-arrow-right"></i></button>
+        <button class="btn-login" id="doLoginBtn">
+          Đăng nhập <i class="fas fa-arrow-right"></i>
+        </button>
         <div id="loginError" class="error-msg"></div>
-        <div style="margin-top: 1rem; font-size: 12px; color: #6c757d;">🔐 demo: admin / admin123</div>
+        <div style="margin-top: 1rem; font-size: 12px; color: #6c757d">
+          🔐 demo: admin / admin123
+        </div>
+      </div>
     </div>
-</div>
 
-<!-- ADMIN DASHBOARD -->
-<div id="adminApp" style="display: none;">
-    <div class="admin-wrapper">
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminApp" style="display: none">
+      <div class="admin-wrapper">
         <!-- SIDEBAR (có thể cuộn) -->
         <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <i class="fas fa-badminton"></i> TripleT Admin
-            </div>
-            <ul class="sidebar-menu">
-                <li data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-                <li data-section="categories"><i class="fas fa-tags"></i> Loại sản phẩm</li>
-                <li data-section="products"><i class="fas fa-table-tennis-paddle-ball"></i> Sản phẩm</li>
-                <li data-section="users"><i class="fas fa-users"></i> Người dùng</li>
-                <li data-section="orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</li>
-                <li data-section="revenue"><i class="fas fa-chart-line"></i> Doanh thu</li>
-                <li data-section="promotions"><i class="fas fa-gift"></i> Khuyến mãi</li>
-                <li data-section="reviews"><i class="fas fa-star"></i> Đánh giá</li>
-                <li data-section="suppliers"><i class="fas fa-truck"></i> Nhà cung cấp</li>
-                <li data-section="imports"><i class="fas fa-dolly"></i> Nhập hàng</li>
-            </ul>
-            <div class="logout-side">
-                <li id="logoutAdminBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</li>
-            </div>
+          <div class="sidebar-header">
+            <i class="fas fa-badminton"></i> TripleT Admin
+          </div>
+          <ul class="sidebar-menu">
+            <li data-section="dashboard">
+              <i class="fas fa-tachometer-alt"></i> Dashboard
+            </li>
+            <li data-section="categories">
+              <i class="fas fa-tags"></i> Loại sản phẩm
+            </li>
+            <li data-section="products">
+              <i class="fas fa-table-tennis-paddle-ball"></i> Sản phẩm
+            </li>
+            <li data-section="users">
+              <i class="fas fa-users"></i> Người dùng
+            </li>
+            <li data-section="orders">
+              <i class="fas fa-shopping-cart"></i> Đơn hàng
+            </li>
+            <li data-section="revenue">
+              <i class="fas fa-chart-line"></i> Doanh thu
+            </li>
+            <li data-section="promotions">
+              <i class="fas fa-gift"></i> Khuyến mãi
+            </li>
+            <li data-section="reviews"><i class="fas fa-star"></i> Đánh giá</li>
+            <li data-section="suppliers">
+              <i class="fas fa-truck"></i> Nhà cung cấp
+            </li>
+            <li data-section="imports">
+              <i class="fas fa-dolly"></i> Nhập hàng
+            </li>
+          </ul>
+          <div class="logout-side">
+            <li id="logoutAdminBtn">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </li>
+          </div>
         </div>
 
         <!-- MAIN CONTENT -->
         <div class="main-content">
-            <div class="topbar">
-                <i class="fas fa-bars menu-icon" id="mobileMenuToggle"></i>
-                <h2 class="page-title" id="mainTitle">Dashboard</h2>
-                <!-- Các nút công cụ phía bên phải -->
-                <div class="topbar-actions">
-                    <!-- Thông báo -->
-                    <div class="notification-dropdown" id="notificationBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge" id="notificationCount">0</span>
-                        <div class="notification-panel" id="notificationPanel" style="display:none;">
-                            <div class="notification-header">Thông báo <span id="markAllRead">Đánh dấu đã đọc</span></div>
-                            <div class="notification-list" id="notificationList"></div>
-                        </div>
-                    </div>
-                    <!-- Backup/Restore -->
-                    <button class="icon-btn" id="backupBtn" title="Sao lưu dữ liệu"><i class="fas fa-database"></i></button>
-                    <button class="icon-btn" id="restoreBtn" title="Phục hồi dữ liệu"><i class="fas fa-upload"></i></button>
-                    <!-- Dark mode toggle -->
-                    <button id="darkModeToggle" class="dark-mode-toggle"><i class="fas fa-moon"></i></button>
-                    <!-- Admin dropdown -->
-                    <div class="admin-info">
-                        <i class="fas fa-user-circle"></i> Admin
-                        <div class="admin-dropdown" id="adminDropdown">
-                            <div class="dropdown-item" id="changePasswordBtn"><i class="fas fa-key"></i> Đổi mật khẩu</div>
-                            <div class="dropdown-item" id="logoutAdminBtn2"><i class="fas fa-sign-out-alt"></i> Đăng xuất</div>
-                        </div>
-                    </div>
+          <div class="topbar">
+            <i class="fas fa-bars menu-icon" id="mobileMenuToggle"></i>
+            <h2 class="page-title" id="mainTitle">Dashboard</h2>
+            <!-- Các nút công cụ phía bên phải -->
+            <div class="topbar-actions">
+              <!-- Thông báo -->
+              <div class="notification-dropdown" id="notificationBtn">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" id="notificationCount">0</span>
+                <div
+                  class="notification-panel"
+                  id="notificationPanel"
+                  style="display: none"
+                >
+                  <div class="notification-header">
+                    Thông báo <span id="markAllRead">Đánh dấu đã đọc</span>
+                  </div>
+                  <div class="notification-list" id="notificationList"></div>
                 </div>
+              </div>
+              <!-- Backup/Restore -->
+              <button class="icon-btn" id="backupBtn" title="Sao lưu dữ liệu">
+                <i class="fas fa-database"></i>
+              </button>
+              <button class="icon-btn" id="restoreBtn" title="Phục hồi dữ liệu">
+                <i class="fas fa-upload"></i>
+              </button>
+              <!-- Dark mode toggle -->
+              <button id="darkModeToggle" class="dark-mode-toggle">
+                <i class="fas fa-moon"></i>
+              </button>
+              <!-- Admin dropdown -->
+              <div class="admin-info">
+                <i class="fas fa-user-circle"></i> Admin
+                <div class="admin-dropdown" id="adminDropdown">
+                  <div class="dropdown-item" id="changePasswordBtn">
+                    <i class="fas fa-key"></i> Đổi mật khẩu
+                  </div>
+                  <div class="dropdown-item" id="logoutAdminBtn2">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                  </div>
+                </div>
+              </div>
             </div>
-            <div id="dynamicContent" class="animate-fadeIn">Loading...</div>
+          </div>
+          <div id="dynamicContent" class="animate-fadeIn">Loading...</div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- MODAL CRUD -->
-<div id="genericModal" class="modal">
-    <div class="modal-content">
+    <!-- MODAL CRUD -->
+    <div id="genericModal" class="modal">
+      <div class="modal-content">
         <h3 id="modalTitle">Thêm mới</h3>
         <form id="modalForm">
-            <div id="modalFields"></div>
-            <div class="form-buttons">
-                <button type="button" class="btn-icon" id="modalCloseBtn"><i class="fas fa-times"></i> Hủy</button>
-                <button type="submit" class="btn-add"><i class="fas fa-save"></i> Lưu</button>
-            </div>
+          <div id="modalFields"></div>
+          <div class="form-buttons">
+            <button type="button" class="btn-icon" id="modalCloseBtn">
+              <i class="fas fa-times"></i> Hủy
+            </button>
+            <button type="submit" class="btn-add">
+              <i class="fas fa-save"></i> Lưu
+            </button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-<!-- Modal xác nhận -->
-<div id="confirmModal" class="modal">
-    <div class="modal-content" style="max-width: 400px;">
-        <h3 id="confirmTitle"><i class="fas fa-question-circle"></i> Xác nhận</h3>
-        <p id="confirmMessage">Bạn có chắc chắn muốn thực hiện hành động này?</p>
-        <div class="form-buttons" style="margin-top: 1.5rem;">
-            <button type="button" class="btn-icon" id="confirmNoBtn"><i class="fas fa-times"></i> Hủy</button>
-            <button type="button" class="btn-add" id="confirmYesBtn"><i class="fas fa-check"></i> Xác nhận</button>
+    <!-- Modal xác nhận -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-content" style="max-width: 400px">
+        <h3 id="confirmTitle">
+          <i class="fas fa-question-circle"></i> Xác nhận
+        </h3>
+        <p id="confirmMessage">
+          Bạn có chắc chắn muốn thực hiện hành động này?
+        </p>
+        <div class="form-buttons" style="margin-top: 1.5rem">
+          <button type="button" class="btn-icon" id="confirmNoBtn">
+            <i class="fas fa-times"></i> Hủy
+          </button>
+          <button type="button" class="btn-add" id="confirmYesBtn">
+            <i class="fas fa-check"></i> Xác nhận
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<div id="toastNotification" class="toast-notification"></div>
+    <div id="toastNotification" class="toast-notification"></div>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

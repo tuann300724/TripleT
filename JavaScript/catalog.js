@@ -20,13 +20,19 @@
   }
 
   // 2. Hàm tạo thẻ sản phẩm (Render Card)
-  function renderCard(p) {
-    var thumb = p.thumb || p.image;
-    var alt = p.alt || p.name;
-    var detailUrl = "chi-tiet-san-pham.html?id=" + encodeURIComponent(p.id);
+  // catalog.js - Sửa lại phần đầu của hàm renderCard
+function renderCard(p) {
+  var thumb = p.thumb || p.image;
+  var alt = p.alt || p.name;
+  var detailUrl = "chi-tiet-san-pham.html?id=" + encodeURIComponent(p.id);
 
     return (
-      '<article class="product-card" data-id="' + escapeAttr(p.id) + '">' +
+      '<article class="product-card"'
+        + ' data-id="' + escapeAttr(p.id) + '"'
+        + ' data-name="' + escapeAttr(p.name) + '"'
+        + ' data-price="' + escapeAttr(p.price) + '"'
+        + ' data-image="' + escapeAttr(p.image) + '"'
+        + '>' +
         '<div class="product-img">' +
           '<img src="../' + escapeAttr(p.image) + '" alt="' + escapeAttr(alt) + '" width="600" height="600" loading="lazy">' +
         '</div>' +

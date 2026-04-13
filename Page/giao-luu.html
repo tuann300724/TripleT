@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Bạn Giao Lưu - TripleT Community</title>
+    <link rel="stylesheet" href="../Css/badminton-base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .community-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 1.25rem;
+        }
+        .post-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #2D8A68;
+        }
+        .user-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .user-avatar { width: 45px; height: 45px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
+        .match-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; background: #f9f9f9; padding: 15px; border-radius: 8px; font-size: 14px; }
+        
+        .form-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">Cộng đồng cầu lông lớn nhất Việt Nam - Kết bạn, học hỏi, giao lưu</div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="giao-luu.html" aria-current="page">Giao lưu</a>
+                <a href="dat-san.html">Đặt sân</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <span id="user-name-text"></span>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="community-container">
+        <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <h1 style="color: var(--green-dark); margin: 0;">Kèo Giao Lưu Mới Nhất</h1>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <select id="filter-skill" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;" onchange="renderPosts()">
+                    <option value="all">Tất cả trình độ</option>
+                    <option value="Mới tập chơi">Mới tập chơi</option>
+                    <option value="Trung bình">Trung bình</option>
+                    <option value="Khá / Giỏi">Khá / Giỏi</option>
+                </select>
+                <button class="btn btn-primary" onclick="openPostForm()">Đăng bài ngay</button>
+            </div>
+        </div>
+
+        <div id="posts-list"></div>
+    </main>
+
+    <div id="post-form-overlay" class="form-overlay" onclick="closePostForm()">
+        <div style="background: #fff; width: 90%; max-width: 500px; margin: 40px auto; padding: 25px; border-radius: 12px; position: relative;" onclick="event.stopPropagation()">
+            <h2 style="color: var(--green-dark); margin-top: 0;">Đăng Tin Giao Lưu</h2>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="post-title" placeholder="Tiêu đề (VD: Tìm đồng đội tối nay...)" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                <textarea id="post-desc" rows="3" placeholder="Mô tả chi tiết, trình độ, chi phí..." style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;"></textarea>
+                <input type="text" id="post-loc" placeholder="Địa điểm (Tên sân)" style="padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="post-time" placeholder="Thời gian" style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                    <select id="post-skill" style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                        <option value="Trung bình">Trung bình</option>
+                        <option value="Mới tập chơi">Mới tập chơi</option>
+                        <option value="Khá / Giỏi">Khá / Giỏi</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" style="padding: 12px;" onclick="addPost()">Đăng tin</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>TripleT Cầu Lông</strong></p>
+    </footer>
+
+    <script>
+        let posts = JSON.parse(localStorage.getItem('triplet_giao_luu')) || [
+            { id: 1, name: 'Hoàng Tùng', avatar: 'T', color: '#ffb800', time: '2 giờ trước', title: 'Cần 2 bạn nam/nữ đánh giao lưu tối nay', desc: 'Team mình hiện có 3 người, cần thêm 2 bạn nữa cho đủ 1 sân. Đánh vui vẻ, không quá căng thẳng.', loc: 'Sân TripleT Q7', matchTime: '19h00 - 21h00 (Hôm nay)', skill: 'Trung bình', contact: '0912345***' },
+            { id: 2, name: 'Minh Lan', avatar: 'L', color: '#2D8A68', time: '5 giờ trước', title: 'Thử thách trình độ khá - Thủ Đức', desc: 'Cần tìm đối đánh đơn hoặc đôi nam nữ. Trình độ khá trở lên, bao sân cầu.', loc: 'Sân Bình Thái, Q9', matchTime: '08h00 - 10h00 (Sáng mai)', skill: 'Khá / Giỏi', contact: '0988776***' }
+        ];
+
+        function renderPosts() {
+            const list = document.getElementById('posts-list');
+            const filter = document.getElementById('filter-skill').value;
+            let html = '';
+            
+            let filtered = posts;
+            if(filter !== 'all') {
+                filtered = posts.filter(p => p.skill === filter);
+            }
+
+            if(filtered.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#999;">Chưa có bài đăng nào.</p>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                html += `
+                <div class="post-card">
+                    <div class="user-info">
+                        <div class="user-avatar" style="background: `+p.color+`; color: #fff;">`+p.avatar+`</div>
+                        <div>
+                            <strong style="display:block;">`+escapeHtml(p.name)+`</strong>
+                            <span style="font-size: 12px; color: #999;">`+escapeHtml(p.time)+`</span>
+                        </div>
+                    </div>
+                    <p style="margin: 0; font-weight: 600; font-size: 17px;">`+escapeHtml(p.title)+`</p>
+                    <p style="margin: 10px 0; color: #444; line-height: 1.6;">`+escapeHtml(p.desc)+`</p>
+                    
+                    <div class="match-details">
+                        <span><i class="fa-solid fa-clock"></i> `+escapeHtml(p.matchTime)+`</span>
+                        <span><i class="fa-solid fa-location-dot"></i> `+escapeHtml(p.loc)+`</span>
+                        <span><i class="fa-solid fa-signal"></i> Trình độ: `+escapeHtml(p.skill)+`</span>
+                    </div>
+                    
+                    <button class="btn btn-ghost" style="width: 100%;" onclick="alert('Vui lòng liên hệ: `+escapeHtml(p.contact)+`')">Liên hệ / Tham gia</button>
+                </div>
+                `;
+            });
+            list.innerHTML = html;
+        }
+
+        function escapeHtml(s) {
+            const d = document.createElement("div");
+            d.textContent = s;
+            return d.innerHTML;
+        }
+
+        function openPostForm() {
+            const user = localStorage.getItem('tripleT_currentUser');
+            if(!user) {
+                alert("Vui lòng đăng nhập để có thể đăng bài gắn nhãn tài khoản của bạn.");
+                window.location.href = "login.html";
+                return;
+            }
+            document.getElementById('post-form-overlay').style.display = 'block';
+        }
+
+        function closePostForm() {
+            document.getElementById('post-form-overlay').style.display = 'none';
+        }
+
+        function addPost() {
+            const title = document.getElementById('post-title').value.trim();
+            const desc = document.getElementById('post-desc').value.trim();
+            const loc = document.getElementById('post-loc').value.trim();
+            const time = document.getElementById('post-time').value.trim();
+            const skill = document.getElementById('post-skill').value;
+            
+            if(!title || !loc || !time) {
+                alert("Vui lòng điền đầy đủ Tiêu đề, Địa điểm, Thời gian.");
+                return;
+            }
+
+            const user = localStorage.getItem('tripleT_currentUser') || "Khách";
+            let currentUserData = {};
+            try { currentUserData = JSON.parse(user); } catch(e) {}
+            const username = currentUserData.name || "Người dùng";
+            
+            const newPost = {
+                id: Date.now(),
+                name: username,
+                avatar: username.charAt(0).toUpperCase(),
+                color: '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0'),
+                time: 'Vừa xong',
+                title: title,
+                desc: desc,
+                loc: loc,
+                matchTime: time,
+                skill: skill,
+                contact: 'Qua chat hệ thống'
+            };
+
+            posts.unshift(newPost);
+            localStorage.setItem('triplet_giao_luu', JSON.stringify(posts));
+            closePostForm();
+            renderPosts();
+            
+            alert("Tin của bạn đã được đăng thành công!");
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPosts);
+    </script>
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giỏ hàng</h2>
+          <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">
+            ×
+          </button>
+        </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            Chưa có sản phẩm. Hãy thêm từ danh sách nhé!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Số lượng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Tạm tính</span>
+            <strong id="cart-subtotal">0₫</strong>
+          </div>
+          <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+            Xem đơn &amp; thanh toán
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            Xóa toàn bộ giỏ
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/session.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/wishlist.js" defer></script>
+</body>
+</html>

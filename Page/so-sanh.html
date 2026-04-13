@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>So Sánh Vợt - TripleT Cầu Lông</title>
+  <link rel="stylesheet" href="../Css/badminton-base.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .compare-container {
+        max-width: 1120px;
+        margin: 40px auto;
+        padding: 0 1.25rem;
+    }
+    .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .compare-table th, .compare-table td {
+        border: 1px solid #eee;
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .compare-table th {
+        background: #f9f9f9;
+        font-weight: 600;
+        width: 25%;
+        text-align: left;
+    }
+    .compare-product-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin: 0 auto 10px;
+        border-radius: 8px;
+    }
+    .remove-compare-btn {
+        background: #ffebe9;
+        color: #d92d20;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">Miễn phí vận chuyển đơn từ 500.000₫ · Tư vấn chọn vợt miễn phí</div>
+
+      <header class="site-header">
+        <div class="header-inner">
+            <a href="Home.html" class="logo">
+                <span class="logo-mark">🏸</span>
+                <span>TripleT Cầu Lông</span>
+            </a>
+
+            <nav class="nav-main" id="nav-menu">
+                <a href="Home.html">Trang chủ</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="san-pham.html">Sản phẩm</a>
+                <a href="giao-luu.html">Giao lưu</a>
+                <a href="dat-san.html">Đặt sân</a>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="cart-toggle" id="cart-toggle">
+                    <span class="cart-toggle-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </button>
+
+                <a href="login.html" class="btn btn-primary" id="login-btn">Đăng nhập</a>
+                <span id="user-name" class="btn btn-primary"
+                    style="display:none;cursor:pointer;position:relative;user-select:none;">
+                    <span id="user-name-text"></span>
+                    <span id="logout-icon"
+                        style="display:inline-block;margin-left:10px;color:#ffffff;font-size:20px;cursor:pointer;transition:color 0.2s;vertical-align:middle;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                </span>
+                <button type="button" class="menu-toggle" id="menu-toggle">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+  <main class="compare-container">
+      <h1 style="color: var(--green-dark); margin-bottom: 20px;">So Sánh Vợt Cầu Lông</h1>
+      
+      <div id="compare-root">
+          <!-- Bảng so sánh hiển thị ở đây -->
+      </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 <strong>TripleT Cầu Lông</strong></p>
+  </footer>
+
+  <script src="../JavaScript/products-data.js"></script>
+  <script>
+      function formatPrice(n) {
+        return new Intl.NumberFormat("vi-VN").format(n) + "₫";
+      }
+
+      function removeCompare(id) {
+          let compares = JSON.parse(localStorage.getItem('triplet_compares')) || [];
+          compares = compares.filter(x => x !== id);
+          localStorage.setItem('triplet_compares', JSON.stringify(compares));
+          renderCompare();
+      }
+
+            function getSpecs(p) {
+          // Parse info from product properties if available, otherwise guess from name
+          if (p.specs) return p.specs;
+          
+          let name = p.name.toUpperCase();
+          let weight = name.includes("6U") ? "6U" : (name.includes("3U") ? "3U" : "4U");
+          let balance = name.includes("NẶNG ĐẦU") ? "305mm (Nặng đầu)" : (name.includes("NHẸ ĐẦU") ? "290mm (Nhẹ đầu)" : "295mm (Cân bằng)");
+          let flex = name.includes("POWER") || name.includes("NẶNG") || name.includes("TẤN CÔNG") ? "Cứng" : (name.includes("NHẸ") ? "Dẻo" : "Trung bình");
+          let maxTension = weight === "3U" ? "13.5kg" : (weight === "4U" ? "12.5kg" : "11kg");
+          
+          return { weight, balance, flex, maxTension };
+      }
+
+      function renderCompare() {
+          const root = document.getElementById("compare-root");
+          let compares = [];
+          try { compares = JSON.parse(localStorage.getItem('triplet_compares')) || []; } catch(e) {}
+
+          if (compares.length === 0) {
+              root.innerHTML = `<div style="text-align:center; padding: 50px; background: #fff; border-radius: 12px;"><h3>Chưa có sản phẩm nào để so sánh</h3><a href="san-pham.html" class="btn btn-primary" style="margin-top: 15px;">Quay lại Cửa Hàng</a></div>`;
+              return;
+          }
+
+          const products = compares.map(id => window.TRIPLET_PRODUCTS.find(p => p.id === id)).filter(Boolean);
+
+          let html = `<table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Thông số</th>
+                    ${products.map(p => `
+                        <td>
+                            <img src="../${p.image}" class="compare-product-img">
+                            <h4 style="margin:0 0 10px; font-size: 15px; color: #1a5c4a;">${p.name}</h4>
+                            <strong style="color: #e8b923;">${formatPrice(p.price)}</strong>
+                            <br>
+                            <button class="remove-compare-btn" onclick="removeCompare('${p.id}')">Xóa</button>
+                            <br>
+                            <a href="chi-tiet-san-pham.html?id=${p.id}" class="btn btn-primary" style="margin-top:10px; padding: 5px 15px; font-size:12px;">Mua ngay</a>
+                        </td>
+                    `).join('')}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Trọng lượng</th>
+                    ${products.map(p => `<td>${getSpecs(p).weight}</td>`).join('')}
+                </tr>
+                <tr>
+                    <th>Điểm cân bằng</th>
+                    ${products.map(p => `<td>${getSpecs(p).balance}</td>`).join('')}
+                </tr>
+                <tr>
+                    <th>Độ cứng</th>
+                    ${products.map(p => `<td>${getSpecs(p).flex}</td>`).join('')}
+                </tr>
+                <tr>
+                    <th>Sức căng tối đa</th>
+                    ${products.map(p => `<td>${getSpecs(p).maxTension}</td>`).join('')}
+                </tr>
+            </tbody>
+          </table>`;
+
+          root.innerHTML = html;
+      }
+
+      document.addEventListener("DOMContentLoaded", renderCompare);
+  </script>
+    <div class="cart-backdrop" id="cart-backdrop" hidden aria-hidden="true"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" hidden aria-hidden="true" aria-labelledby="cart-title" role="dialog">
+      <div class="cart-drawer-inner">
+        <div class="cart-drawer-head">
+          <h2 id="cart-title">Giỏ hàng</h2>
+          <button type="button" class="cart-close" id="cart-close" aria-label="Đóng giỏ hàng">
+            ×
+          </button>
+        </div>
+        <div class="cart-drawer-body">
+          <p class="cart-empty" id="cart-empty">
+            Chưa có sản phẩm. Hãy thêm từ danh sách nhé!
+          </p>
+          <ul class="cart-lines" id="cart-lines"></ul>
+        </div>
+        <div class="cart-drawer-foot">
+          <div class="cart-summary-row">
+            <span>Số lượng</span>
+            <span id="cart-count-summary">0</span>
+          </div>
+          <div class="cart-summary-row cart-summary-total">
+            <span>Tạm tính</span>
+            <strong id="cart-subtotal">0₫</strong>
+          </div>
+          <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout" disabled>
+            Xem đơn &amp; thanh toán
+          </button>
+          <button type="button" class="cart-clear" id="cart-clear">
+            Xóa toàn bộ giỏ
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="cart-toast" id="cart-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="../JavaScript/session.js" defer></script>
+    <script src="../JavaScript/cart.js" defer></script>
+    <script src="../JavaScript/wishlist.js" defer></script>
+</body>
+</html>
